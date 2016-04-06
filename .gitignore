@@ -1,3 +1,5 @@
 */node_modules/*
+node_modules/*
 .webassets-cache/
 .idea/
+Semantic-UI/
