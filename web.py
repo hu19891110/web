@@ -31,7 +31,7 @@ bundles = {
         # 'node_modules/bootstrap/dist/css/bootstrap.min.css',
         # 'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
         'node_modules/font-awesome/css/font-awesome.min.css',
-        'node_modules/semantic-ui/dist/semantic.css',
+        'node_modules/semantic-ui/dist/semantic.min.css',
 
         # 'css/styles.css',
         output='css/base.min.css',
