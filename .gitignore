@@ -3,3 +3,4 @@ node_modules/*
 .webassets-cache/
 .idea/
 Semantic-UI/
+static/ts/*.js*
