@@ -1,6 +1,6 @@
 import os
 import configparser as ConfigParser
-from flask import Flask, abort, redirect, make_response, render_template, request,jsonify
+from flask import Flask, abort, redirect, make_response, render_template, request, jsonify
 from flask_assets import Bundle, Environment
 from flask_wtf.csrf import CsrfProtect
 
@@ -17,20 +17,23 @@ bundles = {
         'node_modules/angular2/bundles/angular2.dev.js',
         'node_modules/angular2/bundles/router.dev.js',
         'node_modules/angular2/bundles/http.dev.js',
+        # 'node_modules/angular2-websocket/angular2-websocket.js',
 
         'node_modules/jquery/dist/jquery.min.js',
-        'node_modules/bootstrap/dist/js/bootstrap.min.js',
+        # 'node_modules/bootstrap/dist/js/bootstrap.min.js',
 
-        # 'node_modules/semantic-ui/dist/semantic.min.js',
+        'node_modules/semantic-ui/dist/semantic.min.js',
+        'js/term.js',
         output='js/base.min.js',
         filters='jsmin'
     ),
     'bash_css': Bundle(
-        'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        # 'node_modules/bootstrap/dist/css/bootstrap.min.css',
         # 'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
         'node_modules/font-awesome/css/font-awesome.min.css',
-        # 'node_modules/semantic-ui/dist/semantic.css',
-        'css/styles.css',
+        'node_modules/semantic-ui/dist/semantic.css',
+
+        # 'css/styles.css',
         output='css/base.min.css',
         filters='cssmin'
     ),
@@ -75,7 +78,7 @@ def a():
         print('post')
     else:
         print('get')
-    return jsonify({'a':'a'})
+    return jsonify({'a': 'a'})
 
 
 if __name__ == '__main__':

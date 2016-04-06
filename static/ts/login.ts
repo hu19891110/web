@@ -13,7 +13,7 @@ export class User {
 }
 
 @Component({
-    selector: 'login-form',
+    selector: 'angular2',
     templateUrl: "/static/login.html",
 })
 

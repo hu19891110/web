@@ -21,8 +21,12 @@
             transpiler: 'typescript',
             typescriptOptions: {emitDecoratorMetadata: true},
             packages: {
-                'static/ts': {defaultExtension: 'ts'}
-            }
+                'static/ts': {defaultExtension: 'ts'},
+                'angular2-websocket': {defaultExtension: 'ts'}
+            },
+            map: {
+                'angular2-websocket': '/static/node_modules/angular2-websocket'
+            },
         });
         {% if not session.logged_in %}
             System.import('static/ts/login')
@@ -32,10 +36,55 @@
                     .then(null, console.error.bind(console));
         {% endif %}
     </script>
+
+  <style type="text/css">
+    body {
+      background-color: #DADADA;
+    }
+  </style>
+  <script>
+  $(document)
+    .ready(function() {
+      $('.ui.form')
+        .form({
+          fields: {
+            email: {
+              identifier  : 'email',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please enter your e-mail'
+                },
+                {
+                  type   : 'email',
+                  prompt : 'Please enter a valid e-mail'
+                }
+              ]
+            },
+            password: {
+              identifier  : 'password',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please enter your password'
+                },
+                {
+                  type   : 'length[6]',
+                  prompt : 'Your password must be at least 6 characters'
+                }
+              ]
+            }
+          }
+        })
+      ;
+    })
+  ;
+  </script>
 </head>
 <!-- 3. Display the application -->
 <body class="gray-bg">
-<login-form>Loading...</login-form>
+
+<angular2  >Loading...</angular2>
 
 </body>
 </html>
