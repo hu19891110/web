@@ -1,6 +1,7 @@
+import {bootstrap}    from 'angular2/platform/browser';
 import {Component} from 'angular2/core';
 import {NgForm}    from 'angular2/common';
-import {Http, Headers,Response} from 'angular2/http';
+import {Http, HTTP_PROVIDERS, Headers,Response} from 'angular2/http';
 import  'rxjs/Rx';
 declare var jQuery:any;
 
@@ -44,6 +45,7 @@ export class LoginComponent {
             () => console.log('POST:')
         );
     }
-
-
 }
+
+
+bootstrap(LoginComponent, [ HTTP_PROVIDERS ]);

@@ -21,11 +21,16 @@
             transpiler: 'typescript',
             typescriptOptions: {emitDecoratorMetadata: true},
             packages: {
-                'static/ts': {defaultExtension: 'ts'},
-            },
+                'static/ts': {defaultExtension: 'ts'}
+            }
         });
-        System.import('static/ts/main')
-                .then(null, console.error.bind(console));
+        {% if not session.logged_in %}
+            System.import('static/ts/login')
+                    .then(null, console.error.bind(console));
+        {% else %}
+            System.import('static/ts/main')
+                    .then(null, console.error.bind(console));
+        {% endif %}
     </script>
 </head>
 <!-- 3. Display the application -->
