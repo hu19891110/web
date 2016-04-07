@@ -4,3 +4,5 @@ node_modules/*
 .idea/
 Semantic-UI/
 static/ts/*.js*
+.DS_Store
+__pycache__/

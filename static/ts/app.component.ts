@@ -1,3 +1,7 @@
+/**
+ * Created by liuzheng on 4/7/16.
+ */
+
 import {Component}         from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 

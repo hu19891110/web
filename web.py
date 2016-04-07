@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+#  coding: utf-8
+# Copyright (c) 2016
+# Gmail:liuzheng712
+
 import os
 import configparser as ConfigParser
 from flask import Flask, abort, redirect, make_response, render_template, request, jsonify

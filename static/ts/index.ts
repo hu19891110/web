@@ -1,3 +1,7 @@
+/**
+ * Created by liuzheng on 4/7/16.
+ */
+
 import {Component} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {RouteParams, Router, ROUTER_DIRECTIVES} from 'angular2/router';

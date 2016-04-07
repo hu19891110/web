@@ -1,3 +1,7 @@
+/**
+ * Created by liuzheng on 4/7/16.
+ */
+
 import {bootstrap}    from 'angular2/platform/browser';
 import {Component} from 'angular2/core';
 import {$WebSocket} from 'angular2-websocket/angular2-websocket';
@@ -12,8 +16,7 @@ declare var jQuery:any;
 
 
 export class TermComponent {
-    constructor(http:Http) {
-        this.http = http;
+    constructor(private http:Http) {
     }
 
     ngOnInit() {
