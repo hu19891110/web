@@ -11,7 +11,43 @@ declare var jQuery:any;
 
 //https://github.com/afrad/angular2-websocket.git
 @Component({
-    templateUrl: "/static/webterminal.html",
+    template: `<style>
+        body {
+            padding-bottom: 40px;
+        }
+
+        .terminal {
+            border: #000 solid 5px;
+            font-family: "Monaco", "Microsoft Yahei", "DejaVu Sans Mono", "Liberation Mono", monospace;
+            font-size: 11px;
+            color: #f0f0f0;
+            background: #000;
+            box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 20px;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .reverse-video {
+            color: #000;
+            background: #f0f0f0;
+        }
+
+        .termChangBar {
+            line-height: 1;
+            margin: 0 auto;
+            border: 1px solid #ffffff;
+            color: #fff;
+            background-color: #ffffff;
+            position: fixed;
+            right: 0;
+            top: 0;
+        }
+    </style>
+<div class="container">
+    <div id="term">
+    </div>
+</div>
+`,
 })
 
 
