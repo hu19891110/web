@@ -29,13 +29,8 @@
                 'angular2-websocket': '/static/node_modules/angular2-websocket'
             },
         });
-        {% if not session.logged_in %}
             System.import('static/ts/main')
                     .then(null, console.error.bind(console));
-        {% else %}
-            System.import('static/ts/main')
-                    .then(null, console.error.bind(console));
-        {% endif %}
     </script>
 
 </head>

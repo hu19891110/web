@@ -24,7 +24,7 @@ export class TermComponent {
         }
         var endpoint = protocol + document.URL.match(RegExp('//(.*?)/'))[1] + '/ws/terminal' + document.URL.match(/(\?.*)/);
         //this.ws = new $WebSocket(endpoint);
-        var ws = new $WebSocket('ws://localhost:8000/ws/super');
+        var ws = new $WebSocket('ws://localhost:5000/ws');
         var rowHeight, colWidth;
         try {
             rowHeight = localStorage.getItem('term-row');
