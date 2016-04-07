@@ -7,7 +7,6 @@ declare var jQuery:any;
 
 //https://github.com/afrad/angular2-websocket.git
 @Component({
-    selector: 'angular2',
     templateUrl: "/static/webterminal.html",
 })
 
@@ -48,7 +47,8 @@ export class TermComponent {
             useStyle: true,
             screenKeys: true
         });
-        term.open();
+        jQuery('#term').innerHTML='';
+        term.open(document.getElementById('term'));
         term.on('data', function (data) {
             ws.send('R'+data)
         });
@@ -60,4 +60,4 @@ export class TermComponent {
 }
 
 
-bootstrap(TermComponent, [HTTP_PROVIDERS]);
+//bootstrap(TermComponent, [HTTP_PROVIDERS]);

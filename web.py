@@ -66,8 +66,8 @@ app.secret_key = 'sdfaschuiejgyhujgyuhhtyuhgt8uhg67uhr678uhg'
 # def internal_server_error(e):
 #     return render_template('500.html'), 500
 #
-@app.route('/')
-def hello_world():
+@app.route('/<hello>')
+def hello_world(hello=None):
     return render_template('index.html')
     # return 'Hello World!', 400
 

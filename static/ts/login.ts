@@ -13,7 +13,6 @@ export class User {
 }
 
 @Component({
-    selector: 'angular2',
     templateUrl: "/static/login.html",
 })
 
@@ -44,8 +43,9 @@ export class LoginComponent {
                 err => this.logError(err),
             () => console.log('POST:')
         );
+        this.error = 'got hello'
     }
 }
 
 
-bootstrap(LoginComponent, [ HTTP_PROVIDERS ]);
+//bootstrap(LoginComponent, [ HTTP_PROVIDERS ]);

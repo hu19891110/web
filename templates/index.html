@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<base href="/">
+
     <meta charset="UTF-8">
     <title>Angular 2 QuickStart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +15,6 @@
     {% assets "base_js" %}
         <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
-
 
     <!-- 2. Configure SystemJS -->
     <script>
@@ -29,7 +30,7 @@
             },
         });
         {% if not session.logged_in %}
-            System.import('static/ts/login')
+            System.import('static/ts/main')
                     .then(null, console.error.bind(console));
         {% else %}
             System.import('static/ts/main')
@@ -37,52 +38,9 @@
         {% endif %}
     </script>
 
-  <style type="text/css">
-    body {
-      background-color: #DADADA;
-    }
-  </style>
-  <script>
-  $(document)
-    .ready(function() {
-      $('.ui.form')
-        .form({
-          fields: {
-            email: {
-              identifier  : 'email',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Please enter your e-mail'
-                },
-                {
-                  type   : 'email',
-                  prompt : 'Please enter a valid e-mail'
-                }
-              ]
-            },
-            password: {
-              identifier  : 'password',
-              rules: [
-                {
-                  type   : 'empty',
-                  prompt : 'Please enter your password'
-                },
-                {
-                  type   : 'length[6]',
-                  prompt : 'Your password must be at least 6 characters'
-                }
-              ]
-            }
-          }
-        })
-      ;
-    })
-  ;
-  </script>
 </head>
 <!-- 3. Display the application -->
-<body class="gray-bg">
+<body class="gray-bg" style="background-color: #DADADA;">
 
 <angular2  >Loading...</angular2>
 
