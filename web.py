@@ -3,6 +3,7 @@ import configparser as ConfigParser
 from flask import Flask, abort, redirect, make_response, render_template, request, jsonify
 from flask_assets import Bundle, Environment
 from flask_wtf.csrf import CsrfProtect
+from flask.ext.uwsgi_websocket import GeventWebSocket
 
 bundles = {
     'base_js': Bundle(
@@ -51,25 +52,37 @@ assets = Environment(app)
 assets.register(bundles)
 
 app.secret_key = 'sdfaschuiejgyhujgyuhhtyuhgt8uhg67uhr678uhg'
+websocket = GeventWebSocket(app)
 
 
-# @app.errorhandler(404)
-# def page_not_found(e):
-#     return render_template('404.html'), 404
-#
-#
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
 # def staticfile(filename):
 #     return '/static/css/' + filename
-#
-#
-# @app.errorhandler(500)
-# def internal_server_error(e):
-#     return render_template('500.html'), 500
-#
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template('500.html'), 500
+
+@websocket.route('/ws')
+def WebSocketHandle(ws):
+    while True:
+        msg = ws.receive()
+        ws.send(msg)
+
+
 @app.route('/<hello>')
 def hello_world(hello=None):
     return render_template('index.html')
     # return 'Hello World!', 400
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/a', methods=['GET', 'POST'])
@@ -80,6 +93,11 @@ def a():
         print('get')
     return jsonify({'a': 'a'})
 
+@app.route('/checklogin', methods=['GET'])
+def checklogin():
+    return jsonify({'logined': True})
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run(gevent=100)
