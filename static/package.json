@@ -1,20 +1,43 @@
 {
-  "name": "angular2-quickstart",
-  "version": "1.0.0",
+  "name": "jumpserver",
+  "version": "0.4.0",
   "dependencies": {
     "angular2": "2.0.0-beta.13",
+    "angular2-websocket": "^0.6.2",
     "bootstrap": "^3.3.6",
     "concurrently": "^2.0.0",
+    "echarts": "^3.1.5",
     "es6-shim": "^0.35.0",
+    "font-awesome": "^4.5.0",
     "gulp": "^3.9.1",
     "jquery": "^2.2.3",
     "lite-server": "^2.1.0",
-    "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.2",
+    "reflect-metadata": "^0.1.2",
+    "rxjs": "^5.0.0-beta.2",
     "semantic-ui": "^2.1.8",
     "systemjs": "0.19.25",
+    "term.js": "0.0.7",
     "typescript": "^1.8.9",
     "typings": "^0.7.11",
-    "zone.js": "0.6.6"
-  }
+    "zone.js": "^0.6.10"
+  },
+  "description": "Jumpserver web pages",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jumpserver/web.git"
+  },
+  "keywords": [
+    "jumpserver"
+  ],
+  "author": "liuzheng712",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jumpserver/web/issues"
+  },
+  "homepage": "https://github.com/jumpserver/web#readme"
 }

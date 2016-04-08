@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<base href="/">
+    <base href="/">
 
     <meta charset="UTF-8">
     <title>Angular 2 QuickStart</title>
@@ -29,15 +29,173 @@
                 'angular2-websocket': 'static/ts'
             },
         });
-            System.import('/static/ts/main')
-                    .then(null, console.error.bind(console));
+        System.import('/static/ts/main')
+                .then(null, console.error.bind(console));
     </script>
+    <style>
+        .ui.menu .item img.logo {
+            margin-right: 1.5em;
+        }
 
+        .main.container {
+            margin-top: 7em;
+        }
+
+        .wireframe {
+            margin-top: 2em;
+        }
+
+        .ui.footer.segment {
+            margin: 5em 0em 0em;
+            padding: 5em 0em;
+        }
+    </style>
 </head>
 <!-- 3. Display the application -->
 <body class="gray-bg" style="background-color: #DADADA;">
 
-<angular2  >Loading...</angular2>
+<div class="ui fixed   menu">
+    <div class="ui container">
+        <a href="#" class="header item">
+            <img class="logo" src="/static/imgs/logo.png">
+            Jumpserver
+        </a>
+        <a href="#" class="item">仪表盘</a>
+        <div class="ui simple dropdown item">
+            用户管理 <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item" href="#">查看用户组</a>
+                <a class="item" href="#">查看用户</a>
+            </div>
+        </div>
+        <div class="ui simple dropdown item">
+            资产管理 <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item" href="#">查看资产组</a>
+                <a class="item" href="#">查看资产</a>
+                <a class="item" href="#">查看机房</a>
+            </div>
+        </div>
+        <div class="ui simple dropdown item">
+            授权管理 <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item" href="#">sudo授权</a>
+                <a class="item" href="#">系统用户</a>
+                <a class="item" href="#">授权规则</a>
+            </div>
+        </div>
+        <a href="#" class="item">日志审计</a>
+        <div class="ui simple dropdown item">
+            上传下载 <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item" href="#">文件上传</a>
+                <a class="item" href="#">文件下载</a>
+            </div>
+        </div>
+        <a href="#" class="item">设置</a>
+    </div>
+    <div class="right menu">
+        <div class="item">
+            <div class="ui transparent   icon input">
+                <i class="search icon"></i>
+                <input type="text" placeholder="Search">
+            </div>
+        </div>
+        <a class="item" href="/logout/"><i class="fa fa-sign-out"></i>Logout</a>
+    </div>
+</div>
+<div class="ui main   container">
+    <angular2>Loading...</angular2>
+    <div class="ui four cards">
+        <a href="#" class="ui card">
+            <div class="extra content">
+                <div class="header">用户总数<span class="ui label right floated teal">1</span></div>
+                <div class="meta">
+                    <span class="category">All Users</span>
+                </div>
+            </div>
+            <div class="extra content">
+                <div class="header">在线用户<span class="ui label right floated teal">1</span></div>
+                <div class="meta">
+                    <span class="category">Online Users</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="ui card">
+            <div class="extra content">
+                <div class="header">主机总数<span class="ui label right floated pink">1</span></div>
+                <div class="meta">
+                    <span class="category">All Hosts</span>
+                </div>
+            </div>
+            <div class="extra content">
+                <div class="header">已连接<span class="ui label right floated pink">1</span></div>
+                <div class="meta">
+                    <span class="category">Connected Hosts</span>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="ui card">
+            <div class="extra content">
+                <div class="header">高负载机器数<span class="ui label right floated red">1</span></div>
+                <div class="meta">
+                    <span class="category">High</span>
+                </div>
+            </div>
+            <div style="height: 98px;line-height: 0;overflow: scroll;">
+                <table class="ui aligned celled table">
+                    <thead>
+                    <tr>
+                        <th class="left aligned">IP/hostname</th>
+                        <th>CPU/Mem/IO</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="negative">
+                        <td class="left aligned">127.0.0.1</td>
+                        <td>26g</td>
+                    </tr>
+                    <tr class="negative">
+                        <td class="left aligned">192.168.1.1</td>
+                        <td>21g</td>
+                    </tr>
+                    <tr class="negative">
+                        <td class="left aligned">192.168.1.1</td>
+                        <td>21g</td>
+                    </tr>
+                    <tr class="negative">
+                        <td class="left aligned">192.168.1.1</td>
+                        <td>21g</td>
+                    </tr>
+                    <tr class="negative">
+                        <td class="left aligned">192.168.1.1</td>
+                        <td>21g</td>
+                    </tr>
+                    <tr class="negative">
+                        <td class="left aligned">192.168.1.1</td>
+                        <td>21g</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </a>
+        <div class="ui card visible">
+    <div class="content">
+      <div class="header">
+每日箴言
+      <span class="right floated star">
+        <i class="like icon"></i>
+        Like
+      </span>
+    </div>
+    </div>
+    <div class="content" style="height: 111px;">
+       大家好才是真的好~
+    </div>
+  </div>
+    </div>
+
+</div>
 
 </body>
 </html>
