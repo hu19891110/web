@@ -91,13 +91,18 @@ export class LoginComponent {
             })
             .map(res => res.json())
             .subscribe(
-                data => this.secretQuote = data,
+                data => this.data = data,
                 err => this.logError(err),
-                () => console.log('POST:')
+                () => {
+                    if(this.data.logined){
+                        jQuery('body').addClass('logined');
+                        this._router.parent.navigate(['Terminal']);
+                    }else{
+                        // this.error = this.data.errormsg
+                        this.error = 'got hello';
+                    }
+                }
             );
-        this.error = 'got hello';
-        this._router.parent.navigate(['Terminal']);
-
     }
 }
 

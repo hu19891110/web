@@ -35,6 +35,7 @@ export class IndexComponent {
                 err => this.logError(err),
                 () => {
                     if (this.data.logined) {
+                        jQuery('body').addClass('logined');
                         this._router.parent.navigate(['Terminal']);
                     }else{
                         this._router.parent.navigate(['Login']);

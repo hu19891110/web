@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<!--
+ ▄▄▄██▀▀▀█    ██  ███▄ ▄███▓ ██▓███    ██████ ▓█████  ██▀███   ██▒   █▓▓█████  ██▀███
+   ▒██   ██  ▓██▒▓██▒▀█▀ ██▒▓██░  ██▒▒██    ▒ ▓█   ▀ ▓██ ▒ ██▒▓██░   █▒▓█   ▀ ▓██ ▒ ██▒
+   ░██  ▓██  ▒██░▓██    ▓██░▓██░ ██▓▒░ ▓██▄   ▒███   ▓██ ░▄█ ▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒
+▓██▄██▓ ▓▓█  ░██░▒██    ▒██ ▒██▄█▓▒ ▒  ▒   ██▒▒▓█  ▄ ▒██▀▀█▄    ▒██ █░░▒▓█  ▄ ▒██▀▀█▄
+ ▓███▒  ▒▒█████▓ ▒██▒   ░██▒▒██▒ ░  ░▒██████▒▒░▒████▒░██▓ ▒██▒   ▒▀█░  ░▒████▒░██▓ ▒██▒
+ ▒▓▒▒░  ░▒▓▒ ▒ ▒ ░ ▒░   ░  ░▒▓▒░ ░  ░▒ ▒▓▒ ▒ ░░░ ▒░ ░░ ▒▓ ░▒▓░   ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
+ ▒ ░▒░  ░░▒░ ░ ░ ░  ░      ░░▒ ░     ░ ░▒  ░ ░ ░ ░  ░  ░▒ ░ ▒░   ░ ░░   ░ ░  ░  ░▒ ░ ▒░
+ ░ ░ ░   ░░░ ░ ░ ░      ░   ░░       ░  ░  ░     ░     ░░   ░      ░░     ░     ░░   ░
+ ░   ░     ░            ░                  ░     ░  ░   ░           ░     ░  ░   ░
+                                                                   ░
+-->
 <html lang="en">
 <head>
     <base href="/">
@@ -54,45 +66,152 @@
 <!-- 3. Display the application -->
 <body class="gray-bg" style="background-color: #DADADA;">
 
+<style>
+    .ui.fixed.menu {
+        background: linear-gradient(to right, palegreen, deepskyblue);
+        top: -60px;
+        -webkit-transition: height 0.6s;
+        -moz-transition: height 0.6s;
+        -ms-transition: height 0.6s;
+        -o-transition: height 0.6s;
+        transition: height 0.6s;
+    }
+
+    .logined .ui.fixed.menu {
+        top: 0;
+        -webkit-transition: height 0.6s;
+        -moz-transition: height 0.6s;
+        -ms-transition: height 0.6s;
+        -o-transition: height 0.6s;
+        transition: height 0.6s;
+    }
+
+    .sidebar {
+        width: 100px;
+        position: fixed;
+        height: 100%;
+        background-color: black;
+        top: 52.625px;
+        left: -100px;
+        -webkit-transition: left 0.6s;
+        -moz-transition: left 0.6s;
+        -ms-transition: left 0.6s;
+        -o-transition: left 0.6s;
+        transition: left 0.6s;
+    }
+
+    .logined .sidebar {
+        left: 0;
+        -webkit-transition: left 0.6s;
+        -moz-transition: left 0.6s;
+        -ms-transition: left 0.6s;
+        -o-transition: left 0.6s;
+        transition: left 0.6s;
+    }
+
+    ul.squire {
+        list-style: none;
+        position: relative;
+        width: 100px;
+        opacity: 1;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul.squire > li {
+        background-color: black;
+        border-bottom: 1px solid #222222;
+        border-top: 1px solid #333333;
+        display: block;
+        height: 90px;
+        text-align: center;
+        width: 100%;
+        color: white;
+        padding: 18px 0;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
+        cursor: pointer;
+        -webkit-transition: all .1s ease-in-out;
+        transition: all .1s ease-in-out;
+        position: relative;
+    }
+
+    ul.squire > li .fa {
+        font-size: xx-large;
+        width: 100%;
+    }
+
+    ul.squire > li:hover {
+        left: 10px;
+    }
+
+</style>
+<div class="sidebar">
+    <ul class="squire">
+        <li>
+            <i class="fa fa-tachometer"></i>
+            控制面板
+        </li>
+        <li>
+            <i class="fa fa-group"></i>
+            用户管理
+        </li>
+        <li>
+            <i class="fa fa-inbox"></i>
+            资产管理
+        </li>
+        <li>
+            <i class="fa fa-edit"></i>
+            授权管理
+        </li>
+        <li>
+            <i class="fa fa-files-o"></i>
+            日志审计
+        </li>
+
+    </ul>
+
+</div>
 <div class="ui fixed   menu">
     <div class="ui container">
         <a href="#" class="header item">
             <img class="logo" src="/static/imgs/logo.png">
             Jumpserver
         </a>
-        <a href="#" class="item">仪表盘</a>
-        <div class="ui simple dropdown item">
-            用户管理 <i class="dropdown icon"></i>
-            <div class="menu">
-                <a class="item" href="#">查看用户组</a>
-                <a class="item" href="#">查看用户</a>
-            </div>
-        </div>
-        <div class="ui simple dropdown item">
-            资产管理 <i class="dropdown icon"></i>
-            <div class="menu">
-                <a class="item" href="#">查看资产组</a>
-                <a class="item" href="#">查看资产</a>
-                <a class="item" href="#">查看机房</a>
-            </div>
-        </div>
-        <div class="ui simple dropdown item">
-            授权管理 <i class="dropdown icon"></i>
-            <div class="menu">
-                <a class="item" href="#">sudo授权</a>
-                <a class="item" href="#">系统用户</a>
-                <a class="item" href="#">授权规则</a>
-            </div>
-        </div>
-        <a href="#" class="item">日志审计</a>
-        <div class="ui simple dropdown item">
-            上传下载 <i class="dropdown icon"></i>
-            <div class="menu">
-                <a class="item" href="#">文件上传</a>
-                <a class="item" href="#">文件下载</a>
-            </div>
-        </div>
-        <a href="#" class="item">设置</a>
+        <a id="button1" class="item">button1</a>
+        <a id="button2" class="item">button2</a>
+        {#        <a href="#" class="item">仪表盘</a>#}
+        {#        <div class="ui simple dropdown item">#}
+        {#            用户管理 <i class="dropdown icon"></i>#}
+        {#            <div class="menu">#}
+        {#                <a class="item" href="#">查看用户组</a>#}
+        {#                <a class="item" href="#">查看用户</a>#}
+        {#            </div>#}
+        {#        </div>#}
+        {#        <div class="ui simple dropdown item">#}
+        {#            资产管理 <i class="dropdown icon"></i>#}
+        {#            <div class="menu">#}
+        {#                <a class="item" href="#">查看资产组</a>#}
+        {#                <a class="item" href="#">查看资产</a>#}
+        {#                <a class="item" href="#">查看机房</a>#}
+        {#            </div>#}
+        {#        </div>#}
+        {#        <div class="ui simple dropdown item">#}
+        {#            授权管理 <i class="dropdown icon"></i>#}
+        {#            <div class="menu">#}
+        {#                <a class="item" href="#">sudo授权</a>#}
+        {#                <a class="item" href="#">系统用户</a>#}
+        {#                <a class="item" href="#">授权规则</a>#}
+        {#            </div>#}
+        {#        </div>#}
+        {#        <a href="#" class="item">日志审计</a>#}
+        {#        <div class="ui simple dropdown item">#}
+        {#            上传下载 <i class="dropdown icon"></i>#}
+        {#            <div class="menu">#}
+        {#                <a class="item" href="#">文件上传</a>#}
+        {#                <a class="item" href="#">文件下载</a>#}
+        {#            </div>#}
+        {#        </div>#}
+        {#        <a href="#" class="item">设置</a>#}
     </div>
     <div class="right menu">
         <div class="item">
@@ -101,167 +220,185 @@
                 <input type="text" placeholder="Search">
             </div>
         </div>
-        <a class="item" href="/logout/"><i class="fa fa-sign-out"></i>Logout</a>
+        <div class="ui simple dropdown item">
+            <img class="logo" src="/static/imgs/logo.png"><i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item" href="#"><i class="fa fa-cog"></i> 个人设置</a>
+                <a class="item" href="/logout/"><i class="fa fa-sign-out"></i>Logout</a>
+            </div>
+        </div>
+        {#        <a class="item" href="/logout/"><i class="fa fa-sign-out"></i>Logout</a>#}
     </div>
 </div>
 <div class="ui main   container">
-    <angular2>Loading...</angular2>
-    <div class="ui four cards">
-        <a href="#" class="ui card">
-            <div class="extra content">
-                <div class="header">用户总数<span class="ui label right floated teal">1</span></div>
-                <div class="meta">
-                    <span class="category">All Users</span>
-                </div>
-            </div>
-            <div class="extra content">
-                <div class="header">在线用户<span class="ui label right floated teal">1</span></div>
-                <div class="meta">
-                    <span class="category">Online Users</span>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="ui card">
-            <div class="extra content">
-                <div class="header">主机总数<span class="ui label right floated pink">1</span></div>
-                <div class="meta">
-                    <span class="category">All Hosts</span>
-                </div>
-            </div>
-            <div class="extra content">
-                <div class="header">已连接<span class="ui label right floated pink">1</span></div>
-                <div class="meta">
-                    <span class="category">Connected Hosts</span>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="ui card">
-            <div class="extra content">
-                <div class="header">高负载机器数<span class="ui label right floated red">1</span></div>
-                <div class="meta">
-                    <span class="category">High</span>
-                </div>
-            </div>
-            <div style="height: 98px;line-height: 0;overflow: scroll;">
-                <table class="ui aligned celled table">
-                    <thead>
-                    <tr>
-                        <th class="left aligned">IP/hostname</th>
-                        <th>CPU/Mem/IO</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="negative">
-                        <td class="left aligned">127.0.0.1</td>
-                        <td>26g</td>
-                    </tr>
-                    <tr class="negative">
-                        <td class="left aligned">192.168.1.1</td>
-                        <td>21g</td>
-                    </tr>
-                    <tr class="negative">
-                        <td class="left aligned">192.168.1.1</td>
-                        <td>21g</td>
-                    </tr>
-                    <tr class="negative">
-                        <td class="left aligned">192.168.1.1</td>
-                        <td>21g</td>
-                    </tr>
-                    <tr class="negative">
-                        <td class="left aligned">192.168.1.1</td>
-                        <td>21g</td>
-                    </tr>
-                    <tr class="negative">
-                        <td class="left aligned">192.168.1.1</td>
-                        <td>21g</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </a>
-        <div class="ui card visible">
-            <div class="content">
-                <div class="header">
-                    每日箴言
-      <span class="right floated star">
-        <i class="like icon"></i>
-        Like
-      </span>
-                </div>
-            </div>
-            <div class="content" style="height: 111px;">
-                大家好才是真的好~
-            </div>
-        </div>
-    </div>
+    <angular2 style="display: none;">Loading...</angular2>
+    {#    <div class="ui four cards">#}
+    {#        <a href="#" class="ui card">#}
+    {#            <div class="extra content">#}
+    {#                <div class="header">用户总数<span class="ui label right floated teal">1</span></div>#}
+    {#                <div class="meta">#}
+    {#                    <span class="category">All Users</span>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <div class="extra content">#}
+    {#                <div class="header">在线用户<span class="ui label right floated teal">1</span></div>#}
+    {#                <div class="meta">#}
+    {#                    <span class="category">Online Users</span>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </a>#}
+    {#        <a href="#" class="ui card">#}
+    {#            <div class="extra content">#}
+    {#                <div class="header">主机总数<span class="ui label right floated pink">1</span></div>#}
+    {#                <div class="meta">#}
+    {#                    <span class="category">All Hosts</span>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <div class="extra content">#}
+    {#                <div class="header">已连接<span class="ui label right floated pink">1</span></div>#}
+    {#                <div class="meta">#}
+    {#                    <span class="category">Connected Hosts</span>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </a>#}
+    {#        <a href="#" class="ui card">#}
+    {#            <div class="extra content">#}
+    {#                <div class="header">高负载机器数<span class="ui label right floated red">1</span></div>#}
+    {#                <div class="meta">#}
+    {#                    <span class="category">High</span>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <div style="height: 98px;line-height: 0;overflow: scroll;">#}
+    {#                <table class="ui aligned celled table">#}
+    {#                    <thead>#}
+    {#                    <tr>#}
+    {#                        <th class="left aligned">IP/hostname</th>#}
+    {#                        <th>CPU/Mem/IO</th>#}
+    {#                    </tr>#}
+    {#                    </thead>#}
+    {#                    <tbody>#}
+    {#                    <tr class="negative">#}
+    {#                        <td class="left aligned">127.0.0.1</td>#}
+    {#                        <td>26g</td>#}
+    {#                    </tr>#}
+    {#                    <tr class="negative">#}
+    {#                        <td class="left aligned">192.168.1.1</td>#}
+    {#                        <td>21g</td>#}
+    {#                    </tr>#}
+    {#                    <tr class="negative">#}
+    {#                        <td class="left aligned">192.168.1.1</td>#}
+    {#                        <td>21g</td>#}
+    {#                    </tr>#}
+    {#                    <tr class="negative">#}
+    {#                        <td class="left aligned">192.168.1.1</td>#}
+    {#                        <td>21g</td>#}
+    {#                    </tr>#}
+    {#                    <tr class="negative">#}
+    {#                        <td class="left aligned">192.168.1.1</td>#}
+    {#                        <td>21g</td>#}
+    {#                    </tr>#}
+    {#                    <tr class="negative">#}
+    {#                        <td class="left aligned">192.168.1.1</td>#}
+    {#                        <td>21g</td>#}
+    {#                    </tr>#}
+    {#                    </tbody>#}
+    {#                </table>#}
+    {#            </div>#}
+    {#        </a>#}
+    {#        <div class="ui card visible">#}
+    {#            <div class="content">#}
+    {#                <div class="header">#}
+    {#                    每日箴言#}
+    {#      <span class="right floated star">#}
+    {#        <i class="like icon"></i>#}
+    {#        Like#}
+    {#      </span>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <div class="content" style="height: 111px;">#}
+    {#                大家好才是真的好~#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
 
 </div>
-<div class="col-sm-7" id="top10" style="margin-left: -15px;height: 346px;padding: 15px 0 15px 0;"></div>
+{#<div class="col-sm-7" id="top10" style="margin-left: -15px;height: 346px;padding: 15px 0 15px 0;"></div>#}
 
-<script type="text/javascript">
-    var top10Chart = echarts.init(document.getElementById('top10'));
-    var option = {
-        title: {
-            text: '月数据总览',
-            subtext: '一个月内历史汇总',
-            x: 'center'
-        },
-        tooltip: {
-            trigger: 'axis'
-        },
-        backgroundColor: '#fff',
-        legend: {
-            data: ['登陆次数', '活跃用户', '活跃资产'],
-            y: 'bottom'
-        },
-        toolbox: {
-            show: false,
-            feature: {
+{#<script type="text/javascript">#}
+{#    var top10Chart = echarts.init(document.getElementById('top10'));#}
+{#    var option = {#}
+{#        title: {#}
+{#            text: '月数据总览',#}
+{#            subtext: '一个月内历史汇总',#}
+{#            x: 'center'#}
+{#        },#}
+{#        tooltip: {#}
+{#            trigger: 'axis'#}
+{#        },#}
+{#        backgroundColor: '#fff',#}
+{#        legend: {#}
+{#            data: ['登陆次数', '活跃用户', '活跃资产'],#}
+{#            y: 'bottom'#}
+{#        },#}
+{#        toolbox: {#}
+{#            show: false,#}
+{#            feature: {#}
+{##}
+{##}
+{#                magicType: {show: true, type: ['line', 'bar']}#}
+{#            }#}
+{#        },#}
+{#        calculable: true,#}
+{#        xAxis: [#}
+{#            {#}
+{#                type: 'category',#}
+{#                boundaryGap: false,#}
+{#                data: ['03-08', '03-09', '03-10', '03-11', '03-12', '03-13', '03-14', '03-15', '03-16', '03-17', '03-18', '03-19', '03-20', '03-21', '03-22', '03-23', '03-24', '03-25', '03-26', '03-27', '03-28', '03-29', '03-30', '03-31', '04-01', '04-02', '04-03', '04-04', '04-05', '04-06']#}
+{#            }#}
+{#        ],#}
+{#        yAxis: [#}
+{#            {#}
+{#                type: 'value'#}
+{#            }#}
+{#        ],#}
+{#        series: [#}
+{#            {#}
+{#                name: '登陆次数',#}
+{#                type: 'line',#}
+{#                smooth: true,#}
+{#                itemStyle: {normal: {areaStyle: {type: 'default'}}},#}
+{#                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 13, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]#}
+{#            },#}
+{#            {#}
+{#                name: '活跃用户',#}
+{#                type: 'line',#}
+{#                smooth: true,#}
+{#                itemStyle: {normal: {areaStyle: {type: 'default'}}},#}
+{#                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]#}
+{#            },#}
+{#            {#}
+{#                name: '活跃资产',#}
+{#                type: 'line',#}
+{#                smooth: true,#}
+{#                itemStyle: {normal: {areaStyle: {type: 'default'}}},#}
+{#                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]#}
+{#            }#}
+{##}
+{#        ]#}
+{#    };#}
+{##}
+{#    top10Chart.setOption(option);#}
+{#</script>#}
+<script>
+    $(document).ready(function () {
+        $("#button1").click(function () {
+            $('.sidebar').addClass('show')
+        })
+        $("#button2").click(function () {
+            $('.sidebar').removeClass('show')
+        })
 
-
-                magicType: {show: true, type: ['line', 'bar']}
-            }
-        },
-        calculable: true,
-        xAxis: [
-            {
-                type: 'category',
-                boundaryGap: false,
-                data: ['03-08', '03-09', '03-10', '03-11', '03-12', '03-13', '03-14', '03-15', '03-16', '03-17', '03-18', '03-19', '03-20', '03-21', '03-22', '03-23', '03-24', '03-25', '03-26', '03-27', '03-28', '03-29', '03-30', '03-31', '04-01', '04-02', '04-03', '04-04', '04-05', '04-06']
-            }
-        ],
-        yAxis: [
-            {
-                type: 'value'
-            }
-        ],
-        series: [
-            {
-                name: '登陆次数',
-                type: 'line',
-                smooth: true,
-                itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 13, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
-            },
-            {
-                name: '活跃用户',
-                type: 'line',
-                smooth: true,
-                itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
-            },
-            {
-                name: '活跃资产',
-                type: 'line',
-                smooth: true,
-                itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
-            }
-
-        ]
-    };
-
-    top10Chart.setOption(option);
+    })
 </script>
 </body>
 </html>
