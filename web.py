@@ -30,6 +30,7 @@ bundles = {
 
         'node_modules/semantic-ui/dist/semantic.min.js',
         'js/term.js',
+        'node_modules/echarts/dist/echarts.min.js',
         output='js/base.min.js',
         filters='jsmin'
     ),

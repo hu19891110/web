@@ -9,12 +9,7 @@ import  'rxjs/Rx';
 declare var jQuery:any;
 
 @Component({
-    selector: 'angular2',
-    template: `<h1>Pages Router</h1>
-    <nav>
-      <a [routerLink]="['Login']">Login</a>
-      <a [routerLink]="['Terminal']">Terminal</a>
-    </nav> `,
+    template: '',
     directives: [ROUTER_DIRECTIVES]
 })
 
@@ -41,6 +36,8 @@ export class IndexComponent {
                 () => {
                     if (this.data.logined) {
                         this._router.parent.navigate(['Terminal']);
+                    }else{
+                        this._router.parent.navigate(['Login']);
                     }
                 }
             );
