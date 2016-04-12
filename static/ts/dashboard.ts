@@ -11,7 +11,7 @@ declare var echarts:any;
 
 
 @Component({
-    template: `<div class="" id="top10" style="height: 346px;"></div>`,
+    template: `<div class="" id="top10" style="width:800px;height: 346px;"></div>`,
     directives: [ROUTER_DIRECTIVES]
 })
 
@@ -21,8 +21,8 @@ export class DashboardComponent {
     }
 
     ngOnInit() {
-        var top10Chart = echarts.init(document.getElementById('top10'));
-        console.log(top10Chart)
+        this.top10Chart = echarts.init(document.getElementById('top10'));
+        console.log(jQuery('#top10').width())
         var option = {
             title: {
                 text: '月数据总览',
@@ -83,7 +83,9 @@ export class DashboardComponent {
 
             ]
         };
-
-        top10Chart.setOption(option);
+        this.top10Chart.setOption(option,true);
+        // while(jQuery('#top10').width()==0)
+        // this.top10Chart.setOption(option,true);
     }
+
 }

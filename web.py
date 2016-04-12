@@ -101,7 +101,7 @@ def a():
 
 @app.route('/checklogin', methods=['GET'])
 def checklogin():
-    return jsonify({'logined': False})
+    return jsonify({'logined': True})
 
 
 if __name__ == '__main__':
