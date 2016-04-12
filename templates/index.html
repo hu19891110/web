@@ -70,20 +70,20 @@
     .ui.fixed.menu {
         background: linear-gradient(to right, palegreen, deepskyblue);
         top: -60px;
-        -webkit-transition: height 0.6s;
-        -moz-transition: height 0.6s;
-        -ms-transition: height 0.6s;
-        -o-transition: height 0.6s;
-        transition: height 0.6s;
+        -webkit-transition: top 1.2s;
+        -moz-transition: top 1.2s;
+        -ms-transition: top 1.2s;
+        -o-transition: top 1.2s;
+        transition: top 1.2s;
     }
 
     .logined .ui.fixed.menu {
         top: 0;
-        -webkit-transition: height 0.6s;
-        -moz-transition: height 0.6s;
-        -ms-transition: height 0.6s;
-        -o-transition: height 0.6s;
-        transition: height 0.6s;
+        -webkit-transition: top 1.2s;
+        -moz-transition: top 1.2s;
+        -ms-transition: top 1.2s;
+        -o-transition: top 1.2s;
+        transition: top 1.2s;
     }
 
     .sidebar {
@@ -93,20 +93,20 @@
         background-color: black;
         top: 52.625px;
         left: -100px;
-        -webkit-transition: left 0.6s;
-        -moz-transition: left 0.6s;
-        -ms-transition: left 0.6s;
-        -o-transition: left 0.6s;
-        transition: left 0.6s;
+        -webkit-transition: left 0.8s;
+        -moz-transition: left 0.8s;
+        -ms-transition: left 0.8s;
+        -o-transition: left 0.8s;
+        transition: left 0.8s;
     }
 
     .logined .sidebar {
         left: 0;
-        -webkit-transition: left 0.6s;
-        -moz-transition: left 0.6s;
-        -ms-transition: left 0.6s;
-        -o-transition: left 0.6s;
-        transition: left 0.6s;
+        -webkit-transition: left 0.8s;
+        -moz-transition: left 0.8s;
+        -ms-transition: left 0.8s;
+        -o-transition: left 0.8s;
+        transition: left 0.8s;
     }
 
     ul.squire {
@@ -143,7 +143,10 @@
     ul.squire > li:hover {
         left: 10px;
     }
+.js-nav-username{
+    font-weight: bold;
 
+}
 </style>
 <div class="sidebar">
     <ul class="squire">
@@ -221,8 +224,9 @@
             </div>
         </div>
         <div class="ui simple dropdown item">
-            <img class="logo" src="/static/imgs/logo.png"><i class="dropdown icon"></i>
+            <img class="" src="/static/imgs/root.png"><i class="dropdown icon"></i>
             <div class="menu">
+                <span class="item js-nav-username">liuzheng</span>
                 <a class="item" href="#"><i class="fa fa-cog"></i> 个人设置</a>
                 <a class="item" href="/logout/"><i class="fa fa-sign-out"></i>Logout</a>
             </div>
@@ -230,8 +234,8 @@
         {#        <a class="item" href="/logout/"><i class="fa fa-sign-out"></i>Logout</a>#}
     </div>
 </div>
-<div class="ui main   container">
-    <angular2 style="display: none;">Loading...</angular2>
+<div class="ui main container">
+    <angular2 style="display: none;"></angular2>
     {#    <div class="ui four cards">#}
     {#        <a href="#" class="ui card">#}
     {#            <div class="extra content">#}
@@ -322,80 +326,14 @@
     {#    </div>#}
 
 </div>
-{#<div class="col-sm-7" id="top10" style="margin-left: -15px;height: 346px;padding: 15px 0 15px 0;"></div>#}
 
-{#<script type="text/javascript">#}
-{#    var top10Chart = echarts.init(document.getElementById('top10'));#}
-{#    var option = {#}
-{#        title: {#}
-{#            text: '月数据总览',#}
-{#            subtext: '一个月内历史汇总',#}
-{#            x: 'center'#}
-{#        },#}
-{#        tooltip: {#}
-{#            trigger: 'axis'#}
-{#        },#}
-{#        backgroundColor: '#fff',#}
-{#        legend: {#}
-{#            data: ['登陆次数', '活跃用户', '活跃资产'],#}
-{#            y: 'bottom'#}
-{#        },#}
-{#        toolbox: {#}
-{#            show: false,#}
-{#            feature: {#}
-{##}
-{##}
-{#                magicType: {show: true, type: ['line', 'bar']}#}
-{#            }#}
-{#        },#}
-{#        calculable: true,#}
-{#        xAxis: [#}
-{#            {#}
-{#                type: 'category',#}
-{#                boundaryGap: false,#}
-{#                data: ['03-08', '03-09', '03-10', '03-11', '03-12', '03-13', '03-14', '03-15', '03-16', '03-17', '03-18', '03-19', '03-20', '03-21', '03-22', '03-23', '03-24', '03-25', '03-26', '03-27', '03-28', '03-29', '03-30', '03-31', '04-01', '04-02', '04-03', '04-04', '04-05', '04-06']#}
-{#            }#}
-{#        ],#}
-{#        yAxis: [#}
-{#            {#}
-{#                type: 'value'#}
-{#            }#}
-{#        ],#}
-{#        series: [#}
-{#            {#}
-{#                name: '登陆次数',#}
-{#                type: 'line',#}
-{#                smooth: true,#}
-{#                itemStyle: {normal: {areaStyle: {type: 'default'}}},#}
-{#                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 13, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]#}
-{#            },#}
-{#            {#}
-{#                name: '活跃用户',#}
-{#                type: 'line',#}
-{#                smooth: true,#}
-{#                itemStyle: {normal: {areaStyle: {type: 'default'}}},#}
-{#                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]#}
-{#            },#}
-{#            {#}
-{#                name: '活跃资产',#}
-{#                type: 'line',#}
-{#                smooth: true,#}
-{#                itemStyle: {normal: {areaStyle: {type: 'default'}}},#}
-{#                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]#}
-{#            }#}
-{##}
-{#        ]#}
-{#    };#}
-{##}
-{#    top10Chart.setOption(option);#}
-{#</script>#}
 <script>
     $(document).ready(function () {
         $("#button1").click(function () {
-            $('.sidebar').addClass('show')
+            $('body').addClass('logined')
         })
         $("#button2").click(function () {
-            $('.sidebar').removeClass('show')
+            $('body').removeClass('logined')
         })
 
     })
