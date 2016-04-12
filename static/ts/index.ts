@@ -4,8 +4,8 @@
 
 import {bootstrap}        from 'angular2/platform/browser';
 import {Http, HTTP_PROVIDERS}   from 'angular2/http';
-import {Component}         from 'angular2/core';
-import {ROUTER_PROVIDERS, RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Component,provide}         from 'angular2/core';
+import {ROUTER_PROVIDERS, RouteConfig, Router, ROUTER_DIRECTIVES,HashLocationStrategy,LocationStrategy} from 'angular2/router';
 import  'rxjs/Rx';
 declare var jQuery:any;
 
@@ -22,7 +22,9 @@ export class IndexComponent {
 @Component({
     selector: 'angular2',
     template: `<router-outlet></router-outlet>`,
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
+    providers:[ROUTER_PROVIDERS,provide(LocationStrategy, {useClass: HashLocationStrategy})]
+
 })
 
 @RouteConfig([
