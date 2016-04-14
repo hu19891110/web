@@ -22,7 +22,6 @@ export class DashboardComponent {
 
     ngOnInit() {
         this.top10Chart = echarts.init(document.getElementById('top10'));
-        console.log(jQuery('#top10').width())
         var option = {
             title: {
                 text: '月数据总览',
@@ -83,7 +82,7 @@ export class DashboardComponent {
 
             ]
         };
-        this.top10Chart.setOption(option,true);
+        this.top10Chart.setOption(option, true);
         // while(jQuery('#top10').width()==0)
         // this.top10Chart.setOption(option,true);
     }

@@ -26,20 +26,41 @@ bundles = {
         # 'node_modules/angular2-websocket/angular2-websocket.js',
 
         'node_modules/jquery/dist/jquery.min.js',
-        # 'node_modules/bootstrap/dist/js/bootstrap.min.js',
-
-        'node_modules/semantic-ui/dist/semantic.min.js',
+        'node_modules/admin-lte/plugins/jQueryUI/jquery-ui.min.js',
+        'node_modules/bootstrap/dist/js/bootstrap.min.js',
+        'node_modules/raphael/raphael.min.js',
+        'node_modules/admin-lte/plugins/morris/morris.min.js',
+        'node_modules/admin-lte/plugins/sparkline/jquery.sparkline.min.js',
+        'node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js',
+        'node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js',
+        'node_modules/admin-lte/plugins/knob/jquery.knob.js',
+        'node_modules/moment/min/moment.min.js',
+        'node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js',
+        'node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js',
+        'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
+        'node_modules/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js',
+        'node_modules/admin-lte/dist/js/app.min.js',
+        'node_modules/admin-lte/dist/js/pages/dashboard.js',
+        # 'node_modules/semantic-ui/dist/semantic.min.js',
         'js/term.js',
         'node_modules/echarts/dist/echarts.min.js',
         output='js/base.min.js',
         filters='jsmin'
     ),
     'bash_css': Bundle(
-        # 'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',
         # 'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
         'node_modules/font-awesome/css/font-awesome.min.css',
-        'node_modules/semantic-ui/dist/semantic.min.css',
-
+        'node_modules/ionicons/dist/css/ionicons.min.css',
+        # 'node_modules/semantic-ui/dist/semantic.min.css',
+        'node_modules/admin-lte/dist/css/AdminLTE.css',
+        'node_modules/admin-lte/dist/css/skins/_all-skins.min.css',
+        'node_modules/admin-lte/plugins/iCheck/flat/blue.css',
+        'node_modules/admin-lte/plugins/morris/morris.css',
+        'node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.css',
+        'node_modules/admin-lte/plugins/datepicker/datepicker3.css',
+        'node_modules/admin-lte/plugins/daterangepicker/daterangepicker-bs3.css',
+        'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css',
         # 'css/styles.css',
         output='css/base.min.css',
         filters='cssmin'
@@ -74,6 +95,7 @@ def page_not_found(e):
 def internal_server_error(e):
     return render_template('500.html'), 500
 
+
 @websocket.route('/ws')
 def WebSocketHandle(ws):
     while True:
@@ -85,6 +107,7 @@ def WebSocketHandle(ws):
 def hello_world(hello=None):
     return render_template('index.html')
     # return 'Hello World!', 400
+
 
 @app.route('/')
 def index():
@@ -99,9 +122,15 @@ def a():
         print('get')
     return jsonify({'a': 'a'})
 
+
 @app.route('/checklogin', methods=['GET'])
 def checklogin():
     return jsonify({'logined': True})
+
+
+@app.route('/aaa', methods=['GET'])
+def aaa():
+    return '123'
 
 
 if __name__ == '__main__':
