@@ -19,12 +19,14 @@ import {NgfootComponent} from './ngfoot';
 
 
 @Component({
-    selector: 'angular2',
+    selector: 'div',
     template: `<header class="main-header"></header><aside class="main-sidebar"></aside><ng-body class="content-wrapper" style="min-height: 921px;"
 ></ng-body><footer class="main-footer"></footer>`,
-    directives: [HeaderComponent, LeftbarComponent,NgbodyComponent,NgfootComponent]
+    directives: [HeaderComponent, LeftbarComponent, NgbodyComponent, NgfootComponent]
 })
+
 export class IndexComponent {
+
 }
 
 @Component({
@@ -54,8 +56,8 @@ export class AppComponent {
                 err => this.logError(err),
                 () => {
                     if (this.data.logined) {
-                        jQuery('body').addClass('logined');
-                        // this._router.navigate(['Dashboard']);
+                        // jQuery('body').addClass('logined');
+                        this._router.navigate(['Index']);
                     } else {
                         this._router.navigate(['Login']);
                     }
