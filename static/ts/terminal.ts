@@ -5,17 +5,19 @@
 import {bootstrap}    from 'angular2/platform/browser';
 import {Component} from 'angular2/core';
 import {$WebSocket} from 'angular2-websocket/angular2-websocket';
-import {Http, HTTP_PROVIDERS, Headers,Response} from 'angular2/http';
+import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import  'rxjs/Rx';
 declare var jQuery:any;
+declare var Terminal:any;
+
+import {HeaderComponent} from './header';
+import {LeftbarComponent} from './leftbar';
+import {NgfootComponent} from './ngfoot';
 
 //https://github.com/afrad/angular2-websocket.git
 @Component({
-    template: `<style>
-        body {
-            padding-bottom: 40px;
-        }
-
+    selector: 'ng-body',
+    styles: [`
         .terminal {
             border: #000 solid 5px;
             font-family: "Monaco", "Microsoft Yahei", "DejaVu Sans Mono", "Liberation Mono", monospace;
@@ -27,7 +29,7 @@ declare var jQuery:any;
             display: inline-block;
         }
 
-        .reverse-video {
+        .reverse-video f{
             color: #000;
             background: #f0f0f0;
         }
@@ -41,17 +43,14 @@ declare var jQuery:any;
             position: fixed;
             right: 0;
             top: 0;
-        }
-    </style>
-<div class="container">
-    <div id="term">
-    </div>
-</div>
-`,
+            }`],
+    template: `
+    <div id="term" class="content-wrapper">
+</div><div style="clear:both"></div>`,
 })
 
 
-export class TermComponent {
+export class Terminals {
     constructor(private http:Http) {
     }
 
@@ -86,10 +85,10 @@ export class TermComponent {
             useStyle: true,
             screenKeys: true
         });
-        jQuery('#term').innerHTML='';
+        jQuery('#term').innerHTML = '';
         term.open(document.getElementById('term'));
         term.on('data', function (data) {
-            ws.send('R'+data)
+            ws.send('R' + data)
         });
         ws.onMessage(function (e) {
             term.write(e.data)
@@ -98,5 +97,15 @@ export class TermComponent {
     }
 }
 
+
+@Component({
+    selector: 'angular2',
+    template: `<header class="main-header"></header><aside class="main-sidebar"></aside><ng-body   style="min-height: 921px;"
+></ng-body><footer 
+class="main-footer"></footer>`,
+    directives: [HeaderComponent, LeftbarComponent, Terminals, NgfootComponent]
+})
+export class TermComponent {
+}
 
 //bootstrap(TermComponent, [HTTP_PROVIDERS]);

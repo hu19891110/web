@@ -12,9 +12,17 @@ declare var jQuery:any;
 import {LoginComponent} from './login';
 import {TermComponent} from './terminal';
 import {DashboardComponent} from './dashboard';
+import {HeaderComponent} from './header';
+import {LeftbarComponent} from './leftbar';
+import {NgbodyComponent} from './ngbody';
+import {NgfootComponent} from './ngfoot';
+
 
 @Component({
-    template: '',
+    selector: 'angular2',
+    template: `<header class="main-header"></header><aside class="main-sidebar"></aside><ng-body class="content-wrapper" style="min-height: 921px;"
+></ng-body><footer class="main-footer"></footer>`,
+    directives: [HeaderComponent, LeftbarComponent,NgbodyComponent,NgfootComponent]
 })
 export class IndexComponent {
 }
@@ -47,7 +55,7 @@ export class AppComponent {
                 () => {
                     if (this.data.logined) {
                         jQuery('body').addClass('logined');
-                        this._router.navigate(['Dashboard']);
+                        // this._router.navigate(['Dashboard']);
                     } else {
                         this._router.navigate(['Login']);
                     }
