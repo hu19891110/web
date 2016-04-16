@@ -2,7 +2,7 @@
  * Created by liuzheng on 4/7/16.
  */
 
-import {Component} from 'angular2/core';
+import {Component,ViewEncapsulation} from 'angular2/core';
 import {NgForm}    from 'angular2/common';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {RouteParams, Router} from 'angular2/router';
@@ -66,6 +66,7 @@ export class User {
   </div>
   <!-- /.login-box-body -->
 </div>`,
+    encapsulation: ViewEncapsulation.None,
 })
 
 

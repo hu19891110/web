@@ -57,6 +57,7 @@ bundles = {
         'node_modules/admin-lte/dist/css/AdminLTE.css',
         'node_modules/admin-lte/dist/css/skins/_all-skins.min.css',
         'node_modules/admin-lte/plugins/iCheck/flat/blue.css',
+        'node_modules/admin-lte/plugins/iCheck/square/blue.css',
         'node_modules/admin-lte/plugins/morris/morris.css',
         'node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.css',
         'node_modules/admin-lte/plugins/datepicker/datepicker3.css',
