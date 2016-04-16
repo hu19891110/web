@@ -135,7 +135,7 @@ declare var jQuery:any;
                         <div class="box-body chat" id="chat-box">
                             <!-- chat item -->
                             <div class="item">
-                                <img src="/static/imgs/user4-128x128.jpg" alt="user image" class="online">
+                                <img src="/imgs/user4-128x128.jpg" alt="user image" class="online">
 
                                 <p class="message">
                                     <a href="#" class="name">
@@ -162,7 +162,7 @@ declare var jQuery:any;
                             <!-- /.item -->
                             <!-- chat item -->
                             <div class="item">
-                                <img src="/static/imgs/user3-128x128.jpg" alt="user image" class="offline">
+                                <img src="/imgs/user3-128x128.jpg" alt="user image" class="offline">
 
                                 <p class="message">
                                     <a href="#" class="name">
@@ -177,7 +177,7 @@ declare var jQuery:any;
                             <!-- /.item -->
                             <!-- chat item -->
                             <div class="item">
-                                <img src="/static/imgs/user2-160x160.jpg" alt="user image" class="offline">
+                                <img src="/imgs/user2-160x160.jpg" alt="user image" class="offline">
 
                                 <p class="message">
                                     <a href="#" class="name">

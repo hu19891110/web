@@ -18,7 +18,7 @@ declare var jQuery:any;
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="/static/imgs/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="/imgs/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>Alexander Pierce</p>
