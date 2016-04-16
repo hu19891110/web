@@ -49,21 +49,21 @@ export class AppComponent {
     }
 
     ngOnInit() {
-        this.http.get('/checklogin')
-            .map(res => res.json())
-            .subscribe(
-                data => this.data = data,
-                err => this.logError(err),
-                () => {
-                    if (this.data.logined) {
-                        // jQuery('body').addClass('logined');
-                        this._router.navigate(['Index']);
-                    } else {
-                        this._router.navigate(['Login']);
-                    }
+        // this.http.get('/checklogin')
+        //     .map(res => res.json())
+        //     .subscribe(
+        //         data => this.data = data,
+        //         err => this.logError(err),
+        //         () => {
+        //             if (this.data.logined) {
+        //                 // jQuery('body').addClass('logined');
+        //                 // this._router.navigate(['Index']);
+        //             } else {
+        //                 this._router.navigate(['Login']);
+        //             }
                     jQuery('angular2').show();
-                }
-            );
+        //         }
+        //     );
     }
 }
 

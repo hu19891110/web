@@ -11,7 +11,8 @@ declare var echarts:any;
 
 
 @Component({
-    template: `<div class="" id="top10" style="width:800px;height: 346px;"></div>`,
+    template: `<div class="" id="top10" style="width:800px;height: 346px;"></div><div 
+id="liuzheng"><h1>sadfasdca</h1><p>asdcas</p></div>`,
     directives: [ROUTER_DIRECTIVES]
 })
 

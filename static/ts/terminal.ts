@@ -99,7 +99,7 @@ export class Terminals {
 
 
 @Component({
-    selector: 'angular2',
+    selector: 'div',
     template: `<header class="main-header"></header><aside class="main-sidebar"></aside><ng-body   style="min-height: 921px;"
 ></ng-body><footer 
 class="main-footer"></footer>`,
