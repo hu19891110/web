@@ -20,8 +20,7 @@ import {NgfootComponent} from './ngfoot';
 
 @Component({
     selector: 'div',
-    template: `<header class="main-header"></header><aside class="main-sidebar"></aside><ng-body class="content-wrapper" style="min-height: 921px;"
-></ng-body><footer class="main-footer"></footer>`,
+    template: `<header class="main-header"></header><aside class="main-sidebar"></aside><ng-body></ng-body><footer class="main-footer"></footer>`,
     directives: [HeaderComponent, LeftbarComponent, NgbodyComponent, NgfootComponent]
 })
 

@@ -13,7 +13,8 @@ declare var jQuery:any;
 
 @Component({
     selector: 'ng-body',
-    template: `<div class="content-wrapper">
+    template: `<div class="content-wrapper" style="min-height: 921px;"
+>
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
@@ -537,9 +538,7 @@ declare var jQuery:any;
             </div>
             <!-- /.row (main row) -->
 
-        </section>
-        <!-- /.content -->
-    </div>`
+        </section>`
 })
 
 export class NgbodyComponent {
