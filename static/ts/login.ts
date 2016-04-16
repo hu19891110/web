@@ -2,7 +2,7 @@
  * Created by liuzheng on 4/7/16.
  */
 
-import {Component,ViewEncapsulation} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {NgForm}    from 'angular2/common';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {RouteParams, Router} from 'angular2/router';
@@ -20,7 +20,7 @@ export class User {
     template: `
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>Jump</b>Server</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -51,22 +51,11 @@ export class User {
       </div>
     </form>
 
-    <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-        Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-        Google+</a>
-    </div>
-    <!-- /.social-auth-links -->
-
     <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a>
 
   </div>
   <!-- /.login-box-body -->
 </div>`,
-    encapsulation: ViewEncapsulation.None,
 })
 
 
