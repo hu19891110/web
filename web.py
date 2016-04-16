@@ -5,7 +5,7 @@
 
 import os
 import configparser as ConfigParser
-from flask import Flask, abort, redirect, make_response, render_template, request, jsonify
+from flask import Flask, abort, redirect, make_response, render_template, request, jsonify,send_from_directory
 from flask_assets import Bundle, Environment
 from flask_wtf.csrf import CsrfProtect
 from flask.ext.uwsgi_websocket import GeventWebSocket
@@ -114,6 +114,10 @@ def hello_world(hello=None):
 def index():
     return render_template('index.html')
 
+
+@app.route('/imgs/<path:path>')
+def send_js(path):
+    return send_from_directory('static/imgs', path)
 
 @app.route('/a', methods=['GET', 'POST'])
 def a():
