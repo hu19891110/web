@@ -40,7 +40,7 @@ bundles = {
         'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
         'node_modules/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js',
         'node_modules/admin-lte/dist/js/app.min.js',
-        'node_modules/admin-lte/dist/js/pages/dashboard.js',
+        # 'node_modules/admin-lte/dist/js/pages/dashboard.js',
         'node_modules/admin-lte/plugins/iCheck/icheck.min.js',
         # 'node_modules/semantic-ui/dist/semantic.min.js',
         'js/term.js',
