@@ -17,45 +17,31 @@ export class User {
 }
 
 @Component({
-    template: `
-<div class="login-box">
-  <div class="login-logo">
-    <a href="../../index2.html"><b>Jump</b>Server</a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    selector: 'div',
+    template: `<div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+                <h1 class="logo-name"><img src="/imgs/logo.png"></h1>
+            </div>
+                <div class="alert alert-danger text-center" *ngIf="error">{{ error }}</div>
+            <h2>Welcome to JumpServer</h2>
+            <form class="m-t" role="form" method="post" action="">
+                <div class="form-group">
+                    <input type="text" name="username" class="form-control" placeholder="Username" 
+                    required="length[6~50]" [(ngModel)]="username">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Password" required=""
+                     [(ngModel)]="password">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b" (click)="clickeLogin()">Login
+                </button>
 
-    <form action="../../index2.html" method="post">
-      <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
-          </div>
+                <a (click)="forgot()"><small>Forgot password? </small></a>
+            </form>
+            <p class="m-t"> <small><b>Copyright</b> Jumpserver.org Organization © 2014-2015</small> </p>
         </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-        </div>
-        <!-- /.col -->
-      </div>
-    </form>
-
-    <a href="#">I forgot my password</a><br>
-
-  </div>
-  <!-- /.login-box-body -->
-</div>`,
+    </div>`,
 })
 
 
@@ -63,19 +49,26 @@ export class LoginComponent {
     // constructor(http:Http) {
     //     this.http = http;
     // }
+    username:string;
+    password:string;
+    error:string;
+
     constructor(private http:Http,
                 private _router:Router) {
     }
 
     ngOnInit() {
-        jQuery('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // optional
-        });
         this.model = new User('', '');
     }
 
+    clickeLogin() {
+        this.error = 'ss';
+        console.log(this.username)
+        console.log(this.password)
+    }
+    forgot(){
+        this._router.parent.navigate(['Forgot']);
+    }
     // onSubmit() {
     //     var csrftoken = jQuery('meta[name=csrf-token]').attr('content');
     //     var authHeader:Headers = new Headers();
