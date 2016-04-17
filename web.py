@@ -24,28 +24,31 @@ bundles = {
         'node_modules/angular2/bundles/router.dev.js',
         'node_modules/angular2/bundles/http.dev.js',
         # 'node_modules/angular2-websocket/angular2-websocket.js',
+        'node_modules/reflect-metadata/Reflect.js',
 
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/admin-lte/plugins/jQueryUI/jquery-ui.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js',
-        'node_modules/raphael/raphael.min.js',
-        'node_modules/admin-lte/plugins/morris/morris.min.js',
-        'node_modules/admin-lte/plugins/sparkline/jquery.sparkline.min.js',
-        'node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js',
-        'node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js',
-        'node_modules/admin-lte/plugins/knob/jquery.knob.js',
-        'node_modules/moment/min/moment.min.js',
-        'node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js',
-        'node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js',
-        'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
-        'node_modules/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js',
-        'node_modules/admin-lte/dist/js/app.min.js',
-        # 'node_modules/admin-lte/dist/js/pages/dashboard.js',
-        'node_modules/admin-lte/plugins/iCheck/icheck.min.js',
+
+        # Semantic-UI
         # 'node_modules/semantic-ui/dist/semantic.min.js',
+        # AdminLTE
+        # 'node_modules/raphael/raphael.min.js',
+        # 'node_modules/admin-lte/plugins/morris/morris.min.js',
+        # 'node_modules/admin-lte/plugins/sparkline/jquery.sparkline.min.js',
+        # 'node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js',
+        # 'node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js',
+        # 'node_modules/admin-lte/plugins/knob/jquery.knob.js',
+        # 'node_modules/moment/min/moment.min.js',
+        # 'node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js',
+        # 'node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js',
+        # 'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
+        # 'node_modules/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js',
+        # 'node_modules/admin-lte/dist/js/app.min.js',
+        # 'node_modules/admin-lte/plugins/iCheck/icheck.min.js',
+
         'js/term.js',
         'node_modules/echarts/dist/echarts.min.js',
-        'node_modules/reflect-metadata/Reflect.js',
         output='js/base.min.js',
         filters='jsmin'
     ),
@@ -53,18 +56,22 @@ bundles = {
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
         # 'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
         'node_modules/font-awesome/css/font-awesome.min.css',
-        'node_modules/ionicons/dist/css/ionicons.min.css',
+        # Semantic-UI
         # 'node_modules/semantic-ui/dist/semantic.min.css',
-        'node_modules/admin-lte/dist/css/AdminLTE.css',
-        'node_modules/admin-lte/dist/css/skins/_all-skins.min.css',
-        'node_modules/admin-lte/plugins/iCheck/flat/blue.css',
-        'node_modules/admin-lte/plugins/iCheck/square/blue.css',
-        'node_modules/admin-lte/plugins/morris/morris.css',
-        'node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.css',
-        'node_modules/admin-lte/plugins/datepicker/datepicker3.css',
-        'node_modules/admin-lte/plugins/daterangepicker/daterangepicker-bs3.css',
-        'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css',
-        # 'css/styles.css',
+        # AdminLTE
+        # 'node_modules/ionicons/dist/css/ionicons.min.css',
+        # 'node_modules/admin-lte/dist/css/AdminLTE.css',
+        # 'node_modules/admin-lte/dist/css/skins/_all-skins.min.css',
+        # 'node_modules/admin-lte/plugins/iCheck/flat/blue.css',
+        # 'node_modules/admin-lte/plugins/iCheck/square/blue.css',
+        # 'node_modules/admin-lte/plugins/morris/morris.css',
+        # 'node_modules/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.css',
+        # 'node_modules/admin-lte/plugins/datepicker/datepicker3.css',
+        # 'node_modules/admin-lte/plugins/daterangepicker/daterangepicker-bs3.css',
+        # 'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css',
+        # products-WB0R5L90S2_20151224
+        'css/animate.css',
+        'css/styles.css',
         output='css/base.min.css',
         filters='cssmin'
     ),
@@ -130,9 +137,9 @@ def a():
     return jsonify({'a': 'a'})
 
 
-@app.route('/checklogin', methods=['GET'])
+@app.route('/api/checklogin', methods=['GET'])
 def checklogin():
-    return jsonify({'logined': True})
+    return jsonify({'logined': False})
 
 
 @app.route('/aaa', methods=['GET'])
