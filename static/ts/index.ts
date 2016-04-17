@@ -65,7 +65,7 @@ export class AppComponent {
             this._router.navigate(['FOF']);
             jQuery('angular2').show();
         } else {
-            this.http.get('/checklogin')
+            this.http.get('/api/checklogin')
                 .map(res => res.json())
                 .subscribe(
                     data => this.data = data,
