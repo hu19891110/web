@@ -18,8 +18,8 @@ export class User {
 
 @Component({
     selector: 'div',
-    template: `<div class="middle-box text-center loginscreen  animated fadeInDown">
-        <div>
+    template: `
+<div class="middle-box text-center loginscreen  animated fadeInDown">
             <div>
                 <h1 class="logo-name"><img src="/imgs/logo.png"></h1>
             </div>
@@ -40,7 +40,6 @@ export class User {
                 <a (click)="forgot()"><small>Forgot password? </small></a>
             </form>
             <p class="m-t"> <small><b>Copyright</b> Jumpserver.org Organization © 2014-2015</small> </p>
-        </div>
     </div>`,
 })
 
