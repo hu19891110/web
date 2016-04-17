@@ -52,7 +52,8 @@ export class ForgotComponent {
     //     this.http = http;
     // }
     username:string;
-    password:string;
+    name:string;
+    email:string;
     error:string;
 
     constructor(private http:Http,

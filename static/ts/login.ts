@@ -37,7 +37,7 @@ export class User {
                 <button type="submit" class="btn btn-primary block full-width m-b" (click)="clickeLogin()">Login
                 </button>
 
-                <a href="/forgot"><small>Forgot password? </small></a>
+                <a (click)="forgot()"><small>Forgot password? </small></a>
             </form>
             <p class="m-t"> <small><b>Copyright</b> Jumpserver.org Organization © 2014-2015</small> </p>
         </div>
@@ -66,7 +66,9 @@ export class LoginComponent {
         console.log(this.username)
         console.log(this.password)
     }
-
+    forgot(){
+        this._router.parent.navigate(['Forgot']);
+    }
     // onSubmit() {
     //     var csrftoken = jQuery('meta[name=csrf-token]').attr('content');
     //     var authHeader:Headers = new Headers();

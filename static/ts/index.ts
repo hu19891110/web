@@ -17,6 +17,7 @@ import {LeftbarComponent} from './leftbar';
 import {NgbodyComponent} from './ngbody';
 import {NgfootComponent} from './ngfoot';
 import {FOFComponent} from './404';
+import {ForgotComponent} from './forgot';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class IndexComponent {
     {path: '/terminal', name: 'Terminal', component: TermComponent},
     {path: '/dashboard', name: 'Dashboard', component: DashboardComponent},
     {path: '/404', name: 'FOF', component: FOFComponent},
+    {path: '/forgot', name: 'Forgot', component: ForgotComponent},
 ])
 
 
@@ -64,7 +66,9 @@ export class AppComponent {
         if (jQuery.inArray(this._router.lastNavigationAttempt, this.appRouteslist) == -1) {
             this._router.navigate(['FOF']);
             jQuery('angular2').show();
-        } else {
+        } else if(this._router.lastNavigationAttempt=='/forgot'){
+            jQuery('angular2').show();
+        }else {
             this.http.get('/api/checklogin')
                 .map(res => res.json())
                 .subscribe(
