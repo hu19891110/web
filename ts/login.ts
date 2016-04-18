@@ -5,7 +5,7 @@
 import {Component} from 'angular2/core';
 import {NgForm}    from 'angular2/common';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
-import {RouteParams, Router} from 'angular2/router';
+import {RouteParams, Router,ROUTER_DIRECTIVES} from 'angular2/router';
 import  'rxjs/Rx';
 declare var jQuery:any;
 
@@ -37,10 +37,11 @@ export class User {
                 <button type="submit" class="btn btn-primary block full-width m-b" (click)="clickeLogin()">Login
                 </button>
 
-                <a (click)="forgot()"><small>Forgot password? </small></a>
+                <a [routerLink]="['Forgot']"><small>Forgot password? </small></a>
             </form>
             <p class="m-t"> <small><b>Copyright</b> Jumpserver.org Organization © 2014-2015</small> </p>
     </div>`,
+    directives: [ROUTER_DIRECTIVES]
 })
 
 
@@ -64,9 +65,6 @@ export class LoginComponent {
         this.error = 'ss';
         console.log(this.username)
         console.log(this.password)
-    }
-    forgot(){
-        this._router.parent.navigate(['Forgot']);
     }
     // onSubmit() {
     //     var csrftoken = jQuery('meta[name=csrf-token]').attr('content');
