@@ -5,7 +5,7 @@
 
 import os
 import configparser as ConfigParser
-from flask import Flask, abort, redirect, make_response, render_template, request, jsonify,send_from_directory
+from flask import Flask, abort, redirect, make_response, render_template, request, jsonify, send_from_directory
 from flask_assets import Bundle, Environment
 from flask_wtf.csrf import CsrfProtect
 from flask.ext.uwsgi_websocket import GeventWebSocket
@@ -47,15 +47,36 @@ bundles = {
         # 'node_modules/admin-lte/dist/js/app.min.js',
         # 'node_modules/admin-lte/plugins/iCheck/icheck.min.js',
 
+        # products-WB0R5L90S2_20151224
+        'js/base.js',
+        'js/jquery.colorbox.js',
+        'js/validator/jquery.validator.js',
+        'js/validator/zh_CN.js',
+        'js/datapicker/bootstrap-datepicker.js',
+        'js/plugins/metisMenu/jquery.metisMenu.js',
+        'js/plugins/slimscroll/jquery.slimscroll.min.js',
+        'js/bootstrap-dialog.js',
+        'js/mindmup-editabletable.js',
+        'js/plugins/fullcalendar/moment.min.js',
+        'js/plugins/fullcalendar/fullcalendar.min.js',
+        'js/inspinia.js',
+        'js/plugins/pace/pace.min.js',
+        'js/plugins/peity/jquery.peity.min.js',
+        'js/demo/peity-demo.js',
+        'js/base.js',
+        'js/layer/layer.js',
+        'js/highcharts/highcharts.js',
+        'js/dropzone/dropzone.js',
+
         'js/term.js',
         'node_modules/echarts/dist/echarts.min.js',
         output='js/base.min.js',
         filters='jsmin'
     ),
-    'bash_css': Bundle(
-        'node_modules/bootstrap/dist/css/bootstrap.min.css',
+    'base_css': Bundle(
+        # 'node_modules/bootstrap/dist/css/bootstrap.min.css',
         # 'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
-        'node_modules/font-awesome/css/font-awesome.min.css',
+        # 'node_modules/font-awesome/css/font-awesome.min.css',
         # Semantic-UI
         # 'node_modules/semantic-ui/dist/semantic.min.css',
         # AdminLTE
@@ -70,8 +91,17 @@ bundles = {
         # 'node_modules/admin-lte/plugins/daterangepicker/daterangepicker-bs3.css',
         # 'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css',
         # products-WB0R5L90S2_20151224
+        'css/bootstrap.min.css',
+        'font-awesome/css/font-awesome.css',
+        'css/plugins/iCheck/custom.css',
         'css/animate.css',
-        'css/styles.css',
+        'css/style.css',
+        'css/colorbox.css',
+        'css/vaildator/jquery.validator.css',
+        'css/magnific/magnific-popup.css',
+        'css/plugins/fullcalendar/fullcalendar.css',
+        'css/plugins/dropzone/basic.css',
+        'css/plugins/dropzone/dropzone.css',
         output='css/base.min.css',
         filters='cssmin'
     ),
@@ -127,6 +157,7 @@ def index():
 @app.route('/imgs/<path:path>')
 def send_js(path):
     return send_from_directory('static/imgs', path)
+
 
 @app.route('/a', methods=['GET', 'POST'])
 def a():
