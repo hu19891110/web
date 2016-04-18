@@ -7,3 +7,5 @@ static/ts/*.js*
 .DS_Store
 __pycache__/
 others/
+
+static/.gitignore
