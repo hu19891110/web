@@ -8,7 +8,6 @@ import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {RouteParams, Router} from 'angular2/router';
 import  'rxjs/Rx';
 declare var jQuery:any;
-declare var layer:any;
 
 
 export class User {
@@ -107,7 +106,7 @@ export class User {
         </ul>
 
     </div>
-</nav><script type="text/javascript" src="js/foot.min.js"></script>`,
+</nav>`,
     directives: [NgClass]
 })
 
@@ -128,18 +127,7 @@ export class LeftbarComponent {
     }
 
     ngAfterViewInit() {
-        var s = document.createElement("script");
-        s.type = "text/javascript";
-        s.src = "js/plugins/metisMenu/jquery.metisMenu.js";
-        this.elementRef.nativeElement.appendChild(s);
-        var s = document.createElement("script");
-        s.type = "text/javascript";
-        s.src = "js/inspinia.js";
-        this.elementRef.nativeElement.appendChild(s);
-        var s = document.createElement("script");
-        s.type = "text/javascript";
-        s.src = "js/base.js";
-        this.elementRef.nativeElement.appendChild(s);
+        jQuery('#side-menu').metisMenu();
     }
 
     iframeuser() {
