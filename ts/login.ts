@@ -9,7 +9,6 @@ import {RouteParams, Router,ROUTER_DIRECTIVES} from 'angular2/router';
 import  'rxjs/Rx';
 declare var jQuery:any;
 
-
 export class User {
     constructor(public name:string,
                 public pwd:string) {

@@ -12,18 +12,30 @@ import {DynamicRouteConfigurator} from './dynamicRouteConfigurator'
 import {LoginComponent} from './login';
 import {TermComponent} from './terminal';
 import {DashboardComponent} from './dashboard';
-import {HeaderComponent} from './header';
+import {NavComponent} from './ngnav';
 import {LeftbarComponent} from './leftbar';
 import {NgbodyComponent} from './ngbody';
-import {NgfootComponent} from './ngfoot';
 import {FOFComponent} from './404';
 import {ForgotComponent} from './forgot';
 
 
 @Component({
     selector: 'div',
-    template: `<header class="main-header"></header><aside class="main-sidebar"></aside><ng-body></ng-body><footer class="main-footer"></footer>`,
-    directives: [HeaderComponent, LeftbarComponent, NgbodyComponent, NgfootComponent]
+    template: `<ng-left></ng-left><div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <ng-nav-bar></ng-nav-bar>
+        </div>
+        <ng-body></ng-body>
+        <div class="footer fixed">
+            <div class="pull-right">
+                Version <strong>0.3.1</strong> GPL.
+            </div>
+            <div>
+                <strong>Copyright</strong> Jumpserver.org Team &copy; 2014-2015
+            </div>
+        </div>
+    </div>`,
+    directives: [LeftbarComponent, NavComponent, NgbodyComponent]
 })
 
 export class IndexComponent {

@@ -10,7 +10,7 @@ import  'rxjs/Rx';
 declare var jQuery:any;
 declare var Terminal:any;
 
-import {HeaderComponent} from './header';
+import {NavComponent} from './ngnav';
 import {LeftbarComponent} from './leftbar';
 import {NgfootComponent} from './ngfoot';
 
@@ -100,10 +100,21 @@ export class Terminals {
 
 @Component({
     selector: 'div',
-    template: `<header class="main-header"></header><aside class="main-sidebar"></aside><ng-body   style="min-height: 921px;"
-></ng-body><footer 
-class="main-footer"></footer>`,
-    directives: [HeaderComponent, LeftbarComponent, Terminals, NgfootComponent]
+    template: `<ng-left></ng-left><div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <ng-nav-bar></ng-nav-bar>
+        </div>
+        <ng-body></ng-body>
+        <div class="footer fixed">
+            <div class="pull-right">
+                Version <strong>0.3.1</strong> GPL.
+            </div>
+            <div>
+                <strong>Copyright</strong> Jumpserver.org Team &copy; 2014-2015
+            </div>
+        </div>
+    </div>`,
+    directives: [LeftbarComponent, NavComponent, Terminals, NgfootComponent]
 })
 export class TermComponent {
 }

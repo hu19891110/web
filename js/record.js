@@ -56,12 +56,7 @@ NgApp.controller('TerminalRecordCtrl', function ($scope, $http) {
             document.getElementById("beforeScrubberText").innerHTML = buildTimeString(time);
             for (; pos < timelist.length; pos++) {
                 if (timelist[pos] * 1000 <= time) {
-                    try{
-                        var findResize = JSON.parse(data[timelist[pos]])['data'];
-                        term.resize(findResize['resize']['cols'], findResize['resize']['rows'])
-                    } catch (err) {
-                        term.write(data[timelist[pos]]);
-                    }
+                    term.write(data[timelist[pos]]);
                 } else {
                     break;
                 }
@@ -108,8 +103,8 @@ NgApp.controller('TerminalRecordCtrl', function ($scope, $http) {
         };
 
         var term = new Terminal({
-            rows: 35,
-            cols: 100,
+            rows: 24,
+            cols: 80,
             useStyle: true,
             screenKeys: true
         });
