@@ -54,19 +54,19 @@ bundles = {
         'js/validator/zh_CN.js',
         'js/datapicker/bootstrap-datepicker.js',
         'js/plugins/metisMenu/jquery.metisMenu.js',
-        'js/plugins/slimscroll/jquery.slimscroll.min.js',
-        'js/bootstrap-dialog.js',
-        'js/mindmup-editabletable.js',
-        'js/plugins/fullcalendar/moment.min.js',
-        'js/plugins/fullcalendar/fullcalendar.min.js',
-        'js/inspinia.js',
-        'js/plugins/pace/pace.min.js',
-        'js/plugins/peity/jquery.peity.min.js',
-        'js/demo/peity-demo.js',
-        'js/base.js',
-        'js/layer/layer.js',
-        'js/highcharts/highcharts.js',
-        'js/dropzone/dropzone.js',
+        # 'js/plugins/slimscroll/jquery.slimscroll.min.js',
+        # 'js/bootstrap-dialog.js',
+        # 'js/mindmup-editabletable.js',
+        # 'js/plugins/fullcalendar/moment.min.js',
+        # 'js/plugins/fullcalendar/fullcalendar.min.js',
+        # 'js/inspinia.js',
+        # 'js/plugins/pace/pace.min.js',
+        # 'js/plugins/peity/jquery.peity.min.js',
+        # 'js/demo/peity-demo.js',
+        # 'js/base.js',
+        # 'js/layer/layer.js',
+        # 'js/highcharts/highcharts.js',
+        # 'js/dropzone/dropzone.js',
 
         'js/term.js',
         'node_modules/echarts/dist/echarts.min.js',
@@ -92,7 +92,7 @@ bundles = {
         # 'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css',
         # products-WB0R5L90S2_20151224
         'css/bootstrap.min.css',
-        'font-awesome/css/font-awesome.css',
+        'node_modules/font-awesome/css/font-awesome.css',
         'css/plugins/iCheck/custom.css',
         'css/animate.css',
         'css/style.css',
@@ -143,15 +143,15 @@ def WebSocketHandle(ws):
         ws.send(msg)
 
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
 @app.route('/<hello>')
 def hello_world(hello=None):
     return render_template('index.html')
     # return 'Hello World!', 400
-
-
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 
 @app.route('/imgs/<path:path>')
@@ -170,7 +170,7 @@ def a():
 
 @app.route('/api/checklogin', methods=['GET'])
 def checklogin():
-    return jsonify({'logined': False})
+    return jsonify({'logined': True})
 
 
 @app.route('/aaa', methods=['GET'])
@@ -179,5 +179,5 @@ def aaa():
 
 
 if __name__ == '__main__':
-    # app.run(debug=True)
-    app.run(gevent=100)
+    app.run(debug=True)
+    # app.run(gevent=100)
