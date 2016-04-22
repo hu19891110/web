@@ -57,6 +57,9 @@ export class IndexComponent {
     {path: '/dashboard', name: 'Dashboard', component: DashboardComponent},
     {path: '/404', name: 'FOF', component: FOFComponent},
     {path: '/forgot', name: 'Forgot', component: ForgotComponent},
+    {path: '/Userlist', name: 'Userlist', component: IndexComponent},
+    {path: '/Assetlist', name: 'Assetlist', component: IndexComponent},
+    {path: '/Log', name: 'Log', component: IndexComponent},
 ])
 
 
