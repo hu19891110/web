@@ -52,7 +52,8 @@ export class LoginComponent {
     username:string;
     password:string;
     error:string;
-
+    model:User;
+    
     constructor(private http:Http,
                 private _router:Router) {
     }

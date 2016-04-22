@@ -12,7 +12,6 @@ declare var Terminal:any;
 
 import {NavComponent} from './ngnav';
 import {LeftbarComponent} from './leftbar';
-import {NgfootComponent} from './ngfoot';
 
 //https://github.com/afrad/angular2-websocket.git
 @Component({
@@ -114,7 +113,7 @@ export class Terminals {
             </div>
         </div>
     </div>`,
-    directives: [LeftbarComponent, NavComponent, Terminals, NgfootComponent]
+    directives: [LeftbarComponent, NavComponent, Terminals]
 })
 export class TermComponent {
 }

@@ -9,14 +9,18 @@ import  'rxjs/Rx';
 declare var jQuery:any;
 declare var echarts:any;
 
+import {NavComponent} from './ngnav';
+import {LeftbarComponent} from './leftbar';
+import {NavcatbarComponent} from './nav_cat_bar';
 
 @Component({
+    selector: 'ng-body',
     template: `<div class="" id="top10" style="width:800px;height: 346px;"></div><div 
 id="liuzheng"><h1>sadfasdca</h1><p>asdcas</p></div>`,
     directives: [ROUTER_DIRECTIVES]
 })
 
-export class DashboardComponent {
+export class Dashboard {
     constructor(private http:Http,
                 private _router:Router) {
     }
@@ -88,4 +92,29 @@ export class DashboardComponent {
         // this.top10Chart.setOption(option,true);
     }
 
+}
+
+
+
+@Component({
+    selector: 'div',
+    template: `<ng-left></ng-left><div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <ng-nav-bar></ng-nav-bar>
+        </div>
+        <ng-nav-cat-bar ></ng-nav-cat-bar>
+        <ng-body></ng-body>
+        <div class="footer fixed">
+            <div class="pull-right">
+                Version <strong>0.3.1</strong> GPL.
+            </div>
+            <div>
+                <strong>Copyright</strong> Jumpserver.org Team &copy; 2014-2015
+            </div>
+        </div>
+    </div>`,
+    directives: [LeftbarComponent, NavComponent,NavcatbarComponent, Dashboard]
+})
+export class DashboardComponent {
+    
 }
