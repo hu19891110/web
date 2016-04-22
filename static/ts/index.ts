@@ -11,13 +11,13 @@ declare var jQuery:any;
 import {DynamicRouteConfigurator} from './dynamicRouteConfigurator'
 import {LoginComponent} from './login';
 import {TermComponent} from './terminal';
-import {DashboardComponent} from './dashboard';
+import {DashboardComponent, Dashboard} from './dashboard';
 import {NavComponent} from './ngnav';
 import {LeftbarComponent} from './leftbar';
-import {NgbodyComponent} from './ngbody';
+// import {NgbodyComponent} from './ngbody';
 import {FOFComponent} from './404';
 import {ForgotComponent} from './forgot';
-
+import {NavcatbarComponent} from './nav_cat_bar';
 
 @Component({
     selector: 'div',
@@ -25,6 +25,7 @@ import {ForgotComponent} from './forgot';
         <div class="row border-bottom">
             <ng-nav-bar></ng-nav-bar>
         </div>
+        <ng-nav-cat-bar ></ng-nav-cat-bar>
         <ng-body></ng-body>
         <div class="footer fixed">
             <div class="pull-right">
@@ -35,7 +36,7 @@ import {ForgotComponent} from './forgot';
             </div>
         </div>
     </div>`,
-    directives: [LeftbarComponent, NavComponent, NgbodyComponent]
+    directives: [LeftbarComponent, NavComponent,NavcatbarComponent, Dashboard]
 })
 
 export class IndexComponent {
@@ -56,6 +57,9 @@ export class IndexComponent {
     {path: '/dashboard', name: 'Dashboard', component: DashboardComponent},
     {path: '/404', name: 'FOF', component: FOFComponent},
     {path: '/forgot', name: 'Forgot', component: ForgotComponent},
+    {path: '/Userlist', name: 'Userlist', component: IndexComponent},
+    {path: '/Assetlist', name: 'Assetlist', component: IndexComponent},
+    {path: '/Log', name: 'Log', component: IndexComponent},
 ])
 
 
