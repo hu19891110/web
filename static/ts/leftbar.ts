@@ -5,17 +5,15 @@
 import {Component, ElementRef} from 'angular2/core';
 import {NgForm, NgClass}    from 'angular2/common';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
-import {RouteParams, Router,ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteParams, Router, ROUTER_DIRECTIVES} from 'angular2/router';
+
 import  'rxjs/Rx';
 declare var jQuery:any;
+declare var layer:any;
+
+import {AppService, User} from './service';
 
 
-export class User {
-    constructor(public name:string,
-                public avatar:string,
-                public role:string) {
-    }
-}
 @Component({
     selector: 'ng-left',
     styles: [`.navbar-default.navbar-static-side{overflow: scroll;position: fixed;height: 100%;background-color: #2f4050;} #side-menu{height: 100%;}`],
@@ -66,14 +64,16 @@ export class User {
     </div>
 </nav>
 `,
-    directives: [NgClass,ROUTER_DIRECTIVES]
+    directives: [NgClass, ROUTER_DIRECTIVES],
+    providers: [AppService]
 })
 
 
 export class LeftbarComponent {
     user:User;
 
-    constructor(private elementRef:ElementRef) {
+    constructor(
+                private _appService:AppService) {
     };
 
     ngOnInit() {
@@ -82,31 +82,9 @@ export class LeftbarComponent {
         this.user_total_num = 3;
         this.host_active_num = 1;
         this.host_total_num = 9;
-        this.navlist = [
-            {'id':'index','href':'Index','name':'仪表盘','fa':'fa fa-dashboard','children':null},
-            {'id':'juser','href':'Index','name':'用户管理','fa':'fa fa-group','children':[
-                {'id':'usergroup','href':'Index','name':'查看用户组'},
-                {'id':'useruser','href':'Index','name':'查看用户'},
-            ]},
-            {'id':'jasset','href':'Index','name':'资产管理','fa':'fa fa-inbox','children':[
-                {'id':'jassetgroup','href':'Index','name':'查看资产组'},
-                {'id':'jassetjasset','href':'Index','name':'查看资产'},
-                {'id':'jassetcenter','href':'Index','name':'查看机房'},
-            ]},
-            {'id':'jperm','href':'Index','name':'授权管理','fa':'fa fa-edit','children':[
-                {'id':'sudo','href':'Index','name':'Sudo'},
-                {'id':'sysusers','href':'Index','name':'系统用户'},
-                {'id':'rules','href':'Index','name':'授权规则'},
-            ]},
-            {'id':'jlog','href':'Index','name':'日志审计','fa':'fa fa-files-o','children':null},
-            {'id':'file','href':'Index','name':'上传下载','fa':'fa fa-download','children':[
-                {'id':'sudo','href':'Index','name':'Sudo'},
-                {'id':'upload','href':'Index','name':'文件上传'},
-                {'id':'download','href':'Index','name':'文件上传'},
-            {'id':'setting','href':'Index','name':'设置','fa':'fa fa-gears','children':[]},
-            ]},
-        ];
-        this.user = new User('admin', 'root.png', '超级管理员');
+        this.navlist = this._appService.getnav();
+        this.user  = this._appService.getUser(1);
+        this._appService.setUser(this.user)
     }
 
     ngAfterViewInit() {
@@ -124,7 +102,7 @@ export class LeftbarComponent {
             shade: [0.5, '#000000'],
             shadeClose: true,
             area: ['800px', '600px'],
-            content: url
+            content: '/userprofile/'+this.user.id
         });
     }
 

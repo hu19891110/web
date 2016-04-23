@@ -4,7 +4,7 @@
 
 import {bootstrap}        from 'angular2/platform/browser';
 import {Http, HTTP_PROVIDERS}   from 'angular2/http';
-import {Component}         from 'angular2/core';
+import {Component, Injectable}         from 'angular2/core';
 import {ROUTER_PROVIDERS, RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import  'rxjs/Rx';
 declare var jQuery:any;
@@ -18,6 +18,9 @@ import {LeftbarComponent} from './leftbar';
 import {FOFComponent} from './404';
 import {ForgotComponent} from './forgot';
 import {NavcatbarComponent} from './nav_cat_bar';
+import {Logger} from "angular2-logger/core";
+import {AppService} from './service';
+import {UserProfileComponent} from './juser/userprofile'
 
 @Component({
     selector: 'div',
@@ -36,7 +39,7 @@ import {NavcatbarComponent} from './nav_cat_bar';
             </div>
         </div>
     </div>`,
-    directives: [LeftbarComponent, NavComponent,NavcatbarComponent, Dashboard]
+    directives: [LeftbarComponent, NavComponent, NavcatbarComponent, Dashboard]
 })
 
 export class IndexComponent {
@@ -47,7 +50,8 @@ export class IndexComponent {
     viewProviders: [DynamicRouteConfigurator],
     selector: 'angular2',
     template: `<router-outlet></router-outlet>`,
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
+    providers: [AppService]
 })
 
 @RouteConfig([
@@ -60,36 +64,46 @@ export class IndexComponent {
     {path: '/Userlist', name: 'Userlist', component: IndexComponent},
     {path: '/Assetlist', name: 'Assetlist', component: IndexComponent},
     {path: '/Log', name: 'Log', component: IndexComponent},
+    {path: '/userprofile/:id', name: 'UserProfile', component: UserProfileComponent},
 ])
 
 
 export class AppComponent {
     appRoutes:string[][];
     appRouteslist:string[];
+    data:{};
 
     constructor(private http:Http,
                 private _router:Router,
-                private dynamicRouteConfigurator:DynamicRouteConfigurator) {
+                private _appService:AppService,
+                private dynamicRouteConfigurator:DynamicRouteConfigurator,
+                private _logger:Logger) {
         this.appRouteslist = this.dynamicRouteConfigurator.getRoutes(this.constructor).configs
             .map(route => {
                 return route['path']
             });
-        this.appRoutes = this.dynamicRouteConfigurator.getRoutes(this.constructor).configs
+        this.appRoutes = this.dynamicRouteConfigurator.getRoutes(this.constructor).configs;
+        // this._logger.level = this._appService.loglevel();
     }
 
 
     ngOnInit() {
-        if (jQuery.inArray(this._router.lastNavigationAttempt, this.appRouteslist) == -1) {
+        this._logger.log('print all route list');
+        this._logger.debug(this.appRouteslist);
+        if (this._router.lastNavigationAttempt == '/forgot') {
+            jQuery('angular2').show();
+        } else if (this._router.lastNavigationAttempt.match(/^\/userprofile\/\d+$/)) {
+            this._router.navigate(['UserProfile', {'id':this._router.lastNavigationAttempt.match(/^\/userprofile\/(\d+)$/)[1]}]);
+            jQuery('angular2').show();
+        } else if (jQuery.inArray(this._router.lastNavigationAttempt, this.appRouteslist) == -1) {
             this._router.navigate(['FOF']);
             jQuery('angular2').show();
-        } else if(this._router.lastNavigationAttempt=='/forgot'){
-            jQuery('angular2').show();
-        }else {
+        } else {
             this.http.get('/api/checklogin')
                 .map(res => res.json())
                 .subscribe(
                     data => this.data = data,
-                    err => this.logError(err),
+                    err => this._logger.error(err),
                     () => {
                         if (this.data.logined) {
                             // jQuery('body').addClass('logined');
@@ -115,5 +129,9 @@ export class AppComponent {
 
 bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
-    HTTP_PROVIDERS
+    HTTP_PROVIDERS,
+    Logger
 ]);
+
+
+
