@@ -8,13 +8,8 @@ import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {RouteParams, Router,ROUTER_DIRECTIVES} from 'angular2/router';
 import  'rxjs/Rx';
 declare var jQuery:any;
+import {User} from './service'
 
-
-export class User {
-    constructor(public name:string,
-                public pwd:string) {
-    }
-}
 
 @Component({
     selector: 'div',
@@ -59,7 +54,7 @@ export class LoginComponent {
     }
 
     ngOnInit() {
-        this.model = new User('', '');
+        // this.model = new User();
     }
 
     clickeLogin() {
