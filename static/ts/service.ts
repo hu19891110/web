@@ -26,7 +26,7 @@ export class User {
 export class AppService {
     nav:Array;
     user:User;
-    data:{};
+    data:User;
 
     constructor(private http:Http,
                 private _router:Router,
@@ -90,31 +90,8 @@ export class AppService {
     }
 
     getUser(id:number) {
-        this.http.get('/api/userprofile')
+        return this.http.get('/api/userprofile')
             .map(res => res.json())
-            .subscribe(
-                (data:User)  => {this.data = data},
-                err => this._logger.error(err),
-                () => {
-                    this._logger.log('http get this.data:/api/userprofile');
-                    this._logger.debug(this.data);
-                    return this.data;
-                }
-            );
-
-        // return {
-        //     'id': 5000,
-        //     'name': 'admin',
-        //     'username': 'liuzheng',
-        //     'pwd': '',
-        //     'avatar': 'root.png',
-        //     'role': '超级管理员',
-        //     'email': 'a@liuzheng.com',
-        //     'is_active': true,
-        //     'date_joined': '1990',
-        //     'last_login': '2016',
-        //     'groups': ['group1', 'group2'],
-        // }
     }
 }
 
@@ -124,6 +101,8 @@ export class AppService {
 })
 export class Join {
     transform(value, args?) {
+        if (typeof value === 'undefined')
+            return 'undefined'
         return value.join(args)
     }
 }

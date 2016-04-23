@@ -92,7 +92,7 @@ bundles = {
         # 'node_modules/admin-lte/plugins/daterangepicker/daterangepicker-bs3.css',
         # 'node_modules/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css',
         # products-WB0R5L90S2_20151224
-        'css/bootstrap.min.css',
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',
         'node_modules/font-awesome/css/font-awesome.css',
         'css/plugins/iCheck/custom.css',
         'css/animate.css',

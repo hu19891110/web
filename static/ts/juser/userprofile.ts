@@ -17,7 +17,7 @@ import {AppService, User, Join} from '../service';
     selector: 'angular2',
     template: `<div class="row">
             <div class="contact-box">
-                <h2 class="text-center" [innerHTML]="user.name"></h2><h2>用户详情</h2>
+                <h2 class="text-center" [innerHTML]="user.name"></h2>
                 <div class="ibox-content">
 
                     <table class="table table-striped table-bordered table-hover " id="editable" >
@@ -34,7 +34,7 @@ import {AppService, User, Join} from '../service';
                         <tbody>
                         
                         <tr class="gradeX">
-                            <td class="text-center" [innerHTML]="user.id"></td>
+                            <td class="text-center" [(innerHTML)]="user.id"></td>
                             <td class="text-center" [innerHTML]="user.username"></td>
                             <td class="text-center" [innerHTML]="user.name"></td>
                             <td class="text-center" [innerHTML]="user.role"></td>
@@ -61,17 +61,19 @@ import {AppService, User, Join} from '../service';
     pipes: [Join]
 })
 export class UserProfileComponent {
-    user:User;
+    user:User=new User;
 
     constructor(private _routeParams:RouteParams,
                 private _appService:AppService,
                 private _logger:Logger) {
     };
 
-    ngInit() {
+    ngOnInit() {
         let id = this._routeParams.get('id');
-        this.user = this._appService.getUser(id);
-        this._logger.log('appService.getUser');
-        this._logger.debug(this.user)
+        this._appService.getUser(1)
+            .subscribe(response => {this.user = response});
+                this._logger.log('appService.getUser');
+                this._logger.debug(this.user)
+
     }
 }
