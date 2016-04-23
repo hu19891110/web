@@ -25,6 +25,7 @@ bundles = {
         'node_modules/angular2/bundles/http.dev.js',
         # 'node_modules/angular2-websocket/angular2-websocket.js',
         'node_modules/reflect-metadata/Reflect.js',
+        'node_modules/angular2-logger/bundles/angular2-logger.min.js',
 
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/admin-lte/plugins/jQueryUI/jquery-ui.min.js',
@@ -64,7 +65,7 @@ bundles = {
         # 'js/plugins/peity/jquery.peity.min.js',
         # 'js/demo/peity-demo.js',
         # 'js/base.js',
-        # 'js/layer/layer.js',
+        'js/layer/layer.js',
         # 'js/highcharts/highcharts.js',
         # 'js/dropzone/dropzone.js',
 
@@ -152,6 +153,10 @@ def index():
 def hello_world(hello=None):
     return render_template('index.html')
     # return 'Hello World!', 400
+@app.route('/<hello>/<dd>')
+def hello_worlds(hello=None,dd=None):
+    return render_template('index.html')
+    # return 'Hello World!', 400
 
 
 @app.route('/imgs/<path:path>')
@@ -168,9 +173,9 @@ def a():
     return jsonify({'a': 'a'})
 
 
-@app.route('/api/checklogin', methods=['GET'])
-def checklogin():
-    return jsonify({'logined': True})
+@app.route('/api/<path:path>', methods=['GET'])
+def api(path):
+    return send_from_directory('static/api/', path)
 
 
 @app.route('/aaa', methods=['GET'])
