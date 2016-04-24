@@ -18,16 +18,16 @@ import {User} from './service'
             <div>
                 <h1 class="logo-name"><img src="/imgs/logo.png"></h1>
             </div>
-                <div class="alert alert-danger text-center" *ngIf="error">{{ error }}</div>
+                <div class="alert alert-danger text-center" *ngIf="error" [innerHTML]="error"></div>
             <h2>Welcome to JumpServer</h2>
             <form class="m-t" role="form" method="post" action="">
                 <div class="form-group">
                     <input type="text" name="username" class="form-control" placeholder="Username" 
-                    required="length[6~50]" [(ngModel)]="username">
+                    required="length[6~50]" [(ngModel)]="user.username">
                 </div>
                 <div class="form-group">
                     <input type="password" name="password" class="form-control" placeholder="Password" required=""
-                     [(ngModel)]="password">
+                     [(ngModel)]="user.password">
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b" (click)="clickeLogin()">Login
                 </button>
@@ -44,10 +44,8 @@ export class LoginComponent {
     // constructor(http:Http) {
     //     this.http = http;
     // }
-    username:string;
-    password:string;
     error:string;
-    model:User;
+    user:User;
     
     constructor(private http:Http,
                 private _router:Router) {
@@ -59,8 +57,8 @@ export class LoginComponent {
 
     clickeLogin() {
         this.error = 'ss';
-        console.log(this.username)
-        console.log(this.password)
+        console.log(this.user.username);
+        console.log(this.user.password)
     }
     // onSubmit() {
     //     var csrftoken = jQuery('meta[name=csrf-token]').attr('content');

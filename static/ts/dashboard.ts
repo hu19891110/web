@@ -12,6 +12,8 @@ declare var echarts:any;
 import {NavComponent} from './ngnav';
 import {LeftbarComponent} from './leftbar';
 import {NavcatbarComponent} from './nav_cat_bar';
+import {User, AppService} from './service';
+import {Logger} from "angular2-logger/core";
 
 @Component({
     selector: 'ng-body',
@@ -285,12 +287,34 @@ import {NavcatbarComponent} from './nav_cat_bar';
 
 export class Dashboard {
     data:{};
+    user:User;
+
     constructor(private http:Http,
-                private _router:Router) {
+                private _router:Router,
+                private _logger:Logger,
+                private _appService:AppService) {
+        // this._appService.getMyinfoFromServer().subscribe(response => {
+        //     this.user = response;
+        //     this._logger.log('dashboard.ts:Dashboard,constructor')
+        //     this._logger.debug(response)
+        //     this._appService.setMyinfo(this.user);
+        // });
     }
 
     ngOnInit() {
-        this.data={'users':10,'hosts':10,'online':19,'hostonline':9};
+        this.data = {'users': 10, 'hosts': 10, 'online': 19, 'hostonline': 9};
+
+        this.user = this._appService.getMyinfo()
+        this._logger.log('dashboard.ts:Dashboard,ngOnInit');
+        this._logger.log(this._appService.getMyinfo())
+
+        // this._appService.getMyinfoFromServer().subscribe(response => {
+        //     this.user = response;
+        //     this._logger.log('dashboard.ts:Dashboard,ngOnInit')
+        //     this._logger.debug(response)
+        //     this._appService.setMyinfo(this.user);
+        // });
+
         // this.top10Chart = echarts.init(document.getElementById('top10'));
         // var option = {
         //     title: {
@@ -357,8 +381,14 @@ export class Dashboard {
         // this.top10Chart.setOption(option,true);
     }
 
-}
+    ngAfterViewInit() {
+        // this.user = this._appService.getMyinfo()
+        // this._logger.log('dashboard.ts:Dashboard,ngAfterViewInit');
+        // this._logger.log(this._appService.getMyinfo())
 
+    }
+
+}
 
 
 @Component({
@@ -378,8 +408,8 @@ export class Dashboard {
             </div>
         </div>
     </div>`,
-    directives: [LeftbarComponent, NavComponent,NavcatbarComponent, Dashboard]
+    directives: [LeftbarComponent, NavComponent, NavcatbarComponent, Dashboard]
 })
 export class DashboardComponent {
-    
+
 }

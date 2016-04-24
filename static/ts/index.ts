@@ -19,7 +19,7 @@ import {FOFComponent} from './404';
 import {ForgotComponent} from './forgot';
 import {NavcatbarComponent} from './nav_cat_bar';
 import {Logger} from "angular2-logger/core";
-import {AppService} from './service';
+import {AppService,User} from './service';
 import {UserProfileComponent} from './juser/userprofile'
 
 @Component({
@@ -43,7 +43,23 @@ import {UserProfileComponent} from './juser/userprofile'
 })
 
 export class IndexComponent {
+appRoutes:string[][];
+    appRouteslist:string[];
+    data:{};
+    user:User;
 
+    constructor(private http:Http,
+                private _router:Router,
+                private _appService:AppService,
+                private dynamicRouteConfigurator:DynamicRouteConfigurator,
+                private _logger:Logger) {
+        // this._appService.getMyinfoFromServer().subscribe(response => {
+        //     this.user = response;
+        //     this._logger.log('index.ts:IndexComponent,constructor')
+        //     this._logger.debug(response)
+        //     this._appService.setMyinfo(this.user);
+        // });
+    }
 }
 
 @Component({
@@ -72,6 +88,7 @@ export class AppComponent {
     appRoutes:string[][];
     appRouteslist:string[];
     data:{};
+    user:User;
 
     constructor(private http:Http,
                 private _router:Router,
@@ -83,6 +100,12 @@ export class AppComponent {
                 return route['path']
             });
         this.appRoutes = this.dynamicRouteConfigurator.getRoutes(this.constructor).configs;
+        // this._appService.getMyinfoFromServer().subscribe(response => {
+        //     this.user = response;
+        //     this._logger.log('index.ts:AppComponent,constructor')
+        //     this._logger.debug(response)
+        //     this._appService.setMyinfo(this.user);
+        // });
         // this._logger.level = this._appService.loglevel();
     }
 
@@ -90,10 +113,17 @@ export class AppComponent {
     ngOnInit() {
         this._logger.log('print all route list');
         this._logger.debug(this.appRouteslist);
+        // this._appService.getMyinfoFromServer().subscribe(response => {
+        //     this.user = response;
+        //     this._logger.log('index.ts:AppComponent,ngOnInit')
+        //     this._logger.debug(response)
+        //     this._appService.setMyinfo(this.user);
+        // });
+
         if (this._router.lastNavigationAttempt == '/forgot') {
             jQuery('angular2').show();
         } else if (this._router.lastNavigationAttempt.match(/^\/userprofile\/\d+$/)) {
-            this._router.navigate(['UserProfile', {'id':this._router.lastNavigationAttempt.match(/^\/userprofile\/(\d+)$/)[1]}]);
+            this._router.navigate(['UserProfile', {'id': this._router.lastNavigationAttempt.match(/^\/userprofile\/(\d+)$/)[1]}]);
             jQuery('angular2').show();
         } else if (jQuery.inArray(this._router.lastNavigationAttempt, this.appRouteslist) == -1) {
             this._router.navigate(['FOF']);
@@ -130,7 +160,8 @@ export class AppComponent {
 bootstrap(AppComponent, [
     ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
-    Logger
+    Logger,
+    AppService
 ]);
 
 
