@@ -1,6 +1,7 @@
 node_modules/*
 .idea/
 ts/*.js*
+ts/*/*.js*
 .DS_Store
 .webassets-cache/*
 ts/*-unit-test.*

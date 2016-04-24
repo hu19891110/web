@@ -1,24 +1,30 @@
+/**
+ * Created by liuzheng on 4/24/16.
+ */
 import {Injectable}         from 'angular2/core';
 import {Pipe} from 'angular2/core';
 import {Http, HTTP_PROVIDERS}   from 'angular2/http';
 import {ROUTER_PROVIDERS, RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Observable} from 'rxjs/Observable';
+import {Observer} from 'rxjs/Observer';
+import 'rxjs/add/operator/share';
 import  'rxjs/Rx';
 import {Logger} from "angular2-logger/core";
 
 import {DynamicRouteConfigurator} from './dynamicRouteConfigurator'
 
 export class User {
-    id:number;
-    name:string;
-    username:string;
-    pwd:string;
-    avatar:string;
-    role:string;
-    email:string;
-    is_active:boolean;
-    date_joined:string;
-    last_login:string;
-    groups:Array;
+    id:number=0;
+    name:string='';
+    username:string='';
+    password:string='';
+    avatar:string = 'root.png';
+    role:string='';
+    email:string='';
+    is_active:boolean=false;
+    date_joined:string='';
+    last_login:string='';
+    groups:Array<string>=[''];
 }
 
 
@@ -26,18 +32,21 @@ export class User {
 export class AppService {
     nav:Array;
     user:User;
-    data:User;
+    private _dataObserver:Observer<User>;
+    private _dataStore:{
+        user:User
+    };
 
     constructor(private http:Http,
                 private _router:Router,
                 private _logger:Logger) {
-
-// 0.- Level.OFF
-// 1.- Level.ERROR
-// 2.- Level.WARN
-// 3.- Level.INFO
-// 4.- Level.DEBUG
-// 5.- Level.LOG
+        this._dataStore = {user: new User};
+        // 0.- Level.OFF
+        // 1.- Level.ERROR
+        // 2.- Level.WARN
+        // 3.- Level.INFO
+        // 4.- Level.DEBUG
+        // 5.- Level.LOG
         this._logger.level = 5;
         // this._logger.debug('Your debug stuff');
         // this._logger.info('An info');
@@ -46,9 +55,9 @@ export class AppService {
         // this._logger.log('log !');
     }
 
-    loglevel() {
-        return this._logger.level
-    }
+    // loglevel() {
+    //     return this._logger.level
+    // }
 
     getnav() {
         this.nav = [
@@ -85,10 +94,24 @@ export class AppService {
         return this.nav
     }
 
-    setUser(user:User) {
-        this.user = user
+    setMyinfo(user:User) {
+        // Update data store
+        this._dataStore.user = user;
+        this._logger.log("service.ts:AppService,setMyinfo");
+        this._logger.debug(user)
+// Push the new list of todos into the Observable stream
+//         this._dataObserver.next(user);
+        // this.myinfo$ = new Observable(observer => this._dataObserver = observer).share()
     }
 
+    getMyinfo() {
+        return this._dataStore.user
+    }
+
+    getMyinfoFromServer() {
+        return this.http.get('/api/userprofile')
+            .map(res => res.json())
+    }
     getUser(id:number) {
         return this.http.get('/api/userprofile')
             .map(res => res.json())
@@ -102,7 +125,7 @@ export class AppService {
 export class Join {
     transform(value, args?) {
         if (typeof value === 'undefined')
-            return 'undefined'
+            return 'undefined';
         return value.join(args)
     }
 }

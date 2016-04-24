@@ -6,12 +6,12 @@ import {Component, ElementRef} from 'angular2/core';
 import {NgForm, NgClass}    from 'angular2/common';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {RouteParams, Router, ROUTER_DIRECTIVES} from 'angular2/router';
-
+import {Logger} from "angular2-logger/core";
 import  'rxjs/Rx';
 declare var jQuery:any;
 declare var layer:any;
 
-import {AppService, User} from './service';
+import {AppService, User, Join} from './service';
 
 
 @Component({
@@ -23,16 +23,14 @@ import {AppService, User} from './service';
             <li class="nav-header">
     <div class="dropdown profile-element">
         <span>
-            <img alt="image" class="img-circle" width="48" height="48" src="/imgs/{{user.avatar}}" />
+            <img alt="image" class="img-circle" width="48" height="48" [src]="'/imgs/'+user.avatar" />
         </span>
         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <span class="clear">
                 <span class="block m-t-xs">
-                    <strong class="font-bold">{{user.name}}
-                     <span style="color: #8095a8"></span></strong>
+                    <strong class="font-bold" [innerHTML]="user.name"><span style="color: #8095a8"></span></strong>
                 </span>
-                <span class="text-muted text-xs block">
-                    {{user.role}} <b class="caret"></b>
+                <span class="text-muted text-xs block"><span [innerHTML]="user.role"></span><b class="caret"></b>
                 </span>
             </span>
         </a>
@@ -48,8 +46,8 @@ import {AppService, User} from './service';
         JS+
     </div>
 </li>
-            <li id="{{item.id}}"*ngFor="#item of navlist; #i = index">
-               <a [routerLink]="[item.href]"><i class="{{item.fa}}"></i> <span class="nav-label" 
+            <li [id]="item.id" *ngFor="#item of navlist; #i = index">
+               <a [routerLink]="[item.href]"><i ng-class="item.fa"></i> <span class="nav-label" 
                [innerHTML]="item.name"></span><span class="label label-info pull-right"></span>
                <span class="fa arrow" *ngIf="item.children"></span></a>
                 <ul class="nav nav-second-level">
@@ -65,15 +63,22 @@ import {AppService, User} from './service';
 </nav>
 `,
     directives: [NgClass, ROUTER_DIRECTIVES],
-    providers: [AppService]
+    providers: [AppService],
+    pipes: [Join]
 })
 
 
 export class LeftbarComponent {
-    user:User;
+    user:User = new User;
 
-    constructor(
+    constructor(private _logger:Logger,
                 private _appService:AppService) {
+        this._appService.getMyinfoFromServer().subscribe(response => {
+            this.user = response;
+            this._logger.log('leftbar.ts:LeftbarComponent,constructor')
+            this._logger.debug(response)
+            this._appService.setMyinfo(this.user);
+        });
     };
 
     ngOnInit() {
@@ -83,8 +88,17 @@ export class LeftbarComponent {
         this.host_active_num = 1;
         this.host_total_num = 9;
         this.navlist = this._appService.getnav();
-        this.user  = this._appService.getUser(1);
-        this._appService.setUser(this.user)
+
+
+        // this._appService.getMyinfoFromServer().subscribe(response => {
+        //     this.user = response;
+        //     this._logger.log('leftbar.ts:LeftbarComponent,ngOnInit')
+        //     this._logger.debug(response)
+        //     this._appService.setMyinfo(this.user);
+        // });
+        this.user = this._appService.getMyinfo()
+        this._logger.log('leftbar.ts:LeftbarComponent,ngOnInit')
+        this._logger.debug(this._appService.getMyinfo())
     }
 
     ngAfterViewInit() {
@@ -102,7 +116,7 @@ export class LeftbarComponent {
             shade: [0.5, '#000000'],
             shadeClose: true,
             area: ['800px', '600px'],
-            content: '/userprofile/'+this.user.id
+            content: '/userprofile/' + this.user.id
         });
     }
 
