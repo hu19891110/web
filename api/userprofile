@@ -2,7 +2,7 @@
 "id":5000,
 "name":"admin",
 "username":"liuzheng",
-"pwd":"",
+"password":"",
 "avatar":"root.png",
 "role":"超级管理员",
 "email":"a@liuzheng.com",

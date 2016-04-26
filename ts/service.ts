@@ -14,17 +14,17 @@ import {Logger} from "angular2-logger/core";
 import {DynamicRouteConfigurator} from './dynamicRouteConfigurator'
 
 export class User {
-    id:number=0;
-    name:string='';
-    username:string='';
-    password:string='';
+    id:number = 0;
+    name:string = '';
+    username:string = '';
+    password:string = '';
     avatar:string = 'root.png';
-    role:string='';
-    email:string='';
-    is_active:boolean=false;
-    date_joined:string='';
-    last_login:string='';
-    groups:Array<string>=[''];
+    role:string = '';
+    email:string = '';
+    is_active:boolean = false;
+    date_joined:string = '';
+    last_login:string = '';
+    groups:Array<string> = [''];
 }
 
 
@@ -112,10 +112,20 @@ export class AppService {
         return this.http.get('/api/userprofile')
             .map(res => res.json())
     }
+
     getUser(id:number) {
         return this.http.get('/api/userprofile')
             .map(res => res.json())
     }
+
+    // getGrouplist() {
+    //     return this.http.get('/api/grouplist')
+    //         .map(res => res.json())
+    // }
+    //
+    // delGroup(id) {
+    //
+    // }
 }
 
 

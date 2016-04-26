@@ -34,7 +34,7 @@ import {AppService, User, Join} from '../service';
                         <tbody>
                         
                         <tr class="gradeX">
-                            <td class="text-center" [(innerHTML)]="user.id"></td>
+                            <td class="text-center" [innerHTML]="user.id"></td>
                             <td class="text-center" [innerHTML]="user.username"></td>
                             <td class="text-center" [innerHTML]="user.name"></td>
                             <td class="text-center" [innerHTML]="user.role"></td>
