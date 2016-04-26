@@ -19,8 +19,10 @@ import {FOFComponent} from './404';
 import {ForgotComponent} from './forgot';
 import {NavcatbarComponent} from './nav_cat_bar';
 import {Logger} from "angular2-logger/core";
-import {AppService,User} from './service';
+import {AppService, User} from './service';
 import {UserProfileComponent} from './juser/userprofile'
+import {ChangeInfoComponent} from './juser/changinfo'
+import {SomethingComponent, Something} from './copy-model'
 
 @Component({
     selector: 'div',
@@ -43,7 +45,7 @@ import {UserProfileComponent} from './juser/userprofile'
 })
 
 export class IndexComponent {
-appRoutes:string[][];
+    appRoutes:string[][];
     appRouteslist:string[];
     data:{};
     user:User;
@@ -81,6 +83,8 @@ appRoutes:string[][];
     {path: '/Assetlist', name: 'Assetlist', component: IndexComponent},
     {path: '/Log', name: 'Log', component: IndexComponent},
     {path: '/userprofile/:id', name: 'UserProfile', component: UserProfileComponent},
+    {path: '/juser/changeinfo', name: 'ChangeInfo', component: ChangeInfoComponent},
+    {path: '/examplepage', name: 'Something', component: SomethingComponent},
 ])
 
 
