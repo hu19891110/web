@@ -118,14 +118,14 @@ export class AppService {
             .map(res => res.json())
     }
 
-    getGrouplist() {
-        return this.http.get('/api/grouplist')
-            .map(res => res.json())
-    }
-
-    delGroup(id) {
-
-    }
+    // getGrouplist() {
+    //     return this.http.get('/api/grouplist')
+    //         .map(res => res.json())
+    // }
+    //
+    // delGroup(id) {
+    //
+    // }
 }
 
 

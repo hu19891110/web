@@ -16,39 +16,38 @@ import {AppService, User, Join} from './service';
 @Component({
     selector: 'ng-body',
     template: `
-{{user.id}}
-<!--<p [(ngModel)]="users.id"></p>-->
-<!--<p [(ngModel)]="users.name"></p>-->
-<!--<p [(ngModel)]="users.username"></p>-->
-<!--<p [(ngModel)]="users.password"></p>-->
-<!--<p [(ngModel)]="users.avatar"></p>-->
-<!--<p [(ngModel)]="users.role"></p>-->
-<!--<p [(ngModel)]="users.role"></p>-->
-<!--<p [(ngModel)]="users.email"></p>-->
-<!--<p [(ngModel)]="users.is_active"></p>-->
-<!--<p [(ngModel)]="users.date_joined"></p>-->
-<!--<p [(ngModel)]="users.last_login"></p>-->
-<!--<p [innerHTML]="users.groups|join:', '"></p>-->
-<!--<p [(ngModel)]="user.id"></p>-->
-<!--<p [(ngModel)]="user.name"></p>-->
-<!--<p [(ngModel)]="user.username"></p>-->
-<!--<p [(ngModel)]="user.password"></p>-->
-<!--<p [(ngModel)]="user.avatar"></p>-->
-<!--<p [(ngModel)]="user.role"></p>-->
-<!--<p [(ngModel)]="user.role"></p>-->
-<!--<p [(ngModel)]="user.email"></p>-->
-<!--<p [(ngModel)]="user.is_active"></p>-->
-<!--<p [(ngModel)]="user.date_joined"></p>-->
-<!--<p [(ngModel)]="user.last_login"></p>-->
-<!--<p [innerHTML]="user.groups|join:', '"></p>-->
+<p [innerHTML]="users.id"></p>
+<p [innerHTML]="users.name"></p>
+<p [innerHTML]="users.username"></p>
+<p [innerHTML]="users.password"></p>
+<p [innerHTML]="users.avatar"></p>
+<p [innerHTML]="users.role"></p>
+<p [innerHTML]="users.role"></p>
+<p [innerHTML]="users.email"></p>
+<p [innerHTML]="users.is_active"></p>
+<p [innerHTML]="users.date_joined"></p>
+<p [innerHTML]="users.last_login"></p>
+<p [innerHTML]="users.groups|join:', '"></p>
+<p [innerHTML]="user.id"></p>
+<p [innerHTML]="user.name"></p>
+<p [innerHTML]="user.username"></p>
+<p [innerHTML]="user.password"></p>
+<p [innerHTML]="user.avatar"></p>
+<p [innerHTML]="user.role"></p>
+<p [innerHTML]="user.role"></p>
+<p [innerHTML]="user.email"></p>
+<p [innerHTML]="user.is_active"></p>
+<p [innerHTML]="user.date_joined"></p>
+<p [innerHTML]="user.last_login"></p>
+<p [innerHTML]="user.groups|join:', '"></p>
     `,
     directives: [ROUTER_DIRECTIVES],
     pipes: [Join]
 })
 
 export class Something {
-    user:User;
-    users:User;
+    user:User = new User;
+    users:User = new User;
 
     constructor(private _logger:Logger,
                 private _appService:AppService) {
@@ -58,12 +57,12 @@ export class Something {
 
     ngOnInit() {
         this._logger.log('copy-model.ts:Something,ngOnInit');
-        // this.user = this._appService.getMyinfo();
-        //
-        // this._appService.getMyinfoFromServer().subscribe(response => {
-        //     this.users = response;
-        //     this._logger.debug(response)
-        // });
+        this.user = this._appService.getMyinfo();
+
+        this._appService.getMyinfoFromServer().subscribe(response => {
+            this.users = response;
+            this._logger.debug(response)
+        });
     }
 
     ngAfterViewInit() {

@@ -84,7 +84,7 @@ export class IndexComponent {
     {path: '/Log', name: 'Log', component: IndexComponent},
     {path: '/userprofile/:id', name: 'UserProfile', component: UserProfileComponent},
     {path: '/juser/changeinfo', name: 'ChangeInfo', component: ChangeInfoComponent},
-    {path: '/examplepage', name: 'Something', component: SomethingComponent},
+    {path: '/examplepage', name: 'Something', component: SomethingComponent}
 ])
 
 
