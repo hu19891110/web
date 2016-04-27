@@ -11,7 +11,7 @@ import  'rxjs/Rx';
 declare var jQuery:any;
 declare var layer:any;
 
-import {AppService, User, Join} from './service';
+import {AppService, User, Join, DataStore} from './service';
 
 
 @Component({
@@ -23,20 +23,22 @@ import {AppService, User, Join} from './service';
             <li class="nav-header">
     <div class="dropdown profile-element">
         <span>
-            <img alt="image" class="img-circle" width="48" height="48" [src]="'/imgs/'+user.avatar" />
+            <img alt="image" class="img-circle" width="48" height="48" [src]="'/imgs/'+DataStore.user.avatar" />
         </span>
         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
             <span class="clear">
                 <span class="block m-t-xs">
-                    <strong class="font-bold" [innerHTML]="user.name"><span style="color: #8095a8"></span></strong>
+                    <strong class="font-bold" 
+                    [innerHTML]="DataStore.user.name"><span style="color: #8095a8"></span></strong>
                 </span>
-                <span class="text-muted text-xs block"><span [innerHTML]="user.role"></span><b class="caret"></b>
+                <span class="text-muted text-xs block"><span [innerHTML]="DataStore.user.role"></span><b 
+                class="caret"></b>
                 </span>
             </span>
         </a>
         <ul class="dropdown-menu animated fadeInRight m-t-xs">
             <li><a class="iframe_user" (click)="iframeuser()">个人信息</a></li>
-            <li><a href="{% url 'user_update' %}">修改信息</a></li>
+            <li><a href="{{DataStore.user.id}}">修改信息</a></li>
             <li class="divider"></li>
             <li><a (click)="Logout()">注销</a></li>
         </ul>
@@ -46,12 +48,17 @@ import {AppService, User, Join} from './service';
         JS+
     </div>
 </li>
-            <li [id]="item.id" *ngFor="#item of navlist; #i = index">
-               <a [routerLink]="[item.href]"><i ng-class="item.fa"></i> <span class="nav-label" 
-               [innerHTML]="item.name"></span><span class="label label-info pull-right"></span>
-               <span class="fa arrow" *ngIf="item.children"></span></a>
-                <ul class="nav nav-second-level">
-                    <li [id]="child.id" class="" *ngFor="#child of item.children; #ii = index"><a [routerLink]="[child.href]" [innerHTML]="child.name"></a></li>
+            <li [id]="item.id" *ngFor="#item of DataStore.nav; #i = index" (mouseenter)="active(item.id)" (mouseleave)="inactive(item.id)">
+                <a [routerLink]="[item.href]" >
+                    <i ng-class="item.fa"></i> 
+                    <span class="nav-label" [innerHTML]="item.name"></span>
+                    <span class="label label-info pull-right"></span>
+                    <span class="fa arrow" *ngIf="item.children"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li [id]="child.id" class="" *ngFor="#child of item.children; #ii = index">
+                        <a [routerLink]="[child.href]" [innerHTML]="child.name"></a>
+                    </li>
                 </ul>
             </li>
  <li class="special_link">
@@ -69,16 +76,16 @@ import {AppService, User, Join} from './service';
 
 
 export class LeftbarComponent {
-    user:User = new User;
+    // user:User = new User;
+    DataStore = DataStore;
 
     constructor(private _logger:Logger,
                 private _appService:AppService) {
-        this._appService.getMyinfoFromServer().subscribe(response => {
-            this.user = response;
-            this._logger.log('leftbar.ts:LeftbarComponent,constructor')
-            this._logger.debug(response)
-            this._appService.setMyinfo(this.user);
-        });
+        // this._appService.getMyinfo();
+        this._appService.getnav();
+        // this._appService.getMyinfo().subscribe(response => {
+        //     this.user = response;
+        // });
     };
 
     ngOnInit() {
@@ -87,22 +94,27 @@ export class LeftbarComponent {
         this.user_total_num = 3;
         this.host_active_num = 1;
         this.host_total_num = 9;
-        this.navlist = this._appService.getnav();
-
-
+        // this.navlist = this._appService.getnav()
         // this._appService.getMyinfoFromServer().subscribe(response => {
         //     this.user = response;
         //     this._logger.log('leftbar.ts:LeftbarComponent,ngOnInit')
         //     this._logger.debug(response)
         //     this._appService.setMyinfo(this.user);
         // });
-        this.user = this._appService.getMyinfo()
-        this._logger.log('leftbar.ts:LeftbarComponent,ngOnInit')
-        this._logger.debug(this._appService.getMyinfo())
+    }
+
+    active(t) {
+        jQuery('#' + t).addClass('active');
+        jQuery('#' + t + ' ul').addClass('in');
+    }
+
+    inactive(t) {
+        jQuery('#' + t).removeClass('active');
+        jQuery('#' + t + ' ul').removeClass('in');
     }
 
     ngAfterViewInit() {
-        jQuery('#side-menu').metisMenu();
+        // jQuery('#side-menu').metisMenu();
     }
 
     iframeuser() {

@@ -11,58 +11,48 @@ declare var layer:any;
 import {NavComponent} from './ngnav';
 import {LeftbarComponent} from './leftbar';
 import {NavcatbarComponent} from './nav_cat_bar';
-import {AppService, User, Join} from './service';
+import {AppService, User, Join, DataStore} from './service';
 
 @Component({
     selector: 'ng-body',
     template: `
-<p [innerHTML]="users.id"></p>
-<p [innerHTML]="users.name"></p>
-<p [innerHTML]="users.username"></p>
-<p [innerHTML]="users.password"></p>
-<p [innerHTML]="users.avatar"></p>
-<p [innerHTML]="users.role"></p>
-<p [innerHTML]="users.role"></p>
-<p [innerHTML]="users.email"></p>
-<p [innerHTML]="users.is_active"></p>
-<p [innerHTML]="users.date_joined"></p>
-<p [innerHTML]="users.last_login"></p>
-<p [innerHTML]="users.groups|join:', '"></p>
-<p [innerHTML]="user.id"></p>
-<p [innerHTML]="user.name"></p>
-<p [innerHTML]="user.username"></p>
-<p [innerHTML]="user.password"></p>
-<p [innerHTML]="user.avatar"></p>
-<p [innerHTML]="user.role"></p>
-<p [innerHTML]="user.role"></p>
-<p [innerHTML]="user.email"></p>
-<p [innerHTML]="user.is_active"></p>
-<p [innerHTML]="user.date_joined"></p>
-<p [innerHTML]="user.last_login"></p>
-<p [innerHTML]="user.groups|join:', '"></p>
+<p [innerHTML]="DataStore.user.id"></p>
+<p [innerHTML]="DataStore.user.name"></p>
+<p [innerHTML]="DataStore.user.username"></p>
+<p [innerHTML]="DataStore.user.password"></p>
+<p [innerHTML]="DataStore.user.avatar"></p>
+<p [innerHTML]="DataStore.user.role"></p>
+<p [innerHTML]="DataStore.user.email"></p>
+<p [innerHTML]="DataStore.user.is_active"></p>
+<p [innerHTML]="DataStore.user.date_joined"></p>
+<p [innerHTML]="DataStore.user.last_login"></p>
+<p [innerHTML]="DataStore.user.groups|join:', '"></p>
+<button (click)="show()">Change User avatar,you will find the left bar's user avatar will change</button>
     `,
     directives: [ROUTER_DIRECTIVES],
+    providers: [AppService],
     pipes: [Join]
 })
 
 export class Something {
-    user:User = new User;
-    users:User = new User;
+    DataStore = DataStore;
 
     constructor(private _logger:Logger,
                 private _appService:AppService) {
         this._logger.log('copy-model.ts:Something,constructor');
-
+        this._appService.getMyinfo();
+        // this._logger.debug(DataStore.user);
+        // this.user=user
     }
 
     ngOnInit() {
-        this._logger.log('copy-model.ts:Something,ngOnInit');
-        this.user = this._appService.getMyinfo();
 
-        this._appService.getMyinfoFromServer().subscribe(response => {
-            this.users = response;
-            this._logger.debug(response)
-        });
+        this._logger.log('copy-model.ts:Something,ngOnInit');
+
+        // this._appService.getMyinfoFromServer().subscribe(response => {
+        //     this.users = response;
+        //     this._logger.debug(response)
+        // });
     }
 
     ngAfterViewInit() {
@@ -73,6 +63,11 @@ export class Something {
         // });
         // this.user = this._appService.getMyinfo()
         // this._logger.log(this._appService.getMyinfo())
+// this._logger.error(user)
+    }
+
+    show() {
+        DataStore.user.avatar = 'user3-128x128.jpg'
 
     }
 

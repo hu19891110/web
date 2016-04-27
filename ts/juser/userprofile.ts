@@ -61,7 +61,7 @@ import {AppService, User, Join} from '../service';
     pipes: [Join]
 })
 export class UserProfileComponent {
-    user:User=new User;
+    user:User = new User;
 
     constructor(private _routeParams:RouteParams,
                 private _appService:AppService,
@@ -71,9 +71,11 @@ export class UserProfileComponent {
     ngOnInit() {
         let id = this._routeParams.get('id');
         this._appService.getUser(1)
-            .subscribe(response => {this.user = response});
-                this._logger.log('appService.getUser');
-                this._logger.debug(this.user)
+            .subscribe(response => {
+                this.user = response
+            });
+        this._logger.log('appService.getUser');
+        this._logger.debug(this.user)
 
     }
 }

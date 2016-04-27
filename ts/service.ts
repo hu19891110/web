@@ -27,15 +27,18 @@ export class User {
     groups:Array<string> = [''];
 }
 
+export var DataStore:{
+    user:User,
+    nav:Array<any>
+} = {
+    user: new User,
+    nav: []
+};
+
 
 @Injectable()
 export class AppService {
-    nav:Array;
-    user:User;
-    private _dataObserver:Observer<User>;
-    private _dataStore:{
-        user:User
-    };
+    // user:User = user  ;
 
     constructor(private http:Http,
                 private _router:Router,
@@ -60,78 +63,54 @@ export class AppService {
     // }
 
     getnav() {
-        this.nav = [
-            {'id': 'index', 'href': 'Index', 'name': '仪表盘', 'fa': 'fa fa-dashboard', 'children': null},
-            {
-                'id': 'juser', 'href': 'Index', 'name': '用户管理', 'fa': 'fa fa-group', 'children': [
-                {'id': 'usergroup', 'href': 'Index', 'name': '查看用户组'},
-                {'id': 'useruser', 'href': 'Index', 'name': '查看用户'},
-            ]
-            },
-            {
-                'id': 'jasset', 'href': 'Index', 'name': '资产管理', 'fa': 'fa fa-inbox', 'children': [
-                {'id': 'jassetgroup', 'href': 'Index', 'name': '查看资产组'},
-                {'id': 'jassetjasset', 'href': 'Index', 'name': '查看资产'},
-                {'id': 'jassetcenter', 'href': 'Index', 'name': '查看机房'},
-            ]
-            },
-            {
-                'id': 'jperm', 'href': 'Index', 'name': '授权管理', 'fa': 'fa fa-edit', 'children': [
-                {'id': 'sudo', 'href': 'Index', 'name': 'Sudo'},
-                {'id': 'sysusers', 'href': 'Index', 'name': '系统用户'},
-                {'id': 'rules', 'href': 'Index', 'name': '授权规则'},
-            ]
-            },
-            {'id': 'jlog', 'href': 'Index', 'name': '日志审计', 'fa': 'fa fa-files-o', 'children': null},
-            {
-                'id': 'file', 'href': 'Index', 'name': '上传下载', 'fa': 'fa fa-download', 'children': [
-                {'id': 'upload', 'href': 'Index', 'name': '文件上传'},
-                {'id': 'download', 'href': 'Index', 'name': '文件下载'},
-                {'id': 'setting', 'href': 'Index', 'name': '设置', 'fa': 'fa fa-gears', 'children': []},
-            ]
-            },
-        ];
-        return this.nav
+        return this.http.get('/api/nav')
+            .map(res => res.json())
+            .subscribe(response => {
+                DataStore.nav = response;
+            });
     }
 
-    setMyinfo(user:User) {
-        // Update data store
-        this._dataStore.user = user;
-        this._logger.log("service.ts:AppService,setMyinfo");
-        this._logger.debug(user)
-// Push the new list of todos into the Observable stream
-//         this._dataObserver.next(user);
-        // this.myinfo$ = new Observable(observer => this._dataObserver = observer).share()
-    }
+//     setMyinfo(user:User) {
+//         // Update data store
+//         this._dataStore.user = user;
+//         this._logger.log("service.ts:AppService,setMyinfo");
+//         this._logger.debug(user);
+// // Push the new list of todos into the Observable stream
+// //         this._dataObserver.next(user);
+//         // this.myinfo$ = new Observable(observer => this._dataObserver = observer).share()
+//     }
 
     getMyinfo() {
-        return this._dataStore.user
-    }
-
-    getMyinfoFromServer() {
         return this.http.get('/api/userprofile')
             .map(res => res.json())
+            .subscribe(response => {
+                DataStore.user = response;
+                // this._logger.warn(this._dataStore.user);
+                // this._logger.warn(DataStore.user)
+            });
     }
 
     getUser(id:number) {
         return this.http.get('/api/userprofile')
             .map(res => res.json())
+
     }
 
-    // getGrouplist() {
-    //     return this.http.get('/api/grouplist')
-    //         .map(res => res.json())
-    // }
-    //
-    // delGroup(id) {
-    //
-    // }
+    getGrouplist() {
+        return this.http.get('/api/grouplist')
+            .map(res => res.json())
+    }
+
+    delGroup(id) {
+
+    }
 }
 
 
 @Pipe({
     name: 'join'
 })
+
 export class Join {
     transform(value, args?) {
         if (typeof value === 'undefined')
@@ -139,5 +118,4 @@ export class Join {
         return value.join(args)
     }
 }
-
 

@@ -1,0 +1,31 @@
+[
+    {"id": "index", "href": "Index", "name": "仪表盘", "fa": "fa fa-dashboard", "children": null},
+    {
+        "id": "juser", "href": "#", "name": "用户管理", "fa": "fa fa-group", "children": [
+        {"id": "usergroup", "href": "Index", "name": "查看用户组"},
+        {"id": "useruser", "href": "Index", "name": "查看用户"}
+    ]
+    },
+    {
+        "id": "jasset", "href": "#", "name": "资产管理", "fa": "fa fa-inbox", "children": [
+        {"id": "jassetgroup", "href": "Index", "name": "查看资产组"},
+        {"id": "jassetjasset", "href": "Index", "name": "查看资产"},
+        {"id": "jassetcenter", "href": "Index", "name": "查看机房"}
+    ]
+    },
+    {
+        "id": "jperm", "href": "#", "name": "授权管理", "fa": "fa fa-edit", "children": [
+        {"id": "sudo", "href": "Index", "name": "Sudo"},
+        {"id": "sysusers", "href": "Index", "name": "系统用户"},
+        {"id": "rules", "href": "Index", "name": "授权规则"}
+    ]
+    },
+    {"id": "jlog", "href": "Index", "name": "日志审计", "fa": "fa fa-files-o", "children": null},
+    {
+        "id": "file", "href": "#", "name": "上传下载", "fa": "fa fa-download", "children": [
+        {"id": "upload", "href": "Index", "name": "文件上传"},
+        {"id": "download", "href": "Index", "name": "文件下载"},
+        {"id": "setting", "href": "Index", "name": "设置", "fa": "fa fa-gears", "children": []}
+    ]
+    }
+]
