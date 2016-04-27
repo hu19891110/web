@@ -19,6 +19,7 @@ import {AppService, User, Join, DataStore} from './service';
     template: `
 <p [innerHTML]="DataStore.user.id"></p>
 <p [innerHTML]="DataStore.user.name"></p>
+<input [(ngModel)]="DataStore.user.name">
 <p [innerHTML]="DataStore.user.username"></p>
 <p [innerHTML]="DataStore.user.password"></p>
 <p [innerHTML]="DataStore.user.avatar"></p>
