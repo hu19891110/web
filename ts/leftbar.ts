@@ -50,7 +50,7 @@ import {AppService, User, Join, DataStore} from './service';
 </li>
             <li [id]="item.id" *ngFor="#item of DataStore.nav; #i = index" (mouseenter)="active(item.id)" (mouseleave)="inactive(item.id)">
                 <a [routerLink]="[item.href]" >
-                    <i ng-class="item.fa"></i> 
+                    <i [class]="item.fa"></i> 
                     <span class="nav-label" [innerHTML]="item.name"></span>
                     <span class="label label-info pull-right"></span>
                     <span class="fa arrow" *ngIf="item.children"></span>
@@ -103,12 +103,12 @@ export class LeftbarComponent {
         // });
     }
 
-    active(t) {
+    active(t:string) {
         jQuery('#' + t).addClass('active');
         jQuery('#' + t + ' ul').addClass('in');
     }
 
-    inactive(t) {
+    inactive(t:string) {
         jQuery('#' + t).removeClass('active');
         jQuery('#' + t + ' ul').removeClass('in');
     }
