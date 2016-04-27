@@ -8,7 +8,7 @@ import {Component, Injectable}         from 'angular2/core';
 import {ROUTER_PROVIDERS, RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import  'rxjs/Rx';
 declare var jQuery:any;
-import {DynamicRouteConfigurator} from './dynamicRouteConfigurator'
+import {DynamicRouteConfigurator} from './dynamicRouteConfigurator';
 import {LoginComponent} from './login';
 import {TermComponent} from './terminal';
 import {DashboardComponent, Dashboard} from './dashboard';
@@ -19,10 +19,10 @@ import {FOFComponent} from './404';
 import {ForgotComponent} from './forgot';
 import {NavcatbarComponent} from './nav_cat_bar';
 import {Logger} from "angular2-logger/core";
-import {AppService, User} from './service';
-import {UserProfileComponent} from './juser/userprofile'
-import {ChangeInfoComponent} from './juser/changinfo'
-import {SomethingComponent, Something} from './copy-model'
+import {AppService, User,DataStore} from './service';
+import {UserProfileComponent} from './juser/userprofile';
+import {ChangeInfoComponent} from './juser/changinfo';
+import {SomethingComponent, Something} from './copy-model';
 
 @Component({
     selector: 'div',
@@ -84,7 +84,8 @@ export class IndexComponent {
     {path: '/Log', name: 'Log', component: IndexComponent},
     {path: '/userprofile/:id', name: 'UserProfile', component: UserProfileComponent},
     {path: '/juser/changeinfo', name: 'ChangeInfo', component: ChangeInfoComponent},
-    {path: '/examplepage', name: 'Something', component: SomethingComponent}
+    {path: '/examplepage', name: 'Something', component: SomethingComponent},
+    {path: './', name: '#',component:IndexComponent}
 ])
 
 
@@ -104,6 +105,8 @@ export class AppComponent {
                 return route['path']
             });
         this.appRoutes = this.dynamicRouteConfigurator.getRoutes(this.constructor).configs;
+        
+        this._appService.getMyinfo();
         // this._appService.getMyinfoFromServer().subscribe(response => {
         //     this.user = response;
         //     this._logger.log('index.ts:AppComponent,constructor')
@@ -117,6 +120,7 @@ export class AppComponent {
     ngOnInit() {
         this._logger.log('print all route list');
         this._logger.debug(this.appRouteslist);
+        this._appService.getMyinfo();
         // this._appService.getMyinfoFromServer().subscribe(response => {
         //     this.user = response;
         //     this._logger.log('index.ts:AppComponent,ngOnInit')

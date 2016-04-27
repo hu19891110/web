@@ -105,12 +105,9 @@ export class ChangeInfo {
                 private _router:Router,
                 private _logger:Logger,
                 private _appService:AppService) {
-        this._appService.getMyinfoFromServer().subscribe(response => {
-            this.user = response;
-            this._logger.log('changinfo.ts:ChangeInfo,constructor')
-            this._logger.debug(response)
-            this._appService.setMyinfo(this.user);
-        });
+
+        this._appService.getMyinfo();
+        
     }
 
     ngOnInit() {
@@ -129,7 +126,7 @@ export class ChangeInfo {
 
     }
 
-     static ngAfterViewInit() {
+    static ngAfterViewInit() {
         jQuery('#userForm').validator({
             timely: 2,
             theme: "yellow_right_effect",
