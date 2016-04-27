@@ -1,0 +1,12 @@
+[
+    {"id": "index", "href": "Index", "name": "仪表盘", "fa": "fa fa-dashboard", "children": null},
+    {
+        "id": "jasset", "href": "Index", "name": "查看主机", "fa": "fa fa-inbox", "children": null},
+    {
+        "id": "file", "href": "#", "name": "上传下载", "fa": "fa fa-download", "children": [
+        {"id": "upload", "href": "Index", "name": "文件上传"},
+        {"id": "download", "href": "Index", "name": "文件下载"},
+        {"id": "setting", "href": "Index", "name": "设置", "fa": "fa fa-gears", "children": []}
+    ]
+    }
+]
