@@ -7,6 +7,7 @@ import {Logger} from "angular2-logger/core";
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 declare var jQuery:any;
 declare var layer:any;
+import {Http, HTTP_PROVIDERS}   from 'angular2/http';
 
 import {NavComponent} from './ngnav';
 import {LeftbarComponent} from './leftbar';
@@ -37,7 +38,8 @@ import {AppService, User, Join, DataStore} from './service';
 export class Something {
     DataStore = DataStore;
 
-    constructor(private _logger:Logger,
+    constructor(private http:Http,
+                private _logger:Logger,
                 private _appService:AppService) {
         this._logger.log('copy-model.ts:Something,constructor');
         this._appService.getMyinfo();
@@ -67,8 +69,15 @@ export class Something {
     }
 
     show() {
-        DataStore.user.avatar = 'user3-128x128.jpg'
-
+        DataStore.user.id = 5001;
+        DataStore.user.name = '美女';
+        DataStore.user.avatar = 'user3-128x128.jpg';
+        DataStore.user.role = '普通用户';
+        this.http.get('/api/nav_user')
+            .map(res => res.json())
+            .subscribe(response => {
+                DataStore.nav = response;
+            });
     }
 
 
