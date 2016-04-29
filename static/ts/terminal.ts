@@ -13,6 +13,8 @@ declare var Terminal:any;
 
 import {NavComponent} from './ngnav';
 import {LeftbarComponent} from './leftbar';
+import {NavcatbarComponent} from './nav_cat_bar';
+import {AppService, User, Join, DataStore} from './service';
 
 //https://github.com/afrad/angular2-websocket.git
 @Component({
@@ -53,7 +55,9 @@ import {LeftbarComponent} from './leftbar';
 export class Terminals {
     endpoint:string;
     ws:$WebSocket;
+    DataStore=DataStore;
     constructor(private http:Http) {
+        DataStore.activenav = {'name': '仪表盘', 'path': [{'href': 'Index', 'name': '仪表盘'},{'href': 'Terminal', 'name': 'Terminal'}]}
     }
 
     ngOnInit() {
@@ -101,12 +105,14 @@ export class Terminals {
 }
 
 
+
 @Component({
     selector: 'div',
     template: `<ng-left></ng-left><div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
             <ng-nav-bar></ng-nav-bar>
         </div>
+        <ng-nav-cat-bar ></ng-nav-cat-bar>
         <ng-body></ng-body>
         <div class="footer fixed">
             <div class="pull-right">
@@ -117,9 +123,10 @@ export class Terminals {
             </div>
         </div>
     </div>`,
-    directives: [LeftbarComponent, NavComponent, Terminals]
+    directives: [LeftbarComponent, NavComponent, NavcatbarComponent, Terminals]
 })
 export class TermComponent {
+    
 }
 
 //bootstrap(TermComponent, [HTTP_PROVIDERS]);

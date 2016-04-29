@@ -32,13 +32,15 @@ export var DataStore:{
     nav:Array<any>,
     logined:boolean,
     lastNavigationAttempt:string,
-    route:Array<{}>
+    route:Array<{}>,
+    activenav:{}
 } = {
     user: new User,
     nav: [],
     logined: false,
     lastNavigationAttempt: '',
-    route: [{}]
+    route: [{}],
+    activenav:{}
 };
 
 
@@ -70,7 +72,7 @@ export class AppService {
 
     checklogin(path:string) {
         var Path;
-        if (path==='')path='/';
+        if (path === '')path = '/';
         DataStore.route.forEach(function (value) {
                 if (path.match(RegExp(value['regex'])))
                     Path = value
