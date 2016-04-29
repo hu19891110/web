@@ -98,7 +98,7 @@ export class AppService {
                             ()=> {
                                 if (DataStore.logined) {
                                     // jQuery('body').addClass('logined');
-                                    if (Path['name'] = 'Login')
+                                    if (Path['name'] == 'Login')
                                         this._router.navigate(['Index']);
                                     else
                                         this._router.navigate([Path['name']]);
