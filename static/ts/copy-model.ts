@@ -51,24 +51,11 @@ export class Something {
     }
 
     ngOnInit() {
-
         this._logger.log('copy-model.ts:Something,ngOnInit');
-
-        // this._appService.getMyinfoFromServer().subscribe(response => {
-        //     this.users = response;
-        //     this._logger.debug(response)
-        // });
     }
 
     ngAfterViewInit() {
         this._logger.log('copy-model.ts:Something,ngAfterViewInit');
-        // this._appService.getMyinfoFromServer().subscribe(response => {
-        //     this.user = response;
-        //     this._appService.setMyinfo(this.user);
-        // });
-        // this.user = this._appService.getMyinfo()
-        // this._logger.log(this._appService.getMyinfo())
-    // this._logger.error(user)
     }
 
     show() {
