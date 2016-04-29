@@ -52,7 +52,6 @@ import {AppService, User, Join, DataStore} from './service';
 
 export class Terminals {
     endpoint:string;
-    ws:$WebSocket;
     DataStore=DataStore;
     constructor(private _logger:Logger) {
         DataStore.activenav = {'name': '仪表盘', 'path': [{'href': 'Index', 'name': '仪表盘'},{'href': 'Terminal', 'name': 'Terminal'}]}
@@ -66,7 +65,7 @@ export class Terminals {
         }
         this.endpoint = protocol + document.URL.match(RegExp('//(.*?)/'))[1] + '/ws/terminal' + document.URL.match(/(\?.*)/);
         //this.ws = new $WebSocket(endpoint);
-        this.ws = new $WebSocket('ws://localhost:5000/ws');
+        var ws = new $WebSocket('ws://localhost:5000/ws');
         var rowHeight, colWidth;
         try {
             rowHeight = localStorage.getItem('term-row');
@@ -92,10 +91,10 @@ export class Terminals {
         jQuery('#term').innerHTML = '';
         term.open(document.getElementById('term'));
         term.on('data', function (data) {
-            this.ws.send('R' + data)
+            ws.send('R' + data)
         });
         //noinspection TypeScriptValidateTypes
-        this.ws.onMessage(function (e) {
+        ws.onMessage(function (e) {
             term.write(e.data)
         })
 
