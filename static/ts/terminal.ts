@@ -1,13 +1,11 @@
-///<reference path="../node_modules/angular2-websocket/angular2-websocket.d.ts"/>
 /**
  * Created by liuzheng on 4/7/16.
  */
 
-import {bootstrap}    from 'angular2/platform/browser';
 import {Component} from 'angular2/core';
+import {Logger} from "angular2-logger/core";
 import {$WebSocket} from 'angular2-websocket/angular2-websocket';
-import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
-import  'rxjs/Rx';
+
 declare var jQuery:any;
 declare var Terminal:any;
 
@@ -56,7 +54,7 @@ export class Terminals {
     endpoint:string;
     ws:$WebSocket;
     DataStore=DataStore;
-    constructor(private http:Http) {
+    constructor(private _logger:Logger) {
         DataStore.activenav = {'name': '仪表盘', 'path': [{'href': 'Index', 'name': '仪表盘'},{'href': 'Terminal', 'name': 'Terminal'}]}
     }
 
