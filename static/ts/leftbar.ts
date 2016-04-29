@@ -89,11 +89,11 @@ export class LeftbarComponent {
     };
 
     ngOnInit() {
-        this.admin = true;
-        this.user_active_num = 1;
-        this.user_total_num = 3;
-        this.host_active_num = 1;
-        this.host_total_num = 9;
+        // this.admin = true;
+        // this.user_active_num = 1;
+        // this.user_total_num = 3;
+        // this.host_active_num = 1;
+        // this.host_total_num = 9;
         // this.navlist = this._appService.getnav()
         // this._appService.getMyinfoFromServer().subscribe(response => {
         //     this.user = response;
@@ -128,7 +128,7 @@ export class LeftbarComponent {
             shade: [0.5, '#000000'],
             shadeClose: true,
             area: ['800px', '600px'],
-            content: '/userprofile/' + this.user.id
+            content: '/userprofile/' + DataStore.user.id
         });
     }
 

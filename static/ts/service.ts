@@ -5,13 +5,13 @@ import {Injectable}         from 'angular2/core';
 import {Pipe} from 'angular2/core';
 import {Http, HTTP_PROVIDERS}   from 'angular2/http';
 import {ROUTER_PROVIDERS, RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
-import {Observable} from 'rxjs/Observable';
-import {Observer} from 'rxjs/Observer';
+// import {Observable} from 'rxjs/Observable';
+// import {Observer} from 'rxjs/Observer';
+import {Logger} from "angular2-logger/core";
+// import {DynamicRouteConfigurator} from './dynamicRouteConfigurator'
 import 'rxjs/add/operator/share';
 import  'rxjs/Rx';
-import {Logger} from "angular2-logger/core";
-
-import {DynamicRouteConfigurator} from './dynamicRouteConfigurator'
+declare var jQuery:any;
 
 export class User {
     id:number = 0;
@@ -29,10 +29,16 @@ export class User {
 
 export var DataStore:{
     user:User,
-    nav:Array<any>
+    nav:Array<any>,
+    logined:boolean,
+    lastNavigationAttempt:string,
+    route:Array<{}>
 } = {
     user: new User,
-    nav: []
+    nav: [],
+    logined: false,
+    lastNavigationAttempt: '',
+    route: [{}]
 };
 
 
@@ -43,7 +49,6 @@ export class AppService {
     constructor(private http:Http,
                 private _router:Router,
                 private _logger:Logger) {
-        this._dataStore = {user: new User};
         // 0.- Level.OFF
         // 1.- Level.ERROR
         // 2.- Level.WARN
@@ -61,6 +66,56 @@ export class AppService {
     // loglevel() {
     //     return this._logger.level
     // }
+
+
+    checklogin(path:string) {
+        var Path;
+        if (path==='')path='/';
+        DataStore.route.forEach(function (value) {
+                if (path.match(RegExp(value['regex'])))
+                    Path = value
+            }
+        );
+        if (Path)
+            if (Path['name'] == 'FOF' || Path['name'] == 'Forgot')
+                jQuery('angular2').show();
+            else {
+                if (DataStore.logined) {
+                    this._router.navigate([Path['name']]);
+                    jQuery('angular2').show();
+                } else {
+                    this.http.get('/api/checklogin')
+                        .map(res => res.json())
+                        .subscribe(
+                            data => {
+                                DataStore.logined = data.logined;
+                            },
+                            err => {
+                                this._logger.error(err);
+                                DataStore.logined = false;
+                                this._logger.error('login failed')
+                            },
+                            ()=> {
+                                if (DataStore.logined) {
+                                    // jQuery('body').addClass('logined');
+                                    if (Path['name'] = 'Login')
+                                        this._router.navigate(['Index']);
+                                    else
+                                        this._router.navigate([Path['name']]);
+
+                                } else
+                                    this._router.navigate(['Login']);
+                                jQuery('angular2').show();
+
+                            }
+                        )
+                }
+            }
+        else {
+            this._router.navigate(['FOF']);
+            jQuery('angular2').show();
+        }
+    }
 
     getnav() {
         return this.http.get('/api/nav')

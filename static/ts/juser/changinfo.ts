@@ -113,7 +113,6 @@ export class ChangeInfo {
     ngOnInit() {
         this.data = {'users': 10, 'hosts': 10, 'online': 19, 'hostonline': 9};
 
-        this.user = this._appService.getMyinfo();
         this._logger.log('dashboard.ts:Dashboard,ngOnInit');
         this._logger.log(this._appService.getMyinfo());
 

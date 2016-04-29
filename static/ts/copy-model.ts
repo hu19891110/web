@@ -5,9 +5,10 @@
 import {Component} from 'angular2/core';
 import {Logger} from "angular2-logger/core";
 import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {Http, HTTP_PROVIDERS}   from 'angular2/http';
+
 declare var jQuery:any;
 declare var layer:any;
-import {Http, HTTP_PROVIDERS}   from 'angular2/http';
 
 import {NavComponent} from './ngnav';
 import {LeftbarComponent} from './leftbar';
@@ -38,6 +39,7 @@ import {AppService, User, Join, DataStore} from './service';
 
 export class Something {
     DataStore = DataStore;
+    user:User;
 
     constructor(private http:Http,
                 private _logger:Logger,
@@ -66,7 +68,7 @@ export class Something {
         // });
         // this.user = this._appService.getMyinfo()
         // this._logger.log(this._appService.getMyinfo())
-// this._logger.error(user)
+    // this._logger.error(user)
     }
 
     show() {

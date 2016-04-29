@@ -1,3 +1,4 @@
+///<reference path="../node_modules/angular2-websocket/angular2-websocket.d.ts"/>
 /**
  * Created by liuzheng on 4/7/16.
  */
@@ -28,7 +29,7 @@ import {LeftbarComponent} from './leftbar';
             display: inline-block;
         }
 
-        .reverse-video f{
+        .reverse-video {
             color: #000;
             background: #f0f0f0;
         }
@@ -50,6 +51,8 @@ import {LeftbarComponent} from './leftbar';
 
 
 export class Terminals {
+    endpoint:string;
+    ws:$WebSocket;
     constructor(private http:Http) {
     }
 
@@ -59,9 +62,9 @@ export class Terminals {
         } else {
             var protocol = 'ws://';
         }
-        var endpoint = protocol + document.URL.match(RegExp('//(.*?)/'))[1] + '/ws/terminal' + document.URL.match(/(\?.*)/);
+        this.endpoint = protocol + document.URL.match(RegExp('//(.*?)/'))[1] + '/ws/terminal' + document.URL.match(/(\?.*)/);
         //this.ws = new $WebSocket(endpoint);
-        var ws = new $WebSocket('ws://localhost:5000/ws');
+        this.ws = new $WebSocket('ws://localhost:5000/ws');
         var rowHeight, colWidth;
         try {
             rowHeight = localStorage.getItem('term-row');
@@ -87,9 +90,10 @@ export class Terminals {
         jQuery('#term').innerHTML = '';
         term.open(document.getElementById('term'));
         term.on('data', function (data) {
-            ws.send('R' + data)
+            this.ws.send('R' + data)
         });
-        ws.onMessage(function (e) {
+        //noinspection TypeScriptValidateTypes
+        this.ws.onMessage(function (e) {
             term.write(e.data)
         })
 

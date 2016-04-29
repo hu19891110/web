@@ -22,7 +22,7 @@ import {Logger} from "angular2-logger/core";
 import {AppService, User,DataStore} from './service';
 import {UserProfileComponent} from './juser/userprofile';
 import {ChangeInfoComponent} from './juser/changinfo';
-import {SomethingComponent, Something} from './copy-model';
+import {SomethingComponent} from './copy-model';
 
 @Component({
     selector: 'div',
@@ -73,7 +73,7 @@ export class IndexComponent {
 })
 
 @RouteConfig([
-    {path: '', name: 'Index', component: IndexComponent, useAsDefault: true},
+    {path: '/', name: 'Index', component: IndexComponent, useAsDefault: true},
     {path: '/login', name: 'Login', component: LoginComponent},
     {path: '/terminal', name: 'Terminal', component: TermComponent},
     {path: '/dashboard', name: 'Dashboard', component: DashboardComponent},
@@ -85,7 +85,6 @@ export class IndexComponent {
     {path: '/userprofile/:id', name: 'UserProfile', component: UserProfileComponent},
     {path: '/juser/changeinfo', name: 'ChangeInfo', component: ChangeInfoComponent},
     {path: '/examplepage', name: 'Something', component: SomethingComponent},
-    {path: './', name: '#',component:IndexComponent}
 ])
 
 
@@ -102,11 +101,11 @@ export class AppComponent {
                 private _logger:Logger) {
         this.appRouteslist = this.dynamicRouteConfigurator.getRoutes(this.constructor).configs
             .map(route => {
-                return route['path']
+                return {'path':route['path'],'name':route['name'],'regex':route['path'].replace(/(:[^\/]*)/g,'[^\/]*')}
             });
         this.appRoutes = this.dynamicRouteConfigurator.getRoutes(this.constructor).configs;
-        
-        this._appService.getMyinfo();
+        DataStore.route=this.appRouteslist;
+        // this._appService.getMyinfo();
         // this._appService.getMyinfoFromServer().subscribe(response => {
         //     this.user = response;
         //     this._logger.log('index.ts:AppComponent,constructor')
@@ -118,8 +117,8 @@ export class AppComponent {
 
 
     ngOnInit() {
-        this._logger.log('print all route list');
-        this._logger.debug(this.appRouteslist);
+        this._logger.log('index.tx:AppComponent,ngOnInit');
+        this._appService.checklogin(this._router.lastNavigationAttempt);
         this._appService.getMyinfo();
         // this._appService.getMyinfoFromServer().subscribe(response => {
         //     this.user = response;
@@ -128,39 +127,39 @@ export class AppComponent {
         //     this._appService.setMyinfo(this.user);
         // });
 
-        if (this._router.lastNavigationAttempt == '/forgot') {
-            jQuery('angular2').show();
-        } else if (this._router.lastNavigationAttempt.match(/^\/userprofile\/\d+$/)) {
-            this._router.navigate(['UserProfile', {'id': this._router.lastNavigationAttempt.match(/^\/userprofile\/(\d+)$/)[1]}]);
-            jQuery('angular2').show();
-        } else if (jQuery.inArray(this._router.lastNavigationAttempt, this.appRouteslist) == -1) {
-            this._router.navigate(['FOF']);
-            jQuery('angular2').show();
-        } else {
-            this.http.get('/api/checklogin')
-                .map(res => res.json())
-                .subscribe(
-                    data => this.data = data,
-                    err => this._logger.error(err),
-                    () => {
-                        if (this.data.logined) {
-                            // jQuery('body').addClass('logined');
-                            if (this._router.lastNavigationAttempt == '/login') {
-                                this._router.navigate(['Index']);
-                            } else {
-                                for (var i in this.appRoutes) {
-                                    if (this.appRoutes[i]['path'] == this._router.lastNavigationAttempt)
-                                        this._router.navigate([this.appRoutes[i]['name']]);
-                                }
-
-                            }
-                        } else {
-                            this._router.navigate(['Login']);
-                        }
-                        jQuery('angular2').show();
-
-                    })
-        }
+        // if (this._router.lastNavigationAttempt == '/forgot') {
+        //     jQuery('angular2').show();
+        // } else if (this._router.lastNavigationAttempt.match(/^\/userprofile\/\d+$/)) {
+        //     this._router.navigate(['UserProfile', {'id': this._router.lastNavigationAttempt.match(/^\/userprofile\/(\d+)$/)[1]}]);
+        //     jQuery('angular2').show();
+        // } else if (jQuery.inArray(this._router.lastNavigationAttempt, this.appRouteslist) == -1) {
+        //     this._router.navigate(['FOF']);
+        //     jQuery('angular2').show();
+        // } else {
+        //     this.http.get('/api/checklogin')
+        //         .map(res => res.json())
+        //         .subscribe(
+        //             data => this.data = data,
+        //             err => this._logger.error(err),
+        //             () => {
+        //                 if (this.data.logined) {
+        //                     // jQuery('body').addClass('logined');
+        //                     if (this._router.lastNavigationAttempt == '/login') {
+        //                         this._router.navigate(['Index']);
+        //                     } else {
+        //                         for (var i in this.appRoutes) {
+        //                             if (this.appRoutes[i]['path'] == this._router.lastNavigationAttempt)
+        //                                 this._router.navigate([this.appRoutes[i]['name']]);
+        //                         }
+        //
+        //                     }
+        //                 } else {
+        //                     this._router.navigate(['Login']);
+        //                 }
+        //                 jQuery('angular2').show();
+        //
+        //             })
+        // }
     }
 
 }
