@@ -3,23 +3,21 @@
  */
 
 
-import {bootstrap}        from 'angular2/platform/browser';
 import {Http, HTTP_PROVIDERS}   from 'angular2/http';
 import {Component}         from 'angular2/core';
 import {ROUTER_PROVIDERS, RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import  'rxjs/Rx';
 declare var jQuery:any;
-import {DynamicRouteConfigurator} from './dynamicRouteConfigurator'
-import {LoginComponent} from './login';
-import {TermComponent} from './terminal';
-import {DashboardComponent, Dashboard} from './dashboard';
-import {NavComponent} from './ngnav';
-import {LeftbarComponent} from './leftbar';
-// import {NgbodyComponent} from './yngbod';
-import {FOFComponent} from './404';
-import {ForgotComponent} from './forgot';
-import {NavcatbarComponent} from './nav_cat_bar';
-
+import {DynamicRouteConfigurator} from '../dynamicRouteConfigurator'
+import {LoginComponent} from '../login';
+import {TermComponent} from '../terminal';
+import {DashboardComponent, Dashboard} from '../dashboard';
+import {NavComponent} from '../ngnav';
+import {LeftbarComponent} from '../leftbar';
+// import {NgbodyComponent} from './ngbody';
+import {FOFComponent} from '../404';
+import {ForgotComponent} from '../forgot';
+import {NavcatbarComponent} from '../nav_cat_bar';
 
 @Component({
     selector: 'ng-body',
@@ -27,7 +25,7 @@ import {NavcatbarComponent} from './nav_cat_bar';
     directives: [DashboardComponent]
 })
 
-export class Ngbody {
+export class Userlist {
 }
 
 @Component({
@@ -47,8 +45,8 @@ export class Ngbody {
             </div>
         </div>
     </div>`,
-    directives: [LeftbarComponent, NavComponent,NavcatbarComponent, Dashboard]
+    directives: [LeftbarComponent, NavComponent,NavcatbarComponent, Userlist]
 })
-export class NgbodyComponent {
-    
+export class UserlistComponent {
+
 }

@@ -8,13 +8,8 @@ import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {RouteParams, Router,ROUTER_DIRECTIVES} from 'angular2/router';
 import  'rxjs/Rx';
 declare var jQuery:any;
+import {User} from './service'
 
-
-export class User {
-    constructor(public name:string,
-                public pwd:string) {
-    }
-}
 
 @Component({
     selector: 'div',
@@ -23,16 +18,16 @@ export class User {
             <div>
                 <h1 class="logo-name"><img src="/imgs/logo.png"></h1>
             </div>
-                <div class="alert alert-danger text-center" *ngIf="error">{{ error }}</div>
+                <div class="alert alert-danger text-center" *ngIf="error" [innerHTML]="error"></div>
             <h2>Welcome to JumpServer</h2>
             <form class="m-t" role="form" method="post" action="">
                 <div class="form-group">
                     <input type="text" name="username" class="form-control" placeholder="Username" 
-                    required="length[6~50]" [(ngModel)]="username">
+                    required="length[6~50]" [(ngModel)]="user.username">
                 </div>
                 <div class="form-group">
                     <input type="password" name="password" class="form-control" placeholder="Password" required=""
-                     [(ngModel)]="password">
+                     [(ngModel)]="user.password">
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b" (click)="clickeLogin()">Login
                 </button>
@@ -49,22 +44,21 @@ export class LoginComponent {
     // constructor(http:Http) {
     //     this.http = http;
     // }
-    username:string;
-    password:string;
     error:string;
-
+    user:User;
+    
     constructor(private http:Http,
                 private _router:Router) {
     }
 
     ngOnInit() {
-        this.model = new User('', '');
+        // this.model = new User();
     }
 
     clickeLogin() {
         this.error = 'ss';
-        console.log(this.username)
-        console.log(this.password)
+        console.log(this.user.username);
+        console.log(this.user.password)
     }
     // onSubmit() {
     //     var csrftoken = jQuery('meta[name=csrf-token]').attr('content');

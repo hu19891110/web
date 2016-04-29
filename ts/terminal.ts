@@ -2,17 +2,17 @@
  * Created by liuzheng on 4/7/16.
  */
 
-import {bootstrap}    from 'angular2/platform/browser';
 import {Component} from 'angular2/core';
+import {Logger} from "angular2-logger/core";
 import {$WebSocket} from 'angular2-websocket/angular2-websocket';
-import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
-import  'rxjs/Rx';
+
 declare var jQuery:any;
 declare var Terminal:any;
 
 import {NavComponent} from './ngnav';
 import {LeftbarComponent} from './leftbar';
-import {NgfootComponent} from './ngfoot';
+import {NavcatbarComponent} from './nav_cat_bar';
+import {AppService, User, Join, DataStore} from './service';
 
 //https://github.com/afrad/angular2-websocket.git
 @Component({
@@ -29,7 +29,7 @@ import {NgfootComponent} from './ngfoot';
             display: inline-block;
         }
 
-        .reverse-video f{
+        .reverse-video {
             color: #000;
             background: #f0f0f0;
         }
@@ -51,7 +51,11 @@ import {NgfootComponent} from './ngfoot';
 
 
 export class Terminals {
-    constructor(private http:Http) {
+    endpoint:string;
+    ws:$WebSocket;
+    DataStore=DataStore;
+    constructor(private _logger:Logger) {
+        DataStore.activenav = {'name': '仪表盘', 'path': [{'href': 'Index', 'name': '仪表盘'},{'href': 'Terminal', 'name': 'Terminal'}]}
     }
 
     ngOnInit() {
@@ -60,9 +64,9 @@ export class Terminals {
         } else {
             var protocol = 'ws://';
         }
-        var endpoint = protocol + document.URL.match(RegExp('//(.*?)/'))[1] + '/ws/terminal' + document.URL.match(/(\?.*)/);
+        this.endpoint = protocol + document.URL.match(RegExp('//(.*?)/'))[1] + '/ws/terminal' + document.URL.match(/(\?.*)/);
         //this.ws = new $WebSocket(endpoint);
-        var ws = new $WebSocket('ws://localhost:5000/ws');
+        this.ws = new $WebSocket('ws://localhost:5000/ws');
         var rowHeight, colWidth;
         try {
             rowHeight = localStorage.getItem('term-row');
@@ -88,14 +92,16 @@ export class Terminals {
         jQuery('#term').innerHTML = '';
         term.open(document.getElementById('term'));
         term.on('data', function (data) {
-            ws.send('R' + data)
+            this.ws.send('R' + data)
         });
-        ws.onMessage(function (e) {
+        //noinspection TypeScriptValidateTypes
+        this.ws.onMessage(function (e) {
             term.write(e.data)
         })
 
     }
 }
+
 
 
 @Component({
@@ -104,6 +110,7 @@ export class Terminals {
         <div class="row border-bottom">
             <ng-nav-bar></ng-nav-bar>
         </div>
+        <ng-nav-cat-bar ></ng-nav-cat-bar>
         <ng-body></ng-body>
         <div class="footer fixed">
             <div class="pull-right">
@@ -114,9 +121,10 @@ export class Terminals {
             </div>
         </div>
     </div>`,
-    directives: [LeftbarComponent, NavComponent, Terminals, NgfootComponent]
+    directives: [LeftbarComponent, NavComponent, NavcatbarComponent, Terminals]
 })
 export class TermComponent {
+    
 }
 
 //bootstrap(TermComponent, [HTTP_PROVIDERS]);
