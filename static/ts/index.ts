@@ -98,7 +98,8 @@ export class AppComponent {
                 return {
                     'path': route['path'],
                     'name': route['name'],
-                    'regex': route['path'].replace(/(:[^\/]*)/g, '[^\/]*')
+                    'regex': route['path'].replace(/(:[^\/]*)/g, '[:]?([^\/]*)'),
+                    'res':{}
                 }
             });
         DataStore.route = this.appRoutes;
