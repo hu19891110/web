@@ -7,7 +7,8 @@ import {Http, HTTP_PROVIDERS}   from 'angular2/http';
 import {ROUTER_PROVIDERS, RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 // import {Observable} from 'rxjs/Observable';
 // import {Observer} from 'rxjs/Observer';
-import {CookieService} from 'angular2-cookie/core';
+import {Cookie} from 'ng2-cookies/ng2-cookies';
+// import {CookieService} from 'angular2-cookie/core'
 import {Logger} from "angular2-logger/core";
 // import {DynamicRouteConfigurator} from './dynamicRouteConfigurator'
 import 'rxjs/add/operator/share';
@@ -48,30 +49,30 @@ export var DataStore:{
     error: {}
 };
 
-
 @Injectable()
 export class AppService {
     // user:User = user  ;
 
     constructor(private http:Http,
                 private _router:Router,
-                private _logger:Logger,
-                private _cookie:CookieService) {
-        if (this._cookie.get('loglevel'))
-        // 0.- Level.OFF
-        // 1.- Level.ERROR
-        // 2.- Level.WARN
-        // 3.- Level.INFO
-        // 4.- Level.DEBUG
-        // 5.- Level.LOG
-            this._logger.level = this._cookie.get('loglevel');
-        // this._logger.debug('Your debug stuff');
-        // this._logger.info('An info');
-        // this._logger.warn('Take care ');
-        // this._logger.error('Too late !');
-        // this._logger.log('log !');
-        else {
-            this._cookie.put('loglevel', 0);
+                private _logger:Logger) {
+        if(Cookie.getCookie('loglevel')) {
+
+            // 0.- Level.OFF
+            // 1.- Level.ERROR
+            // 2.- Level.WARN
+            // 3.- Level.INFO
+            // 4.- Level.DEBUG
+            // 5.- Level.LOG
+            this._logger.level = parseInt(Cookie.getCookie('loglevel'));
+            // this._logger.debug('Your debug stuff');
+            // this._logger.info('An info');
+            // this._logger.warn('Take care ');
+            // this._logger.error('Too late !');
+            // this._logger.log('log !');
+        } else {
+            Cookie.setCookie('loglevel', '0',99,'/');
+            // this._logger.level = parseInt(Cookie.getCookie('loglevel'));
             this._logger.level = 0
         }
     }

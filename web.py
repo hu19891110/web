@@ -26,7 +26,7 @@ bundles = {
         # 'node_modules/angular2-websocket/angular2-websocket.js',
         'node_modules/reflect-metadata/Reflect.js',
         'node_modules/angular2-logger/bundles/angular2-logger.min.js',
-        'node_modules/angular2-cookie/bundles/angular2-cookie.min.js',
+        'js/logo.js',
 
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/admin-lte/plugins/jQueryUI/jquery-ui.min.js',
