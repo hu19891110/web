@@ -3,8 +3,8 @@
     {"id": "term", "href": "Terminal", "name": "Terminal", "fa": "fa fa-terminal", "children": null},
     {
         "id": "juser", "href": "Index", "name": "用户管理", "fa": "fa fa-group", "children": [
-        {"id": "usergroup", "href": "Index", "name": "查看用户组"},
-        {"id": "useruser", "href": "Index", "name": "查看用户"}
+        {"id": "usergroup", "href": "UserGrouplist", "name": "查看用户组"},
+        {"id": "useruser", "href": "UserList", "name": "查看用户"}
     ]
     },
     {

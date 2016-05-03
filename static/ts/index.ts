@@ -22,6 +22,9 @@ import {Logger} from "angular2-logger/core";
 import {AppService, User, DataStore} from './service';
 import {UserProfileComponent} from './juser/userprofile';
 import {ChangeInfoComponent} from './juser/changinfo';
+import {GrouplistComponent} from './juser/grouplist';
+import {UserlistComponent} from './juser/userlist';
+import {UserdetailComponent} from './juser/userdetail';
 import {SomethingComponent} from './copy-model';
 
 @Component({
@@ -74,11 +77,13 @@ export class IndexComponent {
     {path: '/dashboard', name: 'Dashboard', component: DashboardComponent},
     {path: '/404', name: 'FOF', component: FOFComponent},
     {path: '/forgot', name: 'Forgot', component: ForgotComponent},
-    {path: '/Userlist', name: 'Userlist', component: IndexComponent},
     {path: '/Assetlist', name: 'Assetlist', component: IndexComponent},
     {path: '/Log', name: 'Log', component: IndexComponent},
     {path: '/userprofile/:id', name: 'UserProfile', component: UserProfileComponent},
     {path: '/juser/changeinfo', name: 'ChangeInfo', component: ChangeInfoComponent},
+    {path: '/juser/group/list', name: 'UserGrouplist', component: GrouplistComponent},
+    {path: '/juser/user/list', name: 'UserList', component: UserlistComponent},
+    {path: '/juser/detail/:id', name: 'UserDetail', component: UserdetailComponent},
     {path: '/examplepage', name: 'Something', component: SomethingComponent},
 ])
 

@@ -28,6 +28,12 @@ export class User {
     last_login:string = '';
     groups:Array<string> = [''];
 }
+export class Group {
+    id:number;
+    name:string;
+    membercount:number;
+    comment:string
+}
 
 export var DataStore:{
     user:User,
@@ -56,7 +62,7 @@ export class AppService {
     constructor(private http:Http,
                 private _router:Router,
                 private _logger:Logger) {
-        if(Cookie.getCookie('loglevel')) {
+        if (Cookie.getCookie('loglevel')) {
 
             // 0.- Level.OFF
             // 1.- Level.ERROR
@@ -71,15 +77,12 @@ export class AppService {
             // this._logger.error('Too late !');
             // this._logger.log('log !');
         } else {
-            Cookie.setCookie('loglevel', '0',99,'/');
+            Cookie.setCookie('loglevel', '0', 99, '/');
             // this._logger.level = parseInt(Cookie.getCookie('loglevel'));
             this._logger.level = 0
         }
     }
 
-    setLoglevel(level:number) {
-        this._logger.level = level
-    }
 
     genPath(path:string) {
         this._logger.log('service.ts:AppService,genPath');
@@ -207,12 +210,17 @@ export class AppService {
         this._logger.log('service.ts:AppService,getUser');
         return this.http.get('/api/userprofile')
             .map(res => res.json())
-
     }
 
     getGrouplist() {
         this._logger.log('service.ts:AppService,getGrouplist');
         return this.http.get('/api/grouplist')
+            .map(res => res.json())
+    }
+
+    getUserlist() {
+        this._logger.log('service.ts:AppService,getUserlist');
+        return this.http.get('/api/userlist')
             .map(res => res.json())
     }
 

@@ -12,7 +12,7 @@ declare var layer:any;
 import {NavComponent} from '../ngnav';
 import {LeftbarComponent} from '../leftbar';
 import {NavcatbarComponent} from '../nav_cat_bar';
-import {User, AppService} from '../service';
+import {User, Group, AppService} from '../service';
 import {Logger} from "angular2-logger/core";
 
 @Component({
@@ -66,15 +66,16 @@ import {Logger} from "angular2-logger/core";
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="gradeX" *ngFor="group in grouplist">
+                            <tr class="gradeX" *ngFor="#group of groups; #i = index">
                                 <td class="text-center">
-                                    <input class="shiftCheckbox" type="checkbox"  name="selected" [(ngModel)]="group.id">
+                                    <input class="shiftCheckbox" type="checkbox" name="selected" 
+                                    [(ngModel)]="group.select">
                                 </td>
-                                <td class="text-center" [(ngModel)]="group.name"></td>
+                                <td class="text-center" [innerHTML]="group.name"></td>
                                 <td class="text-center">
-                                    <a href="{% url 'user_list' %}?gid={{ group.id }}" [(ngModel)]="group.membercount"></a>
+                                    <a href="{% url 'user_list' %}?gid={{ group.id }}" [innerHTML]="group.membercount"></a>
                                 </td>
-                                <td class="text-center" [(ngModel)]="group.comment"></td>
+                                <td class="text-center" [innerHTML]="group.comment"></td>
                                 <td class="text-center">
                                     <a class="btn btn-xs btn-info" (click)="groupEdit(group.id)">编辑</a>
                                     <a class="btn btn-xs btn-danger del" (click)="groupDelete(group.id)">删除</a>
@@ -94,28 +95,24 @@ import {Logger} from "angular2-logger/core";
             </div>
         </div>
     </div>
-</div>
-
-    `,
+</div>`,
+    providers: [AppService],
     directives: [ROUTER_DIRECTIVES]
 })
 
 export class Grouplist {
     data:{};
-    groups:Array;
+    groups:Array<Group>;
 
     constructor(private http:Http,
                 private _router:Router,
                 private _logger:Logger,
                 private _appService:AppService) {
-        this._appService.getGrouplist().subscribe(response => {
-            this.groups = response;
-            this._logger.log('grouplist.ts:Grouplist,constructor')
-            this._logger.debug(response)
-        });
+
     }
 
     ngOnInit() {
+        this._appService.getGrouplist().subscribe(response =>this.groups = response);
         // this._appService.getMyinfoFromServer().subscribe(response => {
         //     this.user = response;
         //     this._logger.log('dashboard.ts:Dashboard,ngOnInit')
@@ -136,7 +133,7 @@ export class Grouplist {
     groupEdit(id:number) {
         // TODO: router
     }
-    
+
     groupDelete(id:number) {
 
         if (confirm("确定删除")) {
