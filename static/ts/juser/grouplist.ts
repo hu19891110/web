@@ -12,7 +12,7 @@ declare var layer:any;
 import {NavComponent} from '../ngnav';
 import {LeftbarComponent} from '../leftbar';
 import {NavcatbarComponent} from '../nav_cat_bar';
-import {User, Group, AppService} from '../service';
+import {User, Group, AppService, DataStore} from '../service';
 import {Logger} from "angular2-logger/core";
 
 @Component({
@@ -39,8 +39,8 @@ import {Logger} from "angular2-logger/core";
 
                 <div class="ibox-content">
                     <div class="">
-                    <a href="{% url 'user_group_add' %}" class="btn btn-sm btn-primary "> 添加用户组 </a>
-                    <a id="del_btn" class="btn btn-sm btn-danger "> 删除所选 </a>
+                    <a (click)="groupadd()" class="btn btn-sm btn-primary "> 添加用户组 </a>
+                    <a  (click)="deleteselect()" class="btn btn-sm btn-danger "> 删除所选 </a>
                     <form id="search_form" method="get" action="" class="pull-right mail-search">
                         <div class="input-group">
                             <input type="text" class="form-control input-sm" id="search_input" name="search" placeholder="Search">
@@ -73,7 +73,7 @@ import {Logger} from "angular2-logger/core";
                                 </td>
                                 <td class="text-center" [innerHTML]="group.name"></td>
                                 <td class="text-center">
-                                    <a href="{% url 'user_list' %}?gid={{ group.id }}" [innerHTML]="group.membercount"></a>
+                                    <a [routerLink]="['UserGroup',{'id': group.id}]" [innerHTML]="group.membercount"></a>
                                 </td>
                                 <td class="text-center" [innerHTML]="group.comment"></td>
                                 <td class="text-center">
@@ -103,11 +103,13 @@ import {Logger} from "angular2-logger/core";
 export class Grouplist {
     data:{};
     groups:Array<Group>;
+    DataStore=DataStore;
 
     constructor(private http:Http,
                 private _router:Router,
                 private _logger:Logger,
                 private _appService:AppService) {
+        DataStore.activenav = {'name': '查看用户组', 'path': [{'href': 'Index', 'name': '仪表盘'},{'href': 'UserGrouplist', 'name': '用户管理'},{'href': 'UserGrouplist', 'name': '查看用户组'}]}
 
     }
 

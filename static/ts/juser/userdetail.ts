@@ -10,10 +10,10 @@ import {Http, HTTP_PROVIDERS}   from 'angular2/http';
 declare var jQuery:any;
 declare var layer:any;
 
-import {NavComponent} from './ngnav';
-import {LeftbarComponent} from './leftbar';
-import {NavcatbarComponent} from './nav_cat_bar';
-import {AppService, User, Join, DataStore} from './service';
+import {NavComponent} from '../ngnav';
+import {LeftbarComponent} from '../leftbar';
+import {NavcatbarComponent} from '../nav_cat_bar';
+import {AppService, User, Join, DataStore} from '../service';
 
 @Component({
     selector: 'ng-body',
@@ -37,7 +37,7 @@ import {AppService, User, Join, DataStore} from './service';
     pipes: [Join]
 })
 
-export class Something {
+export class Userdetail {
     DataStore = DataStore;
     user:User;
 
@@ -52,7 +52,6 @@ export class Something {
 
     ngOnInit() {
         this._logger.log('copy-model.ts:Something,ngOnInit');
-        console.log(this._appService.gettest())
     }
 
     ngAfterViewInit() {
@@ -92,8 +91,8 @@ export class Something {
             </div>
         </div>
     </div>`,
-    directives: [LeftbarComponent, NavComponent, NavcatbarComponent, Something]
+    directives: [LeftbarComponent, NavComponent, NavcatbarComponent, Userdetail]
 })
-export class SomethingComponent {
+export class UserdetailComponent {
 
 }

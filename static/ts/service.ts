@@ -43,7 +43,8 @@ export var DataStore:{
     route:Array<{}>,
     activenav:{},
     Path:{},
-    error:{}
+    error:{},
+    msg:{}
 } = {
     user: new User,
     nav: [],
@@ -52,7 +53,8 @@ export var DataStore:{
     route: [{}],
     activenav: {},
     Path: {},
-    error: {}
+    error: {},
+    msg: {}
 };
 
 @Injectable()
@@ -212,16 +214,29 @@ export class AppService {
             .map(res => res.json())
     }
 
+    gettest() {
+        this._logger.log('service.ts:AppService,gettest');
+        this.http.get('/api/userprofile')
+            .map(res => res.json())
+            .subscribe(res=> {
+                return res
+            })
+    }
+
     getGrouplist() {
         this._logger.log('service.ts:AppService,getGrouplist');
         return this.http.get('/api/grouplist')
             .map(res => res.json())
     }
 
-    getUserlist() {
+    getUserlist(id:string) {
         this._logger.log('service.ts:AppService,getUserlist');
-        return this.http.get('/api/userlist')
-            .map(res => res.json())
+        if (id)
+            return this.http.get('/api/userlist/' + id)
+                .map(res => res.json());
+        else
+            return this.http.get('/api/userlist')
+                .map(res => res.json())
     }
 
     delGroup(id) {

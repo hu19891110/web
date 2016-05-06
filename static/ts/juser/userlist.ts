@@ -13,7 +13,7 @@ declare var layer:any;
 import {NavComponent} from '../ngnav';
 import {LeftbarComponent} from '../leftbar';
 import {NavcatbarComponent} from '../nav_cat_bar';
-import {User, Join, Group, AppService} from '../service';
+import {User, Join, Group, AppService, DataStore} from '../service';
 import {Logger} from "angular2-logger/core";
 
 @Component({
@@ -39,8 +39,8 @@ import {Logger} from "angular2-logger/core";
 
                 <div class="ibox-content">
                     <div class="">
-                        <a href="{% url 'user_add' %}" class="btn btn-sm btn-primary "> 添加用户 </a>
-                        <a id="del_btn" class="btn btn-sm btn-danger "> 删除所选 </a>
+                        <a  (click)="useradd()" class="btn btn-sm btn-primary "> 添加用户 </a>
+                        <a  (click)="deleteselect()" class="btn btn-sm btn-danger "> 删除所选 </a>
                         <form id="search_form" method="get" action="" class="pull-right mail-search">
                             <div class="input-group">
                                 <input type="text" class="form-control input-sm" id="search_input" name="keyword" placeholder="Search">
@@ -113,16 +113,26 @@ import {Logger} from "angular2-logger/core";
 
 export class Userlist {
     users:Array<User>;
+    DataStore = DataStore;
 
     constructor(private http:Http,
+                private _routeParams:RouteParams,
                 private _router:Router,
                 private _logger:Logger,
                 private _appService:AppService) {
+        DataStore.activenav = {
+            'name': '查看用户',
+            'path': [{'href': 'Index', 'name': '仪表盘'}, {'href': 'UserList', 'name': '用户管理'}, {
+                'href': 'UserList',
+                'name': '查看用户'
+            }]
+        }
 
     }
 
     ngOnInit() {
-        this._appService.getUserlist().subscribe(response =>this.users = response);
+        let id = this._routeParams.get('id');
+        this._appService.getUserlist(id).subscribe(response =>this.users = response);
     }
 }
 
