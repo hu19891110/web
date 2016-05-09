@@ -59,7 +59,8 @@ export class IndexComponent {
                 private _appService:AppService,
                 private dynamicRouteConfigurator:DynamicRouteConfigurator,
                 private _logger:Logger) {
-        DataStore.activenav = {'name': '仪表盘', 'path': [{'href': 'Index', 'name': '仪表盘'}]}
+        DataStore.activenav = {'name': '仪表盘', 'path': [{'href': 'Index', 'name': ''},{'name':'仪表盘','href':'Index'}]}
+
     }
 }
 
@@ -107,7 +108,7 @@ export class AppComponent {
                     'path': route['path'],
                     'name': route['name'],
                     'regex': route['path'].replace(/(:[^\/]*)/g, '[:]?([^\/]*)'),
-                    'res':{}
+                    'res': {}
                 }
             });
         DataStore.route = this.appRoutes;

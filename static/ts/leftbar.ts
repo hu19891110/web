@@ -48,7 +48,7 @@ import {AppService, User, Join, DataStore} from './service';
         JS+
     </div>
 </li>
-            <li [id]="item.id" *ngFor="#item of DataStore.nav; #i = index" (click)="active(item.id)">
+            <li [id]="item.id" *ngFor="#item of DataStore.nav; #i = index" (click)="active(item.id)" [ngClass]="{active:item.name===DataStore.activenav.path[1].name}">
                 <a *ngIf="item.children">
                     <i [class]="item.fa"></i> 
                     <span class="nav-label" [innerHTML]="item.name"></span>
@@ -60,8 +60,10 @@ import {AppService, User, Join, DataStore} from './service';
                     <span class="nav-label" [innerHTML]="item.name"></span>
                     <span class="label label-info pull-right"></span>
                 </a>
-                <ul class="nav nav-second-level collapse">
-                    <li [id]="child.id" class="" *ngFor="#child of item.children; #ii = index">
+                <ul class="nav nav-second-level collapse" [ngClass]="{'in':item.name === 
+                DataStore.activenav.path[1].name}">
+                    <li [id]="child.id" [ngClass]="{active:child.name===DataStore.activenav.name}" *ngFor="#child of 
+                    item.children; #ii = index">
                         <a [routerLink]="[child.href]" [innerHTML]="child.name"></a>
                     </li>
                 </ul>
