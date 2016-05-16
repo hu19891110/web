@@ -208,7 +208,7 @@ export class AppService {
             });
     }
 
-    getUser(id:number) {
+    getUser(id:string) {
         this._logger.log('service.ts:AppService,getUser');
         return this.http.get('/api/userprofile')
             .map(res => res.json())

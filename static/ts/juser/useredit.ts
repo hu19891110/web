@@ -38,7 +38,7 @@ import {Logger} from "angular2-logger/core";
                 </div>
                 <div class="ibox-content">
                     <form method="post" id="userForm" class="form-horizontal"
-                          action="{% url 'user_edit' %}?id={{ user.id }}">
+                          >
                         <div class="alert alert-warning text-center" *ngIf="DataStore.error.useredit"
                              [innerHTML]="DataStore.error.useredit"></div>
                         <div class="alert alert-success text-center" *ngIf="DataStore.msg.useredit"
@@ -75,7 +75,7 @@ import {Logger} from "angular2-logger/core";
                             <label for="groups" class="col-sm-2 control-label">小组</label>
                             <div class="col-sm-8">
                                 <select id="groups" name="groups" class="form-control m-b" multiple size="12">
-                                    <option [value]="group.id" *ngFor="#group of groupall"
+                                    <option [value]="group.id" *ngFor="#group of groups"
                                             [innerHTML]="group.name"></option>
                                     <!--TODO: select the option-->
                                 </select>
@@ -85,32 +85,31 @@ import {Logger} from "angular2-logger/core";
                         <div class="form-group">
                             <label for="role" class="col-sm-2 control-label">权限<span class="red-fonts">*</span></label>
                             <div class="col-sm-8">
-                                <div class="col-sm-3" *ngFor="#rolename of user_role.items;#r = index">
+                                <div class="col-sm-3" *ngFor="#rolename of roles;#r = index">
                                     <div class="radio i-checks">
-                                        <label><input type="radio" [value]="r" class="role" name="role"
-                                                      [(ngModel)]="rolename">
+                                        <label><input type="radio" [value]="r" class="role" name="role">
+                                                      <p [innerHTML]="rolename"></p>
                                             <!--TODO: input check-->
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group" id="admin_groups" {% ifnotequal user.role "GA" %}
-                             style="display: none" {% endifnotequal %}>
-                            <label for="role" class="col-sm-2 control-label">管理用户组</label>
-                            <div class="col-sm-8">
-                                <div class="col-sm-3" *ngFor="#usergroup of groupall">
-                                    <div class="checkbox i-checks">
-                                        <label>
+                        <!--<div class="form-group" id="admin_groups" *ngIf="user.role =='超级管理员'">-->
+                            <!--<label for="role" class="col-sm-2 control-label">管理用户组</label>-->
+                            <!--<div class="col-sm-8">-->
+                                <!--<div class="col-sm-3" *ngFor="#usergroup of groupall">-->
+                                    <!--<div class="checkbox i-checks">-->
+                                        <!--<label>-->
                                             <!-- TODO: if usergroup.id|int2str in admin_groups_str checked input -->
-                                            <input type="checkbox" [value]="usergroup.id"
-                                                   name="admin_groups" checked>
-                                            <span [innerHTML]="usergroup.name"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                            <!--<input type="checkbox" [value]="usergroup.id"-->
+                                                   <!--name="admin_groups" checked>-->
+                                            <!--<span [innerHTML]="usergroup.name"></span>-->
+                                        <!--</label>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <label for="email" class="col-sm-2 control-label">Email<span
@@ -152,18 +151,20 @@ import {Logger} from "angular2-logger/core";
 })
 
 export class Useredit {
-    users:Array<User>;
+    user:User=new User();
     DataStore = DataStore;
+    roles:Array<string>;
+    groups:Array<string>;
 
-    constructor(private http:Http,
+    constructor(
                 private _routeParams:RouteParams,
-                private _router:Router,
                 private _logger:Logger,
                 private _appService:AppService) {
+        this._logger.log('useredit.ts:Useredit,constructor');
         DataStore.activenav = {
             'name': '编辑用户',
             'path': [{'href': 'Index', 'name': '仪表盘'}, {'href': 'UserList', 'name': '用户管理'}, {
-                'href': 'UserEdit',
+                'href': 'Index',
                 'name': '编辑用户'
             }]
         }
@@ -172,7 +173,9 @@ export class Useredit {
 
     ngOnInit() {
         let id = this._routeParams.get('id');
-        this._appService.getUserlist(id).subscribe(response =>this.users = response);
+        this._appService.getUser(id).subscribe(response =>this.user = response);
+        this.groups = ['a','b'];
+        this.roles = ['a','b']
     }
 }
 

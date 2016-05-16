@@ -44,8 +44,14 @@ export class Userdetail {
     constructor(private http:Http,
                 private _logger:Logger,
                 private _appService:AppService) {
-        this._logger.log('copy-model.ts:Something,constructor');
+        this._logger.log('userdetail.ts:Userdetail,constructor');
         this._appService.getMyinfo();
+        DataStore.activenav = {
+            'name': '用户列表',
+            'path': [{'href': 'Index', 'name': '仪表盘'}, {'href': 'UserList', 'name': '用户管理'}, {
+                'href': 'UserList',
+                'name': '用户列表'
+            }]};
         // this._logger.debug(DataStore.user);
         // this.user=user
     }

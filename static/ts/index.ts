@@ -85,7 +85,7 @@ export class IndexComponent {
     {path: '/juser/changeinfo', name: 'ChangeInfo', component: ChangeInfoComponent},
     {path: '/juser/group/list', name: 'UserGrouplist', component: GrouplistComponent},
     {path: '/juser/user/list', name: 'UserList', component: UserlistComponent},
-    {path: '/juser/user/edit', name: 'UserEdit', component: UsereditComponent},
+    {path: '/juser/user/edit/:id', name: 'UserEdit', component: UsereditComponent},
     {path: '/juser/user/group/:id', name: 'UserGroup', component: UserlistComponent},
     {path: '/juser/detail/:id', name: 'UserDetail', component: UserdetailComponent},
     {path: '/examplepage', name: 'Something', component: SomethingComponent},
