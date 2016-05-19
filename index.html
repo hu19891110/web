@@ -4,7 +4,7 @@
     <base href="/">
 
     <meta charset="UTF-8">
-    <title>Angular 2 QuickStart</title>
+    <title>Jumpserver4</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/base.min.css"/>
@@ -24,7 +24,8 @@
                 'angular2-websocket': {defaultExtension: 'ts'}
             },
             map: {
-                'angular2-websocket': 'ts'
+                'angular2-websocket': 'ts',
+                'ng2-cookies': 'ts'
             },
         });
         System.import('ts/index')
@@ -38,5 +39,10 @@
     <angular2 style="display: none"></angular2>
 </div>
 <!--script type="text/javascript" src="js/foot.min.js"></script-->
+<style>
+    #page-wrapper{
+        min-height:0px;
+    }
+</style>
 </body>
 </html>

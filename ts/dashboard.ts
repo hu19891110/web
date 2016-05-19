@@ -28,7 +28,7 @@ import {Logger} from "angular2-logger/core";
                 </div>
                 <div class="ibox-content">
                     <h1 
-                    class="no-margins"><a [routerLink]="['Userlist']" [innerHTML]="data.users"></a></h1>
+                    class="no-margins"><a [routerLink]="['UserList']" [innerHTML]="data.users"></a></h1>
                     <small>All user</small>
                 </div>
             </div>

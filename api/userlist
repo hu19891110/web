@@ -1,0 +1,15 @@
+[
+{
+"id":5000,
+"name":"admin",
+"username":"liuzheng",
+"password":"",
+"avatar":"root.png",
+"role":"超级管理员",
+"email":"a@liuzheng.com",
+"is_active":true,
+"date_joined":"1990",
+"last_login":"2016",
+"groups":["group1","group2"]
+}
+]
