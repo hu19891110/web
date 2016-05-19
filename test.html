@@ -1,0 +1,23 @@
+
+                        <tr class="gradeX">
+                            <td class="text-center">{{ user.id }}</td>
+                            <td class="text-center">{{ user.username }}</td>
+                            <td class="text-center">{{ user.name }}</td>
+                            <td class="text-center">{{ user.id | get_role }}</td>
+                            <td class="text-center">{{ user.email }}</td>
+                            <td class="text-center">{{ user.is_active|bool2str }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">添加日期： </td>
+                            <td colspan="2" class="text-center">{{ user.date_joined }}</td>
+                            <td class="text-center">最后登录： </td>
+                            <td colspan="3" class="text-center">{{ user.last_login }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="text-center">用户组：</td>
+                            <td colspan="6" class="text-center">
+                                {% for group in user.group.all %}
+                                    <b>{{ group.name }}</b>
+                                {% endfor %}
+                            </td>
+                        </tr>
