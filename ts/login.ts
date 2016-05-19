@@ -5,10 +5,10 @@
 import {Component} from 'angular2/core';
 import {NgForm}    from 'angular2/common';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
-import {RouteParams, Router,ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteParams, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import  'rxjs/Rx';
 declare var jQuery:any;
-import {User} from './service'
+import {AppService, User, DataStore} from './service'
 
 
 @Component({
@@ -18,7 +18,7 @@ import {User} from './service'
             <div>
                 <h1 class="logo-name"><img src="/imgs/logo.png"></h1>
             </div>
-                <div class="alert alert-danger text-center" *ngIf="error" [innerHTML]="error"></div>
+                <div class="alert alert-danger text-center" *ngIf="DataStore.error.login" [innerHTML]="DataStore.error.login"></div>
             <h2>Welcome to JumpServer</h2>
             <form class="m-t" role="form" method="post" action="">
                 <div class="form-group">
@@ -45,21 +45,24 @@ export class LoginComponent {
     //     this.http = http;
     // }
     error:string;
-    user:User;
-    
-    constructor(private http:Http,
-                private _router:Router) {
+    user:User = new User;
+    DataStore = DataStore;
+
+    constructor(private _router:Router, private _appService:AppService) {
     }
 
     ngOnInit() {
+        this._appService.genPath(this._router.lastNavigationAttempt)
         // this.model = new User();
     }
 
     clickeLogin() {
         this.error = 'ss';
+        this._appService.login(this.user);
         console.log(this.user.username);
         console.log(this.user.password)
     }
+
     // onSubmit() {
     //     var csrftoken = jQuery('meta[name=csrf-token]').attr('content');
     //     var authHeader:Headers = new Headers();

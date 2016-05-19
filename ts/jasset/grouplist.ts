@@ -21,9 +21,8 @@ import {Logger} from "angular2-logger/core";
     <div class="row">
         <div class="col-sm-10">
             <div class="ibox float-e-margins">
-
                 <div class="ibox-title">
-                    <h5> 查看用户组</h5>
+                    <h5> 主机组详细信息列表</h5>
                     <div class="ibox-tools">
                         <a class="collapse-link">
                             <i class="fa fa-chevron-up"></i>
@@ -36,61 +35,62 @@ import {Logger} from "angular2-logger/core";
                         </a>
                     </div>
                 </div>
-
                 <div class="ibox-content">
                     <div class="">
-                    <a (click)="groupadd()" class="btn btn-sm btn-primary "> 添加用户组 </a>
-                    <a  (click)="deleteselect()" class="btn btn-sm btn-danger "> 删除所选 </a>
-                    <form id="search_form" method="get" action="" class="pull-right mail-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control input-sm" id="search_input" name="search" placeholder="Search">
-                            <div class="input-group-btn">
-                                <button id='search_btn' type="submit" class="btn btn-sm btn-primary">
-                                    -搜索-
-                                </button>
+                        <a class="btn btn-sm btn-primary" (click)="addzu()"> 添加主机组 </a>
+                        <a class="btn btn-sm btn-danger"  (click)="deleteselect()"> 删除所选 </a>
+                        <form id="search_form" method="get" action="" class="pull-right mail-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-sm" id="search_input" name="keyword" placeholder="Search">
+                                <input type="text" style="display: none">
+                                <div class="input-group-btn">
+                                    <button id='search_btn' type="submit" class="btn btn-sm btn-primary">
+                                        - 搜索 -
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
                     </div>
 
-                    <table id="editable" class="table table-striped table-bordered table-hover">
+                    <form id="contents_form" name="contents_form">
+                    <table class="table table-striped table-bordered table-hover " id="editable" >
                         <thead>
                             <tr>
                                 <th class="text-center">
-                                    <input type="checkbox" id="select_all" name="select_all">
+                                    <input id="checkall" type="checkbox" class="i-checks" name="checkall" value="checkall" data-editable='false' onclick="check_all('contents_form')">
                                 </th>
-                                <th class="text-center">组名</th>
-                                <th class="text-center">成员数目</th>
-                                <th class="text-center">备注</th>
-                                <th class="text-center">操作</th>
+                                <th class="text-center"> 主机组名 </th>
+                                <th class="text-center"> 主机数量 </th>
+                                <th class="text-center"> 备注 </th>
+                                <th class="text-center"> 操作 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="gradeX" *ngFor="#group of groups; #i = index">
-                                <td class="text-center">
-                                    <input class="shiftCheckbox" type="checkbox" name="selected" 
-                                    [(ngModel)]="group.select">
+                        {% for asset_group in asset_groups.object_list %}
+                            <tr class="gradeX">
+                                <td class="text-center" data-editable='false'>
+                                    <input name="id" value="{{ asset_group.id }}" type="checkbox" class="i-checks">
                                 </td>
-                                <td class="text-center" [innerHTML]="group.name"></td>
+                                <td class="text-center"><a href="{% url 'asset_list' %}?group_id={{ asset_group.id }}">{{ asset_group.name }} </a>  </td>
+                                <td class="text-center"> <a href="{% url 'asset_list' %}?group_id={{ asset_group.id }}">{{ asset_group.asset_set.count }}</a> </td>
+                                <td class="text-center"> {{ asset_group.comment }} </td>
                                 <td class="text-center">
-                                    <a [routerLink]="['UserGroup',{'id': group.id}]" [innerHTML]="group.membercount"></a>
-                                </td>
-                                <td class="text-center" [innerHTML]="group.comment"></td>
-                                <td class="text-center">
-                                    <a class="btn btn-xs btn-info" (click)="groupEdit(group.id)">编辑</a>
-                                    <a class="btn btn-xs btn-danger del" (click)="groupDelete(group.id)">删除</a>
+                                    <a href="{% url 'asset_group_edit' %}?id={{ asset_group.id }}" class="btn btn-xs btn-info">编辑</a>
+                                    <a value="{% url 'asset_group_del' %}?id={{ asset_group.id }}" class="btn btn-xs btn-danger group_del">删除</a>
                                 </td>
                             </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                     <div class="row">
-                        <!--div class="col-sm-6">
+                        <div class="col-sm-6">
                             <div class="dataTables_info" id="editable_info" role="status" aria-live="polite">
-                                Showing {{ user_groups.start_index }} to {{ user_groups.end_index }} of {{ p.count }} entries
+                                Showing {{ asset_groups.start_index }} to {{ asset_groups.end_index }} of {{ p.count }} entries
                             </div>
-                        </div-->
-                       <!-- TODO: paginator-->
+                        </div>
+                        {% include 'paginator.html' %}
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@ export class Grouplist {
                 private _router:Router,
                 private _logger:Logger,
                 private _appService:AppService) {
-        DataStore.activenav = {'name': '查看用户组', 'path': [{'href': 'Index', 'name': '仪表盘'},{'href': 'UserGrouplist', 'name': '用户管理'},{'href': 'UserGrouplist', 'name': '查看用户组'}]}
+        DataStore.activenav = {'name': '查看资产组', 'path': [{'href': 'Index', 'name': '仪表盘'},{'href': 'UserGrouplist', 'name': '资产管理'},{'href': 'UserGrouplist', 'name': '查看资产组'}]}
 
     }
 

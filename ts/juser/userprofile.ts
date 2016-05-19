@@ -16,47 +16,48 @@ import {AppService, User, Join} from '../service';
 @Component({
     selector: 'angular2',
     template: `<div class="row">
-            <div class="contact-box">
-                <h2 class="text-center" [innerHTML]="user.name"></h2>
-                <div class="ibox-content">
+    <div class="contact-box">
+        <h2 class="text-center" [innerHTML]="user.name"></h2>
+        <div class="ibox-content">
 
-                    <table class="table table-striped table-bordered table-hover " id="editable" >
-                        <thead>
-                            <tr>
-                                <td class="text-center" width="120">ID</td>
-                                <td class="text-center">用户名</td>
-                                <td class="text-center">姓名</td>
-                                <td class="text-center">关联用户</td>
-                                <td class="text-center">Email</td>
-                                <td class="text-center">激活</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        
-                        <tr class="gradeX">
-                            <td class="text-center" [innerHTML]="user.id"></td>
-                            <td class="text-center" [innerHTML]="user.username"></td>
-                            <td class="text-center" [innerHTML]="user.name"></td>
-                            <td class="text-center" [innerHTML]="user.role"></td>
-                            <td class="text-center" [innerHTML]="user.email"></td>
-                            <td class="text-center" [innerHTML]="user.is_active"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">添加日期： </td>
-                            <td colspan="2" class="text-center" [innerHTML]="user.date_joined"></td>
-                            <td class="text-center">最后登录： </td>
-                            <td colspan="3" class="text-center" [innerHTML]="user.last_login"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="1" class="text-center">用户组：</td>
-                            <td colspan="6" class="text-center">
-                                    <b [innerHTML]="user.groups|join:', '"></b>
-                            </td>
-                        </tr>
-                        
-                    </table>
-            </div>
-        </div>`,
+            <table class="table table-striped table-bordered table-hover " id="editable">
+                <thead>
+                <tr>
+                    <td class="text-center" width="120">ID</td>
+                    <td class="text-center">用户名</td>
+                    <td class="text-center">姓名</td>
+                    <td class="text-center">关联用户</td>
+                    <td class="text-center">Email</td>
+                    <td class="text-center">激活</td>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr class="gradeX">
+                    <td class="text-center" [innerHTML]="user.id"></td>
+                    <td class="text-center" [innerHTML]="user.username"></td>
+                    <td class="text-center" [innerHTML]="user.name"></td>
+                    <td class="text-center" [innerHTML]="user.role"></td>
+                    <td class="text-center" [innerHTML]="user.email"></td>
+                    <td class="text-center" [innerHTML]="user.is_active"></td>
+                </tr>
+                <tr>
+                    <td class="text-center">添加日期：</td>
+                    <td colspan="2" class="text-center" [innerHTML]="user.date_joined"></td>
+                    <td class="text-center">最后登录：</td>
+                    <td colspan="3" class="text-center" [innerHTML]="user.last_login"></td>
+                </tr>
+                <tr>
+                    <td colspan="1" class="text-center">用户组：</td>
+                    <td colspan="6" class="text-center">
+                        <b [innerHTML]="user.groups|join:', '"></b>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>`,
     providers: [AppService],
     pipes: [Join]
 })

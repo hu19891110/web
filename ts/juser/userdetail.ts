@@ -10,10 +10,10 @@ import {Http, HTTP_PROVIDERS}   from 'angular2/http';
 declare var jQuery:any;
 declare var layer:any;
 
-import {NavComponent} from './ngnav';
-import {LeftbarComponent} from './leftbar';
-import {NavcatbarComponent} from './nav_cat_bar';
-import {AppService, User, Join, DataStore} from './service';
+import {NavComponent} from '../ngnav';
+import {LeftbarComponent} from '../leftbar';
+import {NavcatbarComponent} from '../nav_cat_bar';
+import {AppService, User, Join, DataStore} from '../service';
 
 @Component({
     selector: 'ng-body',
@@ -37,22 +37,27 @@ import {AppService, User, Join, DataStore} from './service';
     pipes: [Join]
 })
 
-export class Something {
+export class Userdetail {
     DataStore = DataStore;
     user:User;
 
     constructor(private http:Http,
                 private _logger:Logger,
                 private _appService:AppService) {
-        this._logger.log('copy-model.ts:Something,constructor');
+        this._logger.log('userdetail.ts:Userdetail,constructor');
         this._appService.getMyinfo();
+        DataStore.activenav = {
+            'name': '用户列表',
+            'path': [{'href': 'Index', 'name': '仪表盘'}, {'href': 'UserList', 'name': '用户管理'}, {
+                'href': 'UserList',
+                'name': '用户列表'
+            }]};
         // this._logger.debug(DataStore.user);
         // this.user=user
     }
 
     ngOnInit() {
         this._logger.log('copy-model.ts:Something,ngOnInit');
-        console.log(this._appService.gettest())
     }
 
     ngAfterViewInit() {
@@ -92,8 +97,8 @@ export class Something {
             </div>
         </div>
     </div>`,
-    directives: [LeftbarComponent, NavComponent, NavcatbarComponent, Something]
+    directives: [LeftbarComponent, NavComponent, NavcatbarComponent, Userdetail]
 })
-export class SomethingComponent {
+export class UserdetailComponent {
 
 }

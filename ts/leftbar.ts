@@ -48,15 +48,22 @@ import {AppService, User, Join, DataStore} from './service';
         JS+
     </div>
 </li>
-            <li [id]="item.id" *ngFor="#item of DataStore.nav; #i = index" (mouseenter)="active(item.id)" (mouseleave)="inactive(item.id)">
-                <a [routerLink]="[item.href]" >
+            <li [id]="item.id" *ngFor="#item of DataStore.nav; #i = index" (click)="active(item.id)" [ngClass]="{active:item.name===DataStore.activenav.path[1].name}">
+                <a *ngIf="item.children">
                     <i [class]="item.fa"></i> 
                     <span class="nav-label" [innerHTML]="item.name"></span>
                     <span class="label label-info pull-right"></span>
                     <span class="fa arrow" *ngIf="item.children"></span>
                 </a>
-                <ul class="nav nav-second-level collapse">
-                    <li [id]="child.id" class="" *ngFor="#child of item.children; #ii = index">
+                <a [routerLink]="[item.href]" *ngIf="!item.children">
+                    <i [class]="item.fa"></i> 
+                    <span class="nav-label" [innerHTML]="item.name"></span>
+                    <span class="label label-info pull-right"></span>
+                </a>
+                <ul class="nav nav-second-level collapse" [ngClass]="{'in':item.name === 
+                DataStore.activenav.path[1].name}">
+                    <li [id]="child.id" [ngClass]="{active:child.name===DataStore.activenav.name}" *ngFor="#child of 
+                    item.children; #ii = index">
                         <a [routerLink]="[child.href]" [innerHTML]="child.name"></a>
                     </li>
                 </ul>
@@ -104,13 +111,10 @@ export class LeftbarComponent {
     }
 
     active(t:string) {
-        jQuery('#' + t).addClass('active');
-        jQuery('#' + t + ' ul').addClass('in');
-    }
-
-    inactive(t:string) {
-        jQuery('#' + t).removeClass('active');
-        jQuery('#' + t + ' ul').removeClass('in');
+        jQuery(`#${t}`).siblings().removeClass('active');
+        jQuery(`#${t}`).siblings().find('ul').removeClass('in');
+        jQuery(`#${t}`).addClass('active');
+        jQuery(`#${t} ul`).addClass('in');
     }
 
     ngAfterViewInit() {

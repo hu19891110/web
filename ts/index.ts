@@ -22,6 +22,10 @@ import {Logger} from "angular2-logger/core";
 import {AppService, User, DataStore} from './service';
 import {UserProfileComponent} from './juser/userprofile';
 import {ChangeInfoComponent} from './juser/changinfo';
+import {GrouplistComponent} from './juser/grouplist';
+import {UserlistComponent} from './juser/userlist';
+import {UsereditComponent} from './juser/useredit';
+import {UserdetailComponent} from './juser/userdetail';
 import {SomethingComponent} from './copy-model';
 
 @Component({
@@ -55,7 +59,8 @@ export class IndexComponent {
                 private _appService:AppService,
                 private dynamicRouteConfigurator:DynamicRouteConfigurator,
                 private _logger:Logger) {
-        DataStore.activenav = {'name': '仪表盘', 'path': [{'href': 'Index', 'name': '仪表盘'}]}
+        DataStore.activenav = {'name': '仪表盘', 'path': [{'href': 'Index', 'name': ''},{'name':'仪表盘','href':'Index'}]}
+
     }
 }
 
@@ -74,11 +79,15 @@ export class IndexComponent {
     {path: '/dashboard', name: 'Dashboard', component: DashboardComponent},
     {path: '/404', name: 'FOF', component: FOFComponent},
     {path: '/forgot', name: 'Forgot', component: ForgotComponent},
-    {path: '/Userlist', name: 'Userlist', component: IndexComponent},
     {path: '/Assetlist', name: 'Assetlist', component: IndexComponent},
     {path: '/Log', name: 'Log', component: IndexComponent},
     {path: '/userprofile/:id', name: 'UserProfile', component: UserProfileComponent},
     {path: '/juser/changeinfo', name: 'ChangeInfo', component: ChangeInfoComponent},
+    {path: '/juser/group/list', name: 'UserGrouplist', component: GrouplistComponent},
+    {path: '/juser/user/list', name: 'UserList', component: UserlistComponent},
+    {path: '/juser/user/edit/:id', name: 'UserEdit', component: UsereditComponent},
+    {path: '/juser/user/group/:id', name: 'UserGroup', component: UserlistComponent},
+    {path: '/juser/detail/:id', name: 'UserDetail', component: UserdetailComponent},
     {path: '/examplepage', name: 'Something', component: SomethingComponent},
 ])
 
@@ -98,7 +107,8 @@ export class AppComponent {
                 return {
                     'path': route['path'],
                     'name': route['name'],
-                    'regex': route['path'].replace(/(:[^\/]*)/g, '[^\/]*')
+                    'regex': route['path'].replace(/(:[^\/]*)/g, '[:]?([^\/]*)'),
+                    'res': {}
                 }
             });
         DataStore.route = this.appRoutes;

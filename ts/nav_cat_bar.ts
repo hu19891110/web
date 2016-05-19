@@ -17,7 +17,7 @@ import {DataStore} from './service'
 <div class="row wrapper border-bottom white-bg page-heading"><div class="col-sm-10">
         <h2 [innerHTML]="DataStore.activenav.name"></h2>
         <ol class="breadcrumb">
-            <li *ngFor="#v of DataStore.activenav.path; #i = index">
+            <li *ngFor="#v of DataStore.activenav.path">
                 <a [routerLink]="[v.href]" [innerHTML]="v.name"></a>
             </li>
         </ol>
@@ -29,8 +29,7 @@ import {DataStore} from './service'
 
 export class NavcatbarComponent {
     DataStore=DataStore;
-    constructor(private http:Http,
-                private _router:Router) {
+    constructor() {
     }
 
     ngOnInit() {
