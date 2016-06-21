@@ -65,7 +65,8 @@ export class Terminals {
         }
         this.endpoint = protocol + document.URL.match(RegExp('//(.*?)/'))[1] + '/ws/terminal' + document.URL.match(/(\?.*)/);
         //this.ws = new $WebSocket(endpoint);
-        var ws = new $WebSocket('ws://localhost:5000/ws');
+        var ws = new $WebSocket('ws://jps.ilz.me/ws');
+        ws.send('R')
         var rowHeight, colWidth;
         try {
             rowHeight = localStorage.getItem('term-row');

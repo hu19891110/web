@@ -2,31 +2,33 @@
     {"id": "index", "href": "Index", "name": "仪表盘", "fa": "fa fa-dashboard", "children": null},
     {"id": "term", "href": "Terminal", "name": "Terminal", "fa": "fa fa-terminal", "children": null},
     {
-        "id": "juser", "href": "Index", "name": "用户管理", "fa": "fa fa-group", "children": [
-        {"id": "usergroup", "href": "UserGrouplist", "name": "查看用户组"},
-        {"id": "useruser", "href": "UserList", "name": "查看用户"}
+        "id": "juser", "href": "Index", "name": "用户权限", "fa": "fa fa-group", "children": [
+        {"id": "usergroup", "href": "UserGrouplist", "name": "用户管理"},
+        {"id": "useruser", "href": "UserList", "name": "角色管理"},
+        {"id": "useruser", "href": "UserList", "name": "权限管理"}
     ]
     },
     {
-        "id": "jasset", "href": "Index", "name": "资产管理", "fa": "fa fa-inbox", "children": [
-        {"id": "jassetgroup", "href": "Index", "name": "查看资产组"},
-        {"id": "jassetjasset", "href": "Index", "name": "查看资产"},
-        {"id": "jassetcenter", "href": "Index", "name": "查看机房"}
+        "id": "jasset", "href": "Index", "name": "CMDB", "fa": "fa fa-sellsy", "children": [
+        {"id": "jassetgroup", "href": "Index", "name": "资产管理"},
+        {"id": "jassetjasset", "href": "Index", "name": "资产用户"},
+        {"id": "jassetcenter", "href": "Index", "name": "服务发现"},
+        {"id": "jassetcenter", "href": "Index", "name": "标签管理"}
     ]
     },
     {
-        "id": "jperm", "href": "Index", "name": "授权管理", "fa": "fa fa-edit", "children": [
-        {"id": "sudo", "href": "Index", "name": "Sudo"},
-        {"id": "sysusers", "href": "Index", "name": "系统用户"},
-        {"id": "rules", "href": "Index", "name": "授权规则"}
+        "id": "jperm", "href": "Index", "name": "审计管理", "fa": "fa fa-server", "children": [
+        {"id": "sudo", "href": "Index", "name": "登陆审计"},
+        {"id": "sysusers", "href": "Index", "name": "操作审计"},
+        {"id": "rules", "href": "Index", "name": "跳转审计"}
     ]
     },
-    {"id": "jlog", "href": "Index", "name": "日志审计", "fa": "fa fa-files-o", "children": null},
     {
-        "id": "file", "href": "Index", "name": "上传下载", "fa": "fa fa-download", "children": [
-        {"id": "upload", "href": "Index", "name": "文件上传"},
-        {"id": "download", "href": "Index", "name": "文件下载"},
-        {"id": "setting", "href": "Index", "name": "设置", "fa": "fa fa-gears", "children": []}
+        "id": "file", "href": "Index", "name": "自动化运维", "fa": "fa fa-coffee", "children": [
+        {"id": "sudo", "href": "Index", "name": "roles"},
+        {"id": "sysusers", "href": "Index", "name": "playbook"},
+        {"id": "rules", "href": "Index", "name": "ad-hoc"}
     ]
-    }
+    },
+    {"id": "jlog", "href": "Index", "name": "项目设置", "fa": "fa fa-files-o", "children": null}
 ]
