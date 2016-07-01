@@ -6,6 +6,8 @@
     <!--link rel="stylesheet" type="text/css" href="./lib/ice-coder.css" /-->
     <script src=""></script>
     <style>
+        @import url("https://fonts.googleapis.com/css?family=Roboto:100,400,700,300");
+
         html, body, div, span, applet, object, iframe,
         h1, h2, h3, h4, h5, h6, p, blockquote, pre,
         a, abbr, acronym, address, big, cite, code,
@@ -15,12 +17,13 @@
         dl, dt, dd, ol, ul, li,
         fieldset, form, label, legend,
         table, caption, tbody, tfoot, thead, tr, th, td {
-            font-family: arial, verdana, helvetica, sans-serif;
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
             border: 0;
             margin: 0;
             padding: 0;
             outline: 0;
-            font-size: 12px;
             vertical-align: top;
         }
 
@@ -51,10 +54,10 @@
             display: inline-block;
             top: 0;
             left: 0;
-            height: 40px;
+            height: 30px;
             width: 100%;
-            background-color: #444;
-            background-image: url('../images/files-arrow.png');
+            color: #ffffff;
+            background-color: #463e3e;
             background-repeat: no-repeat;
             background-position: 100% 50%;
             z-index: 2;
@@ -63,7 +66,8 @@
 
         .files .fileNav {
             display: block;
-            height: 36px
+            margin-top: 2px;
+            height: 30px
         }
 
         .files .fileNav ul {
@@ -73,12 +77,12 @@
 
         .files .fileNav li {
             display: inline-block;
-            padding: 8px 15px 0 0
         }
 
         .files .fileNav a {
             color: #f0f0f1;
-            text-decoration: none
+            text-decoration: none;
+            padding: 6px 15px 6px 15px;
         }
 
         .files .fileNav a:hover {
@@ -92,25 +96,27 @@
 
         }
 
+        .dropdown:hover {
+            background-color: #2d2828;
+        }
+
         .dropdown-content {
             display: none;
             position: absolute;
             background-color: black;
-            color: #f0f0f1;
-        / / box-shadow: 0 px 8 px 16 px 0 px rgba(0, 0, 0, 0.2);
-            padding: 1px 7px 4px 4px;
+            color: #c6bcbc;
+            padding: 4px 0;
             z-index: 10;
             float: none;
             list-style: none;
-
+            line-height: normal;
+            direction: ltr;
             width: auto;
             top: auto;
             left: 0px;
             margin-left: 0px;
             margin-top: 0px;
             min-width: 150px;
-            max-width: 150px;
-
         }
 
         .dropdown:hover .dropdown-content {
@@ -120,14 +126,29 @@
 
         .files .fileNav .dropdown-content li {
             float: left;
-            min-width: 96%;
-            padding: 3px 0px 2px 10px;
-            cursor:default;
+            display: flex;
+        }
+
+        .files .fileNav .dropdown-content li a {
+            padding: 6px 14px 6px 25px;
+            white-space: nowrap;
+            color: #d6cbcb;
+            font-family: 'Roboto', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            position: relative;
+            text-decoration: none;
+            min-width: 150px;
+            line-height: normal;
+        }
+
+        .files .fileNav .dropdown-content li a span {
+            float: right;
         }
 
         .dropdown-content li:hover {
-            background-color: #f0f0f1;
-                        color: #000;
+            background-color: #3a3333;
+            color: #000;
 
         }
 
@@ -138,36 +159,62 @@
 <div class="files">
     <div class="fileNav">
         <ul>
-            <li><img src="logo" height="40px"/>
+            <li><img src="logo" height="30px"/>
             </li>
             <li class="dropdown">
                 <a>File</a>
 
                 <ul class="dropdown-content">
-                    <li>aaaa</li>
-                    <li>BBBB</li>
-                    <li>CCCC</li>
-                    <li>DDDD</li>
-                    <li>eEEE</li>
+                    <li><a>aaaa<span class="shortcut-keys" id="">⌘+Z</span></a></li>
+                    <li><a>BBBB<span class="shortcut-keys" id="">Ctrl+N</span></a></li>
+                    <li><a>BBBB</a></li>
+                    <li><a>BBBB</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a>Edit</a>
                 <ul class="dropdown-content">
-                    <li>hello</li>
+                    <li><a>aaaa<span class="shortcut-keys" id="">⌘+Z</span></a></li>
+                    <li><a>BBBB</a></li>
+                    <li><a>BBBB</a></li>
+                    <li><a>BBBB</a></li>
                 </ul>
             </li>
-            <li>
+            <li class="dropdown">
                 <a>Find</a>
+                <ul class="dropdown-content">
+                    <li><a>aaaa<span class="shortcut-keys" id="">⌘+Z</span></a></li>
+                    <li><a>BBBB</a></li>
+                    <li><a>BBBB</a></li>
+                    <li><a>BBBB</a></li>
+                </ul>
             </li>
-            <li>
+            <li class="dropdown">
                 <a>Goto</a>
+                <ul class="dropdown-content">
+                    <li><a>aaaa<span class="shortcut-keys" id="">⌘+Z</span></a></li>
+                    <li><a>BBBB</a></li>
+                    <li><a>BBBB</a></li>
+                    <li><a>BBBB</a></li>
+                </ul>
             </li>
-            <li>
+            <li class="dropdown">
                 <a>View</a>
+                <ul class="dropdown-content">
+                    <li><a>aaaa<span class="shortcut-keys" id="">⌘+Z</span></a></li>
+                    <li><a>BBBB</a></li>
+                    <li><a>BBBB</a></li>
+                    <li><a>BBBB</a></li>
+                </ul>
             </li>
-            <li>
+            <li class="dropdown">
                 <a>Preferences</a>
+                <ul class="dropdown-content">
+                    <li><a>aaaa<span class="shortcut-keys" id="">⌘+Z</span></a></li>
+                    <li><a>BBBB</a></li>
+                    <li><a>BBBB</a></li>
+                    <li><a>BBBB</a></li>
+                </ul>
             </li>
             <li>
                 <a>Help</a>
@@ -177,4 +224,3 @@
 </div>
 </body>
 </html>
-
