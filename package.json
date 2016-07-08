@@ -30,7 +30,7 @@
     "zone.js": "^0.6.10"
   },
   "description": "Jumpserver web pages",
-  "main": "index.js",
+  "main": "app.js",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-concat": "^1.0.0",
@@ -41,7 +41,7 @@
     "grunt-htmlhint": "^0.9.12-fix"
   },
   "scripts": {
-    "test": "lite-server --open=unit-tests.html"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
