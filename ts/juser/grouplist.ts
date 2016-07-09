@@ -66,7 +66,7 @@ import {Logger} from "angular2-logger/core";
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="gradeX" *ngFor="#group of groups; #i = index">
+                            <tr class="gradeX" *ngFor="#group of DataStore.grouplist; #i = index">
                                 <td class="text-center">
                                     <input class="shiftCheckbox" type="checkbox" name="selected" 
                                     [(ngModel)]="group.select">
@@ -102,7 +102,7 @@ import {Logger} from "angular2-logger/core";
 
 export class Grouplist {
     data:{};
-    groups:Array<Group>;
+    // groups:Array<Group>;
     DataStore=DataStore;
 
     constructor(private http:Http,
@@ -114,7 +114,7 @@ export class Grouplist {
     }
 
     ngOnInit() {
-        this._appService.getGrouplist().subscribe(response =>this.groups = response);
+        this._appService.getGrouplist() //.subscribe(response =>this.groups = response);
         // this._appService.getMyinfoFromServer().subscribe(response => {
         //     this.user = response;
         //     this._logger.log('dashboard.ts:Dashboard,ngOnInit')

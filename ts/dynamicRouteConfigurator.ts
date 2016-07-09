@@ -1,4 +1,4 @@
-/// <reference path="../../../../node_modules/reflect-metadata/reflect-metadata.d.ts"/>
+/// <reference path="../node_modules/reflect-metadata/reflect-metadata.d.ts"/>
 
 import {Type,Injectable,Input, Component, ViewEncapsulation} from "angular2/core";
 import {RouteConfig,ROUTER_DIRECTIVES,RouteRegistry} from 'angular2/router';

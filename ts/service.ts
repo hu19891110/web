@@ -44,7 +44,8 @@ export var DataStore:{
     activenav:{},
     Path:{},
     error:{},
-    msg:{}
+    msg:{},
+    grouplist:Array<any>
 } = {
     user: new User,
     nav: [],
@@ -54,7 +55,8 @@ export var DataStore:{
     activenav: {},
     Path: {},
     error: {},
-    msg: {}
+    msg: {},
+    grouplist:[]
 };
 
 @Injectable()
@@ -227,6 +229,9 @@ export class AppService {
         this._logger.log('service.ts:AppService,getGrouplist');
         return this.http.get('/api/grouplist')
             .map(res => res.json())
+            .subscribe(response =>{
+                DataStore.grouplist = response
+            })
     }
 
     getUserlist(id:string) {

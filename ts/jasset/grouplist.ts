@@ -66,30 +66,30 @@ import {Logger} from "angular2-logger/core";
                             </tr>
                         </thead>
                         <tbody>
-                        {% for asset_group in asset_groups.object_list %}
-                            <tr class="gradeX">
+                        <!--{% for asset_group in asset_groups.object_list %}-->
+                            <tr class="gradeX" *ngFor="asset_group in DataStore.grouplist">
                                 <td class="text-center" data-editable='false'>
-                                    <input name="id" value="{{ asset_group.id }}" type="checkbox" class="i-checks">
+                                    <input name="id" [(ngModel)]="asset_group.id " type="checkbox" class="i-checks">
                                 </td>
-                                <td class="text-center"><a href="{% url 'asset_list' %}?group_id={{ asset_group.id }}">{{ asset_group.name }} </a>  </td>
-                                <td class="text-center"> <a href="{% url 'asset_list' %}?group_id={{ asset_group.id }}">{{ asset_group.asset_set.count }}</a> </td>
-                                <td class="text-center"> {{ asset_group.comment }} </td>
+                                <td class="text-center"><a href="{% url 'asset_list' %}?group_id={{ asset_group.id }}" [(ngModel)]="asset_group.name"></a></td>
+                                <td class="text-center"> <a href="{% url 'asset_list' %}?group_id={{ asset_group.id }}" [(ngModel)]="asset_group.membercount"></a></td>
+                                <td class="text-center" [(ngModel)]="asset_group.comment"></td>
                                 <td class="text-center">
                                     <a href="{% url 'asset_group_edit' %}?id={{ asset_group.id }}" class="btn btn-xs btn-info">编辑</a>
                                     <a value="{% url 'asset_group_del' %}?id={{ asset_group.id }}" class="btn btn-xs btn-danger group_del">删除</a>
                                 </td>
                             </tr>
-                        {% endfor %}
+                       <!-- {% endfor %}-->
                         </tbody>
                     </table>
-                    <div class="row">
+                    <!--div class="row">
                         <div class="col-sm-6">
                             <div class="dataTables_info" id="editable_info" role="status" aria-live="polite">
                                 Showing {{ asset_groups.start_index }} to {{ asset_groups.end_index }} of {{ p.count }} entries
                             </div>
                         </div>
                         {% include 'paginator.html' %}
-                    </div>
+                    </div-->
                     </form>
                 </div>
             </div>
@@ -102,19 +102,25 @@ import {Logger} from "angular2-logger/core";
 
 export class Grouplist {
     data:{};
-    groups:Array<Group>;
-    DataStore=DataStore;
+    // groups:Array<Group>;
+    DataStore = DataStore;
 
     constructor(private http:Http,
                 private _router:Router,
                 private _logger:Logger,
                 private _appService:AppService) {
-        DataStore.activenav = {'name': '查看资产组', 'path': [{'href': 'Index', 'name': '仪表盘'},{'href': 'UserGrouplist', 'name': '资产管理'},{'href': 'UserGrouplist', 'name': '查看资产组'}]}
+        DataStore.activenav = {
+            'name': '查看资产组',
+            'path': [{'href': 'Index', 'name': '仪表盘'}, {
+                'href': 'UserGrouplist',
+                'name': '资产管理'
+            }, {'href': 'UserGrouplist', 'name': '查看资产组'}]
+        }
 
     }
 
     ngOnInit() {
-        this._appService.getGrouplist().subscribe(response =>this.groups = response);
+        this._appService.getGrouplist()
         // this._appService.getMyinfoFromServer().subscribe(response => {
         //     this.user = response;
         //     this._logger.log('dashboard.ts:Dashboard,ngOnInit')
