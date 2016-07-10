@@ -56,7 +56,7 @@ export var DataStore:{
     Path: {},
     error: {},
     msg: {},
-    grouplist:[]
+    grouplist: []
 };
 
 @Injectable()
@@ -215,6 +215,11 @@ export class AppService {
         return this.http.get('/api/userprofile')
             .map(res => res.json())
     }
+    delUser(id:string) {
+        this._logger.log('service.ts:AppService,delUser');
+        // return this.http.get('/api/userprofile')
+        //     .map(res => res.json())
+    }
 
     gettest() {
         this._logger.log('service.ts:AppService,gettest');
@@ -229,7 +234,7 @@ export class AppService {
         this._logger.log('service.ts:AppService,getGrouplist');
         return this.http.get('/api/grouplist')
             .map(res => res.json())
-            .subscribe(response =>{
+            .subscribe(response => {
                 DataStore.grouplist = response
             })
     }
@@ -246,6 +251,10 @@ export class AppService {
 
     delGroup(id) {
 
+    }
+
+    sendEmail(id:string) {
+        this._logger.log('service.ts:AppService,sendEmail');
     }
 }
 

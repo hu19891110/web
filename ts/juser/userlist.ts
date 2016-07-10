@@ -88,7 +88,7 @@ import {Logger} from "angular2-logger/core";
                                 <td class="text-center">
                                     <a class="btn btn-xs btn-info" [routerLink]="['UserEdit',{'id':user.id}]">编辑</a>
                                     <a class="btn btn-xs btn-warning email" (click)="sendEmail(user.uuid)">Email</a>
-                                    <a  class="btn btn-xs btn-danger" (click)="deluser(user.id)" *ngIf="user.username=='admin'">删除</a>
+                                    <a  class="btn btn-xs btn-danger" (click)="delUser(user.id)" *ngIf="user.username=='admin'">删除</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -133,6 +133,15 @@ export class Userlist {
     ngOnInit() {
         let id = this._routeParams.get('id');
         this._appService.getUserlist(id).subscribe(response =>this.users = response);
+    }
+
+    sendEmail(uuid){
+        alert("you click the send email button,")
+        this._appService.sendEmail(uuid)
+    }
+    delUser(uid){
+        alert("you click the delete user button")
+        this._appService.delUser(uid)
     }
 }
 
